@@ -1,15 +1,22 @@
-﻿Edge Mode and Feature Detection
+Trazendo o site para a Web Moderna
 ========================================
-You are messaged by a colleague requesting your assistance. He is working on a Mobile-First web application to serve as a promotional site for Contoso Industries. He needs you to check his code looking for common mistakes. After all, you are the expert when it comes to web development!
+Neste minicurso iremos ver como analisar um site e identificar problemas de codificação que prejudicam a visualização do site em browsers modernos.
 
-In this lab you will learn about HTML5 document support in Microsoft's new Edge browser, and how document declarations differ from Internet Explorer to Edge. Additionally, you will improve the application's feature detection mechanism.
+Para tanto, iremos fazer análise do Site, através da ferramenta Site scan, e depois aplicar alterações conforme sugerido pela própria ferramenta, o que inclui uso de Detecção de Features e profixos CSS.
 
-This lab includes the following tasks:
+Este minicurso está divido nas seguintes tarefas:
 
-1. [HTML5 Document Setup](#Task1)
-1. [Feature Detection](#Task2)
+1. [Analisando o site](#Task1)
+1. [Definição do DOCTYPE](#Task2)
+1. [Feature Detection](#Task3)
+1. [Prefixos CSS](#Task4)
 
 <a name="Task1" />
+##Analisando o site
+
+
+
+<a name="Task2" />
 ##HTML5 Document Setup
 
 In this exercise you will learn about the deprecation of legacy Document Modes from Internet Explorer in favor of standard support for HTML5 Document Types in Microsoft Edge.

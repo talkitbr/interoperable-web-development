@@ -23,7 +23,7 @@ Existem muitas ferramentas de desenvolvimento que podem te auxiliar a desenvolve
 - [JSFiddle](https://jsfiddle.net/)
 - [JS Bin](http://jsbin.com/)
 
-Para os mini-cursos apresentados aqui, sugiro que você opte por um dos ambientes desenvolvimentos citados acima. As imagens e passos levarão em consideração o uso do **Visual Studio**, que pode ser [baixado gratuitamente](http://www.visualstudio.com/en-us/downloads/download-visual-studio-vs).   
+Para os minicursos apresentados aqui, sugiro que você opte por um dos ambientes desenvolvimentos citados acima. As imagens e passos levarão em consideração o uso do **Netbeans**, que pode ser [baixado gratuitamente](https://netbeans.org/downloads/).   
 
 ### Passo 2: Ter ao menos 2 browsers modernos e também o IE 
 
