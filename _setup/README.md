@@ -1,28 +1,66 @@
-﻿Setting up your environment for the labs
+Configurando o ambiente de desenvolvimento
 ========================================
-In this lab you will find the prerequisites and steps to help you set up your computer. After completing the lab you will have a working environment ready for the other labs.
+A seguir iremos apontar os pré-requisitos para executar os minicursos de desenvolvimento Web e ajudá-lo configurar seu computador. Após completar estos passos desta configuração, você terá um ambiente de desenvolvimento pronto para executar os minicursos.
 
-Configure your computer
+Configurando o computador
 -----------------------
 
-### Install a development environment
-These labs will use **Visual Studio** as the development environment for building and updating the cross-platform application presented as example.
+### Passo 1: Instalar o ambiente de desenvolvimento
+Existem muitas ferramentas de desenvolvimento que podem te auxiliar a desenvolver sites. Temos desde editores de textos até ambientes de desenvolvimento integrados. Exemplos:
 
-If you want to follow the instructions to the letter you will need to install **Visual Studio 2015 Preview** on your computer. This preview can be downloaded and installed from [here](
-http://www.visualstudio.com/en-us/downloads/visual-studio-2015-downloads-vs.aspx).
+#### Editores de Texto ####
 
-Alternatively, you can use Visual Studio 2013 with Update 4 ([download](http://www.visualstudio.com/en-us/downloads/download-visual-studio-vs))  or any other development environment of your choice.
+- SublimeText
+- Notepad++
 
-Visual Studio will also provide the functionality of serving the web application. In case you are not using Visual Studio the web application can be served by any other tool that you want to use, like Apache, IIS, Azure Websites, etc.
+#### Ambientes de Desenvolvimento ####
+- Visual Studio
+- Netbeans
+- Eclipse
+   
+#### Ferramentas Online ####
+- [Codepen](http://codepen.io/)
+- [JSFiddle](https://jsfiddle.net/)
+- [JS Bin](http://jsbin.com/)
 
-### Have at least 2 browsers installed
-The labs will also make use of more than one browser for testing the web application provided as sample. In most cases it will be [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge), but in other cases another browser (e.g. [Google Chrome](https://www.google.com/chrome/)) will be used.
+Para os mini-cursos apresentados aqui, sugiro que você opte por um dos ambientes desenvolvimentos citados acima. As imagens e passos levarão em consideração o uso do **Visual Studio**, que pode ser [baixado gratuitamente](http://www.visualstudio.com/en-us/downloads/download-visual-studio-vs).   
 
-### Clone or download content of this GitHub repository (optional but recommended)
+### Passo 2: Ter ao menos 2 browsers modernos e também o IE 
 
-The labs provided have a combination of text documentation and sample code. In order to have all documentation and necessary sample files locally on your computer, we strongly recommend you clone (using [Git](http://git-scm.com/)) or download all content in this repository locally on your computer.
+Precisamos testar o site em diferentes browsers. O ideal é termos pelo menos 2 browsers modernos, sendo um deles o Edge, e também o Internet Explorer. Se você não tem o SO do Windows, não se preocupe, você poderá testar usando máquinas virtuais disponibilizadas gratuitamente pela Microsoft (veja ["Teste seu site em diferentes versões de browsers"](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/)).   
+ 
+### Passo 3: Clonar ou fazer download do conteúdo repositório GitHub deste curso
 
-Summary
+Os minicursos fornecem uma combinação de texto e exemplos de código. Para que você tenha acesso a toda a documentação além dos códigos de exemplo no computador, sugere-se que seja feita o download e clonagem do repositório localmente (usando [Git](http://git-scm.com/)).
+
+### Passo 4: Baixar ferramenta de análise de sites
+
+A Microsoft disponibiliza uma ferramenta que permite fazer análise de sites.
+Contudo iremos fazer testes num site que ainda não está em produção. E para testá-lo, precisaremos baixar a ferramenta Site scan da Microsoft.
+
+1. Acessar o [repositório do Site scan no GitHub](https://github.com/MicrosoftEdge/static-code-scan).
+2. Clonar ou baixar o repositório em sua máquina local.
+3. [Instalar no Node.JS](https://github.com/joyent/node/wiki/Installation) ou usar um [executável pré-compilado no Windows](https://github.com/joyent/node/wiki/Installation#installing-on-windows).
+
+		![Instalando NodeJS](./fig1_nodejs_install.png)
+
+4. Executar o Node.js
+5. Acessar, via linha de comando, a pasta local onde você baixou o repositório do Site Scan.
+6. Executar o seguinte código
+
+	`npm install`
+
+7. Se necessário, definir a variável de ambiente `PORT` para definir a porta com a qual o serviço NodeJS irá fazer bind. Por padrão a porta é 1337. Exemplo:
+
+	`set PORT=8181`
+ 
+8. Iniciar o serviço de Scan executando o seguinte comando, via linha de comando, na mesma pasta:
+
+	`node app.js`
+
+Pronto, agora é só acessar o endereço `http://localhost:8181/` para usufruir dos recursos do Site Scan. 
+
+Revisão
 -------
 
-You now have an environment ready for developing and testing the web application.
+Acabamos de executar os passos necessários para ter um ambiente de desenvolvimento pronto para desenvolver e testar a aplicações Web e executar os nossos minicursos.
