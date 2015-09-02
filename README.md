@@ -1,28 +1,21 @@
-﻿# Interoperable Web Development #
+# Interoperabilidade no  Desenvolvimento Web #
 
-In these labs you will learn and work with the latest trends, practices and technologies for web development.
+Nestes mini-cursos práticos, você verá como trabalhar com as últimas tendências, práticas e tecnologias para desenvolvimento Web. Tudo isso levando-se conta o desenvolvimento para todos os browsers e vendo como lidar com as limitações dos navegadores web.
+Os mini-cursos são:
 
-This hands-on lab includes the following labs:
-
-#### [Lab 1 - Setup](_setup) ####
-##### Setting up your environment for the labs #####
-
-In this lab you will find the prerequisites and steps to help you set up your computer. After completing the lab you will have a working environment ready for the other labs.
-
-#### [Lab 2 - Edge Mode and Feature Detection](edge-mode-and-feature-detection) ####
+#### [Mini-Curso 1 - Configuração](_setup) ####
+##### Configurando o ambiente de desenvolvimento #####
+Neste mini-curso você verá os pré-requisitos e passos para configurar o ambiente de desenvolvimento Web no seu computador. Depois disso você estará apto a executar os demais mini-cursos.
+#### [Lab 2 – Modo de Renderização Edge e Detecção de Features](edge-mode-and-feature-detection) ####
 #####Working with the browser
-In this lab you will analyze an existing application and update it to comply with the best practices for Feature Detection. Additionally, you will learn about Edge Mode and its perks.
+Neste mini-curso iremos analisar uma aplicação existente e atualizá-la para implementar as melhores práticas de desenvolvimento através de detecção de features. Adicionalmente serão abordadas as novidades do modo de renderização Edge.
+#### [Lab 3 – Melhores Práticas de Desenvolvimento Web](best-practices) ####
+#####Melhorando o que já temos
+Neste mini-curso iremos atualizar nossa aplicação exemplo para incluir novos recursos usando as melhores práticas de desenvolvimento Web. Você irá ver como aperfeiçoar os estilos da aplicação removendo plugins já ultrapassados. Será também introduzido o uso do [hand.js](https://handjs.codeplex.com/), mostrando como podemos usá-lo para melhorar o desenvolvimento do site.
+#### [Lab 4 – Testando em diferentes Browsers](testing) ####
+#####Tendo certeza que tudo funciona
+Neste mini-curso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). Adicionalmente, veremos como gradativamente dar suporte a browsers mais antigos e atualizar nosso site para que ele funcione nesses browsers.
 
-#### [Lab 3 - Web Development Best Practices](best-practices) ####
-#####Improving what we have
-In this lab you will take the application from the previous lab and introduce additional best practices to it. You will improve the app styles and remove old-fashioned plugins from it. You will also be introduced to [hand.js](https://handjs.codeplex.com/) and will update the app to leverage its advantages.
-
-#### [Lab 4 - Cross Browser Testing](testing) ####
-#####Making sure everything works
-In this lab you will learn about two well-known testing tools: [Remote IE](https://remote.modern.ie/) and [Browser Stack](http://www.browserstack.com/) and test the application with the latter. Additionally, you will learn about Graceful degradation for older browsers and update the app to incorporate fixes for them.
-
-#### [Lab 5 - Mobile First with Responsive Design](mobile-first-design) ####
-#####Taking over other platforms
-In this lab you will continue improving the application, in this case to extend its reach to other platforms. You will discover how the use of Media Queries and other elements can help you provide the users with a better experience for every platform.
-
-
+#### [Lab 5 - Mobile First com Design Responsivo](mobile-first-design) ####
+#####Trabalhando com outras plataformas
+Neste mini-curso iremos continuar aperfeiçoando nossa aplicação. Neste caso iremos adicionar o recurso web Design Responsivo através de Media Queries e outros elementos que podem ajudar a prover uma melhor experiência para o usuário em qualquer plataforma que ele esteja utilizando.
