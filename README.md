@@ -7,9 +7,9 @@ Os mini-cursos são:
 ##### Configurando o ambiente de desenvolvimento #####
 Veja os pré-requisitos e passos para configurar o ambiente de desenvolvimento Web no seu computador. Depois disso você estará apto a executar os minicursos presentes neste material.
 
-#### [Minicurso 1 – Modo de Renderização Edge e Detecção de Features](edge-mode-and-feature-detection)
-#####Trazendo o site para a Web Moderna
-Neste minicurso iremos analisar uma aplicação existente e atualizá-la para implementar as melhores práticas de desenvolvimento usando adequadamente prefixos CSS e detecção de features. Adicionalmente serão abordadas as novidades do modo de renderização Edge.
+#### [Minicurso 1 – Modo de Renderização Edge e Detecção de Features](sitescan-rendermode)
+#####Análise do Site e Modo de Renderização
+Neste minicurso iremos analisar uma aplicação existente e atualizá-la para o modo de renderização atual. Vamos também corrigir alguns problemas do Javascript para deixar o site aderente com a Web Moderna.
 
 #### [Minicurso 2 – Melhores Práticas de Desenvolvimento Web](best-practices) 
 #####Melhorando o que já temos
