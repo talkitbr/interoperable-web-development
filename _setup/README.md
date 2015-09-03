@@ -9,12 +9,12 @@ Configurando o computador
 Existem muitas ferramentas de desenvolvimento que podem te auxiliar a desenvolver sites. Temos desde editores de textos até ambientes de desenvolvimento integrados. Exemplos:
 
 #### Editores de Texto ####
-
 - SublimeText
 - Notepad++
 
 #### Ambientes de Desenvolvimento ####
 - Visual Studio
+- Visual Studio Code
 - Netbeans
 - Eclipse
    
@@ -58,7 +58,7 @@ Contudo iremos fazer testes num site que ainda não está em produção. E para 
 
 	`node app.js`
 
-Pronto, agora é só acessar o endereço `http://localhost:8181/` para usufruir dos recursos do Site Scan. 
+Pronto, agora é só acessar o endereço `http://localhost:8181/` para usufruir dos recursos do Site Scan no seu ambiente de desenvolvimento. 
 
 Revisão
 -------
