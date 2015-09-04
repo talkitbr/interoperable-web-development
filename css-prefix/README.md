@@ -1,4 +1,4 @@
-Detecção de Features
+Prefixos CSS
 ========================================
 Neste minicurso iremos corrigir problemas relacionados com prefixos CSS. 
 
