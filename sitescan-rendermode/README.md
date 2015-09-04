@@ -50,18 +50,18 @@ O relatório será enviado para o site dev.modern.ie para exibir os resultados. 
 
 Apesar de não ser apontado como problema pelo Site Scan, é uma boa prática definir o DOCTYPE. Como estamos lidando com Web Moderna, vamos incluir o DOCTYPE para HTML5 adicionando o trecho abaixo na primeira linha da nossa página.
 
-	`<!DOCTYPE html>`
+	<!DOCTYPE html>
 
 Feito isso, vamos passar a analisar os problemas identificados pelo Site Scan. O primeiro deles é o Rendering Mode:
 
-	`"rendermode": {
+	"rendermode": {
       "testName": "rendermode",
       "passed": false,
       "data": {
         "source": "tag",
         "mode": "ie=10"
       }
-    }`
+    }
 
 Perceba que além de não passar no teste, o modo de renderização é está definido para o IE10 devido a tag meta `X-UA-Compatible`.
 
@@ -69,12 +69,12 @@ Perceba que além de não passar no teste, o modo de renderização é está def
 
 Podemos agora remover a tag meta `X-UA-Compatible`, para que o IE mostre nosso site usando o modo de renderização Edge, ou ainda alterar o valor do atributo content para "IE=Edge":
 
-	`<meta charset="utf-8" />
+	<meta charset="utf-8" />
 	<title>Contoso Movies</title>
 	<meta name="viewport" content="width=device-width" />	
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />        
-	<link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />`
+	<link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
         
 Se executarmos novamente o Site Scan, perceba que a issue "RenderMode" não está mais lá.
 
