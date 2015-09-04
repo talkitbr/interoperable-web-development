@@ -19,14 +19,14 @@ Neste minicurso iremos adotar rever a forma como controlamos o uso de recursos d
 #####Usando corretamente prefixos CSS
 Neste minicurso iremos analisar as issues encontradas no site scan relacionados com Prefixos CSS. Para corrigir nosso CSS, iremos usar uma ferramenta que inclui os prefixos automaticamente.
 
-#### [Minicurso 2 – Melhores Práticas de Desenvolvimento Web](best-practices) 
+#### [Minicurso 4 – Melhores Práticas de Desenvolvimento Web](best-practices) 
 #####Melhorando o que já temos
 Neste minicurso iremos atualizar nossa aplicação exemplo para incluir novos recursos usando as melhores práticas de desenvolvimento Web. Você irá ver como aperfeiçoar os estilos da aplicação removendo plugins já ultrapassados. Será também introduzido o uso do [hand.js](https://handjs.codeplex.com/), mostrando como podemos usá-lo para melhorar o desenvolvimento do site.
 
-#### [Minicurso 3 – Testando em diferentes Browsers](testing)
-#####Tendo certeza que tudo funciona q
+#### [Minicurso 5 – Testando em diferentes Browsers](testing)
+#####Tendo certeza que tudo funciona
 Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). Adicionalmente, veremos como gradativamente dar suporte a browsers mais antigos e atualizar nosso site para que ele funcione nesses browsers.
 
-#### [Minicurso 4 - Mobile First com Design Responsivo](mobile-first-design)
+#### [Minicurso 6 - Mobile First com Design Responsivo](mobile-first-design)
 #####Trabalhando com outras plataformas
 Neste minicurso iremos continuar aperfeiçoando nossa aplicação. Neste caso iremos adicionar o recurso web Design Responsivo através de Media Queries e outros elementos que podem ajudar a prover uma melhor experiência para o usuário em qualquer plataforma que ele esteja utilizando.
