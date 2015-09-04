@@ -9,17 +9,17 @@ Este minicurso está divido nas seguintes tarefas:
 1. [Analisando o site](#Task1)
 1. [Definição do DOCTYPE](#Task2)
 1. [Tratando uso de funções obsoletas](#Task3)
-1. [Conclusão](#Conclusion)
+1. [Revisão](#Review)
 
-Para executar as tarefas, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta `edge-mode-and-feature-detection\code\begin` contido no repositório.
+Para executar as tarefas, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta [`code\begin`](./code/begin) contido no repositório.
 
 Depois disso, execute o projeto num servidor Web local usando o próprio **Netbeans**:
 
-![Run Netbeans Project](./images/run_netbeans_project.png)
+![Abrir projeto no Netbeans](./images/run_netbeans_project.png)
 
 Site aberto a partir de um servidor Web local:
 
-![Run Netbeans Project](./images/site_local_webserver.png)
+![Executar site no servidor Web local](./images/site_local_webserver.png)
 
 <p name="Task1" />
 ##Analisando o site
@@ -150,7 +150,7 @@ Ainda em relação ao addEventListener, temos outros trechos de código que são
 
 Agora vamos rever as demais páginas do site localizando trechos de código que usam a função `addEventListener` para incluir a alteração acima.
   
-<p name="Conclusion"/>
+<p name="Review"/>
 ##Conclusão
 
 Neste minicurso fizemos a análise do nosso site e corrigimos o problema de renderização. 

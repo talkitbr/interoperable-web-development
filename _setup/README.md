@@ -33,7 +33,7 @@ Precisamos testar o site em diferentes browsers. O ideal é termos pelo menos 2 
 
 Os minicursos fornecem uma combinação de texto e exemplos de código. Para que você tenha acesso a toda a documentação além dos códigos de exemplo no computador, sugere-se que seja feita o download e clonagem do repositório localmente (usando [Git](http://git-scm.com/)).
 
-### Passo 4: Baixar ferramenta de análise de sites
+### Passo 4: Baixar e configurar ferramenta de análise de sites
 
 A Microsoft disponibiliza uma ferramenta que permite fazer análise de sites.
 Contudo iremos fazer testes num site que ainda não está em produção. E para testá-lo, precisaremos baixar a ferramenta Site scan da Microsoft.

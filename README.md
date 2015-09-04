@@ -11,12 +11,20 @@ Veja os pré-requisitos e passos para configurar o ambiente de desenvolvimento W
 #####Análise do Site e Modo de Renderização
 Neste minicurso iremos analisar uma aplicação existente e atualizá-la para o modo de renderização atual. Vamos também corrigir alguns problemas do Javascript para deixar o site aderente com a Web Moderna.
 
+#### [Minicurso 2 – Detecção de Features](feature-detection) 
+#####Usando deteção de features ao invés de detecção de browser
+Neste minicurso iremos adotar rever a forma como controlamos o uso de recursos do browser, substituindo a detecção de browser por detecção de features.
+
+#### [Minicurso 3 – Prefixos CSS](css-prefix) 
+#####Usando corretamente prefixos CSS
+Neste minicurso iremos analisar as issues encontradas no site scan relacionados com Prefixos CSS. Para corrigir nosso CSS, iremos usar uma ferramenta que inclui os prefixos automaticamente.
+
 #### [Minicurso 2 – Melhores Práticas de Desenvolvimento Web](best-practices) 
 #####Melhorando o que já temos
 Neste minicurso iremos atualizar nossa aplicação exemplo para incluir novos recursos usando as melhores práticas de desenvolvimento Web. Você irá ver como aperfeiçoar os estilos da aplicação removendo plugins já ultrapassados. Será também introduzido o uso do [hand.js](https://handjs.codeplex.com/), mostrando como podemos usá-lo para melhorar o desenvolvimento do site.
 
 #### [Minicurso 3 – Testando em diferentes Browsers](testing)
-#####Tendo certeza que tudo funciona
+#####Tendo certeza que tudo funciona q
 Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). Adicionalmente, veremos como gradativamente dar suporte a browsers mais antigos e atualizar nosso site para que ele funcione nesses browsers.
 
 #### [Minicurso 4 - Mobile First com Design Responsivo](mobile-first-design)
