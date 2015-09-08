@@ -23,7 +23,7 @@ Neste minicurso iremos adotar rever a forma como controlamos o uso de recursos d
 #####Usando corretamente prefixos CSS
 Neste minicurso iremos analisar as issues encontradas no site scan relacionados com Prefixos CSS. Para corrigir nosso CSS, iremos usar uma ferramenta que inclui os prefixos automaticamente.
 
-#### [Minicurso 5 – Melhores Práticas de Desenvolvimento Web](Entradas do Usuário) 
+#### [Minicurso 5 – Melhores Práticas de Desenvolvimento Web](touch) 
 #####Manipulando diferentes entradas do usuário
 Neste minicurso iremos atualizar nossa aplicação exemplo para considerar entrada do usuário usando touch. Será também o uso do [hand.js](https://handjs.codeplex.com/), mostrando como podemos usá-lo para melhorar o desenvolvimento do site.
 
