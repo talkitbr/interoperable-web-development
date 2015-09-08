@@ -64,6 +64,7 @@ Essa funcionalidade será feita na página `sign.html`.
             context.fillRect(event.clientX, event.clientY, 10, 10);
         }
     </script>
+	````
 
 	> O código acima irá desenhar um retânculo preto quando o cursor do mouse passar sobre a área do canvas. Mas e quanto as outras formas de entrada como toque e caneta? Do jeito que está, no caso do toque será desenhado somente um quadrado. 
 	
