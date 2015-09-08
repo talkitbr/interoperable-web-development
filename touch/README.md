@@ -124,6 +124,8 @@ Tanto que se testarmos esse site novamente no Site scan, ainda estará sendo apo
 	
 Para tratar adequadamente o touch nos diferentes navegadores, podemos usar uma biblioteca Javascript chamada `hands.js`.
 
+Essa biblioteca implementa código Javascript que faz o trabalho de lidar com as diferentes formas de interação na página nos diferentes browsers. 
+
 1. Acessar a página do [HandJS no GitHub](https://github.com/Deltakosh/handjs) e baixar a última versão da bilbioteca (download ou clone do repositório).
 
 2. Obter o arquivo hand.js da pasta `bin` e adicionar na pasta `Scripts` da raiz do seu site.
