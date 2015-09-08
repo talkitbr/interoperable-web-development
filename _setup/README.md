@@ -42,7 +42,7 @@ Contudo iremos fazer testes num site que ainda não está em produção. E para 
 2. Clonar ou baixar o repositório em sua máquina local.
 3. [Instalar no Node.JS](https://github.com/joyent/node/wiki/Installation) ou usar um [executável pré-compilado no Windows](https://github.com/joyent/node/wiki/Installation#installing-on-windows).
 
-	![Instalando NodeJS](./fig1_nodejs_install.png)
+	![Instalando NodeJS](./images/fig1_nodejs_install.png)
 
 4. Executar o Node.JS
 5. Acessar, via linha de comando, a pasta local onde você baixou o repositório do Site Scan.
