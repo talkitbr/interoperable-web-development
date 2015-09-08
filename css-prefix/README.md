@@ -23,7 +23,7 @@ Depois disso, execute o projeto num servidor Web local usando o próprio **Netbe
 <p name="Task1" />
 ##Identificando problemas de uso de prefixos CSS
 
-Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](../sitescan-rendermode/)), observe que nossa página `index.html` possui o seguinte problema de prefixo CSS (há vários outros problemas identificados também no CSS jquery.mobile mas que trataremos mais tarde):
+Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](../sitescan-rendermode/)), observe que nossa página `index.html` possui o seguinte problema de prefixo CSS:
 
     "cssprefixes": {
       "testName": "cssprefixes",
@@ -47,19 +47,19 @@ Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](.
 Para corrigir este problema, recomenda-se especificar o CSS tanto sem prefixo como com prefixos específicos de outros browsers. Exemplo:
 
 	-webkit-appearance: button; /* WebKit */
-	-moz-appearance: button; /* Mozilla */
-	-o-appearance: button; /* Opera */
-	-ms-appearance: button; /* Internet Explorer */
-	appearance: button; /* CSS3 */
+	   -moz-appearance: button; /* Mozilla */
+	     -o-appearance: button; /* Opera */
+	    -ms-appearance: button; /* Internet Explorer */
+	        appearance: button; /* CSS3 */
 
 No nosso caso, vamos localizar o seletor `.fadeIn` onde foi detectado o erro e então incluir as seguintes propriedades:
 
 	.fadeIn {
         -webkit-animation: fadeIn 3s forwards; /* WebKit */
-        -moz-animation: fadeIn 3s forwards; /* Mozilla */
-        -o-animation: fadeIn 3s forwards; /* Opera */
-        -ms-animation: fadeIn 3s forwards; /* Internet Explorer */
-        animation: fadeIn 3s forwards;
+           -moz-animation: fadeIn 3s forwards; /* Mozilla */
+             -o-animation: fadeIn 3s forwards; /* Opera */
+            -ms-animation: fadeIn 3s forwards; /* Internet Explorer */
+                animation: fadeIn 3s forwards;
     }
 
 Percebam que agora incluímos todos os prefixos para animation. Isso dar maior garantias de que a propriedade funcionará adequadamente nos browsers modernos.
@@ -67,13 +67,9 @@ Percebam que agora incluímos todos os prefixos para animation. Isso dar maior g
 Se testarmos de novo o site após feita essa alteração, você irá notar que o problema encontrado anteriormente não estará mais lá. Somente estarão sendo apontados os problemas nos arquivos externos.
   
 <p name="Task2" />
-##Usando ferramenta de para adicionar prefixos CSS automaticamente
+##Usando ferramenta para adicionar prefixos CSS automaticamente
 
-Existem várias situações em que a inclusão de prefixos CSS manualmente é impeditivo além de que pode resultar em erros por mais que tenhamos cuidado.
-
-Por exemplo, o Site Scan apontou vários problemas no CSS das bibliotecas que usamos. Nesse caso, o ideal é utilizarmos uma ferramenta que adiciona automaticamente os prefixos de forma que não afete o resultado final e garanta que tudo esteja especificado conforme recomendado.
-
-Existem várias ferramentas que adicionam automaticamente os prefixos CSS. Aqui usaremos o autoprefixer disponibilizado no repositório GitHub [https://github.com/postcss/autoprefixer](https://github.com/postcss/autoprefixer).
+Uma opção interessante é usar ferramentas que adicionam automaticamente os prefixos CSS. Isso facilita o trabalho e reduz risco de erro. Aqui usaremos o autoprefixer disponibilizado no repositório GitHub [https://github.com/postcss/autoprefixer](https://github.com/postcss/autoprefixer).
 
 O Autoprefixer pode executado de várias maneiras, seja por linha de comando, no processo de build ou mesmo através de ferramentas de edição de texto como Visual Studio de SublimeText.
 
@@ -85,18 +81,29 @@ Segue exemplo usando o postcss-cli, ferramenta de linha de comando do [PostCSS](
 
 2. Ainda usando linha de comando, executar o postcss na pasta onde estão os arquivos CSS que queremos adicionar automaticamente os prefixos CSS:
 
-	`postcss --use autoprefixer jquery.mobile-1.2.0.css -d .`
-	`postcss --use autoprefixer jquery.mobile.structure-1.2.0.css -d .`
+	postcss --use autoprefixer [nome_arquivo].css -d .
+
+> O argumento `-d` permite especificar a pasta de saída. Neste caso estamos atualizando o mesmo arquivo. Mas podem ter situações em que queremos gerar o arquivo sem sobrescrever o atual. Neste caso especificamos como valor do argumento `-d` uma pasta já existente. 
+	
+Ainda podemos especificar as versões de browsers quando for feita a inclusão dos prefixos CSS. Exemplos:
+
+- Ultimas 2 versões dos principais browsers do mercado: `"last 2 versions"`.
+- Borwsers com mais de 1% de uso global: `"> 1%"`.
+- Somente as ultimas versões de um determinado browser `"ie > 9"` ou `"ie >= 9"`.
+
+Para tanto, incluímos o argumento `--autoprefixer.browsers`. Exemplo:
+
+`postcss --use autoprefixer --autoprefixer.browsers "last 2 versions" [nome_arquivo].css -d .`
 
 Pronto! Agora é para os prefixos estarem adicionados corretamente.
 
 <p name="Review"/>
 ##Conclusão
 
+Você pode obter o código final desse minicurso [aqui](./code/end).
+
 Leituras Recomendadas:
 
 1. [Prefixos CSS no Microsoft Edge](http://talkitbr.com/2015/08/19/prefixos-css-no-microsoft-edge/): Aprenda a usar Prefixos CSS;
 2. [Teste seu site em diferentes versões de browsers](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/): Veja como testar seu site em diferentes versões de browsers, desde o IE até Chrome e Firefox. 
-
-Você pode obter o código final desse minicurso [aqui](./code/end).
 
