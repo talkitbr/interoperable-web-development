@@ -1,4 +1,4 @@
-Configurando o ambiente de desenvolvimento
+Configurando o Ambiente de Desenvolvimento
 ========================================
 A seguir iremos apontar os pré-requisitos para executar os minicursos de desenvolvimento Web e ajudá-lo configurar seu computador. Após completar estos passos desta configuração, você terá um ambiente de desenvolvimento pronto para executar os minicursos.
 

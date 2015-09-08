@@ -49,7 +49,7 @@ Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](.
       }
     }
 
-Um dos pontos detectados está no nosso código HTML. O outro foi detectado no uso da biblioteca JS jwplayer. Este último caso será revisto em outro mincurso. Vamos focar agora no nosso código HTML. 
+Um dos pontos detectados está no nosso código HTML. O outro foi detectado no uso da biblioteca JS jwplayer. Neste momento vamos focar no nosso código HTML. 
 
 Voltando para o código, vamos localizar os pontos que fazem uso de detecção de browser. Vamos iniciar abrindo o arquivo `index.html`. Nele encontraremos o seguinte trecho de código javascript:
 
@@ -77,11 +77,11 @@ Voltando para o código, vamos localizar os pontos que fazem uso de detecção d
 
 Observem que estamos verificando se o browser é o Internet Explorer para determinar se podemos ou não usar o recurso "fadeIn". Porém, mesmo que esse recurso exista nas versões mais recentes desse browser, do jeito que foi implementado, os usuários nunca conseguirão ter acesso a esse recurso no IE. Esse é apenas um caso, mas muitos outros são também comuns.
 
-O correto é verificarmos se esse recurso existe através de feature detection. E existem bibliotecas que podem nos auxiliar, como é o caso do Modernizr.
+O correto é verificarmos se esse recurso existe através de *feature detection*. E existem bibliotecas que podem nos auxiliar, como é o caso do Modernizr.
 
 Outro recurso também que pode não existir em browsers antigos é a propriedade CSS `opacity`. Para verificar o que cada browser suporta, acesse o site [CanIUse](http://caniuse.com/):
 
-![Can I Use](./images/featuredetecion_caniuse.png)
+![Can I Use](./images/featuredetection_caniuse.png)
 
 1. Vamos começar removendo a tag script que contem o Javascript que faz detecção de browser. 
 2. Feito isso,  acessar o site [http://modernizr.com/download/](http://modernizr.com/download/)
@@ -96,16 +96,12 @@ Outro recurso também que pode não existir em browsers antigos é a propriedade
 	![](./images/featuredetection_modernizrscriptadded.png)
 
 4. Agora vamos incluir esse script na nossa página index.html. Vamos incluir no final da página, antes de fechar a tag `<body>` para não prejudicar a visualização da página pelo browser:
+		
+    ```
+	<script src="Scripts/modernizr.custom.62681.js" type="text/javascript"></script>
+    ```	
 
-	<html>
-        <!-- ... -->
-		<body>
-	    	<!-- ... -->
-		    <script src="Scripts/modernizr.custom.62681.js" type="text/javascript"></script>        
-	    </body>
-	</html> 
-
-	> Feito isso, ao abrirmos a página no navegador Web, o Modernizr irá verificar o suporte para as features que selecionamos a pouco. No nosso caso, a feature será CSS Transitions.
+> Feito isso, ao abrirmos a página no navegador Web, o Modernizr irá verificar o suporte para as features que selecionamos a pouco. No nosso caso, a feature será CSS Transitions.
 	 
 7. Vamos agora incluir o script que faz detecção de feature usando informações disponibilizadas pelo script do Modernizr:
 
@@ -126,7 +122,7 @@ Outro recurso também que pode não existir em browsers antigos é a propriedade
 
 	![](./images/featuredetection_cssanimationdebug.png)
 
-Pronto! Se analisarmos novamente nosso site pelo Sie Scan, você observará que o item de browserDetection da nossa página não estará mais la. Somente constará o uso na biblioteca JS jwplayer:
+Pronto! Se analisarmos novamente nosso site pelo Site Scan, você observará que o item de browserDetection da nossa página não estará mais lá. Somente constará o uso na biblioteca JS jwplayer:
 
 	"browserDetection": {
       "testName": "browserDetection",
@@ -152,9 +148,10 @@ Pronto! Se analisarmos novamente nosso site pelo Sie Scan, você observará que 
 <p name="Review"/>
 ##Conclusão
 
-Leituras Recomendadas:
-1. [Criando sites que simplesmente funcionam.](http://talkitbr.com/2015/08/27/criando-sites-que-simplesmente-funcionam/): Veja como usar detecção de features ao invés de detecção de browsers;
-2. [Teste seu site em diferentes versões de browsers](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/): Veja como testar seu site em diferentes versões de browsers, desde o IE até Chrome e Firefox. 
+Aqui vimos como corrigir o site removendo detecção de browser. Você pode obter o código final desse minicurso [aqui](./code/end).
 
-Você pode obter o código final desse minicurso [aqui](./code/end).
+Leituras Recomendadas:
+
+1. [Criando sites que simplesmente funcionam.](http://talkitbr.com/2015/08/27/criando-sites-que-simplesmente-funcionam/): Veja como usar detecção de features ao invés de detecção de browsers;
+2. [Teste seu site em diferentes versões de browsers](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/): Veja como testar seu site em diferentes versões de browsers, desde o IE até Chrome e Firefox.
 
