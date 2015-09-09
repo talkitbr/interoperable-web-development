@@ -23,13 +23,13 @@ Neste minicurso iremos adotar rever a forma como controlamos o uso de recursos d
 #####Usando corretamente prefixos CSS
 Neste minicurso iremos analisar as issues encontradas no site scan relacionados com Prefixos CSS. Para corrigir nosso CSS, iremos usar uma ferramenta que inclui os prefixos automaticamente.
 
-#### [Minicurso 5 – Melhores Práticas de Desenvolvimento Web](touch) 
+#### [Minicurso 5 – Manipulando entrada do usuário](touch) 
 #####Manipulando diferentes entradas do usuário
 Neste minicurso iremos atualizar nossa aplicação exemplo para considerar entrada do usuário usando touch. Será também o uso do [hand.js](https://handjs.codeplex.com/), mostrando como podemos usá-lo para melhorar o desenvolvimento do site.
 
 #### [Minicurso 6 – Testando em diferentes Browsers](testing)
 #####Tendo certeza que tudo funciona
-Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). Adicionalmente, veremos como gradativamente dar suporte a browsers mais antigos e atualizar nosso site para que ele funcione nesses browsers.
+Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). 
 
 #### [Minicurso 7 - Mobile First com Design Responsivo](mobile-first-design)
 #####Trabalhando com outras plataformas
