@@ -7,7 +7,7 @@ Os mini-cursos são:
 ##### Configurando o ambiente de desenvolvimento #####
 Veja os pré-requisitos e passos para configurar o ambiente de desenvolvimento Web no seu computador. Depois disso você estará apto a executar os minicursos presentes neste material.
 
-#### [Minicurso 1 – Análise do Site](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/_setup)
+#### [Minicurso 1 – Análise do Site](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/sitescan)
 ##### Analisando seu site localmente
 Neste minicurso iremos analisar uma aplicação existente usando a ferramenta de Site scan localmente. 
 
@@ -31,6 +31,12 @@ Neste minicurso iremos atualizar nossa aplicação exemplo para considerar entra
 #####Tendo certeza que tudo funciona
 Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). 
 
+#### [Minicurso 7 – Atualizando o Site para Modern Web](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/update)
+#####Atualizando seu site e corrigindo problemas
+Neste minicurso iremos ver o que vem mudando desde browser antigos até os browsers da Web moderna e também iremos atualizar nossa aplicaçao incluindo algumas correções.
+
+<!---
 #### [Minicurso 7 - Mobile First com Design Responsivo](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/mobile-first-design)
 #####Trabalhando com outras plataformas
 Neste minicurso iremos continuar aperfeiçoando nossa aplicação. Neste caso iremos adicionar o recurso web Design Responsivo através de Media Queries e outros elementos que podem ajudar a prover uma melhor experiência para o usuário em qualquer plataforma que ele esteja utilizando.
+-->

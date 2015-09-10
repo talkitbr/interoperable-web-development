@@ -153,5 +153,5 @@ Aqui vimos como corrigir o site removendo detecção de browser. Você pode obte
 Leituras Recomendadas:
 
 1. [Criando sites que simplesmente funcionam.](http://talkitbr.com/2015/08/27/criando-sites-que-simplesmente-funcionam/): Veja como usar detecção de features ao invés de detecção de browsers;
-2. [Teste seu site em diferentes versões de browsers](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/): Veja como testar seu site em diferentes versões de browsers, desde o IE até Chrome e Firefox.
+2. [Por dentro das novas funcionalidades dos browsers](http://talkitbr.com/2015/08/17/fique-por-dentro-das-novas-funcionalidades-dos-navegadores-web/): Veja como descobrir as novas funcionalidades implementadas pelos browsers.
 

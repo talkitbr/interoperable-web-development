@@ -2,7 +2,7 @@ Modo de Renderização e Uso de Funções Obsoletas
 ========================================
 Neste minicurso iremos ver como analisar um site e identificar problemas de codificação que prejudicam a visualização do site em browsers modernos.
 
-Dentre eles citamos o não uso de DOCTYPE e o uso de document modes legados do Internet Explorer. Outro problema comum é uso de recursos que funcionam em versões antigas do Internet Explorer e que precisam ser atualizados para funcionar nos browsers modernos.
+Dentre eles citamos o não uso de DOCTYPE e o uso de document modes legados do Internet Explorer. Isso prejudica a visualização do site nas versões mais recentes do IE.
 
 Este minicurso está divido nas seguintes tarefas:
 
@@ -77,53 +77,31 @@ Após o passo 1, se executarmos nosso site iremos observar que ocorre um erro Ja
 
 > Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener`. Mas é muito comum encontrá-la nas páginas Web que foram desenvolvidas para versões anteriores do Internet Explorer. Quando usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar essa função.
 
-Para corrigir, devemos alterar o código Javascript para verificar se a função attachEvent está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
+Para corrigir, vamos nesse momento somente alterar o Javascript para usar a função `addEventListener`. Mas não se preocupem, ainda retornaremos neste código em um outro minicurso. 
 
+Vamos abrir a página `index.html` e alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
+
+- De:
+	````Javascript
 	<script>
-		if (window.attachEvent) {
-            window.attachEvent("onload", function () {
-                setTimeout(function () {
-                    jwplayer().play(true);
-                }, 200);
-            });
-        }
-        else {
-            window.addEventListener("load", function () {
-                setTimeout(function () {
-                    jwplayer().play(true);
-                }, 200);
-            });
-        }
-	</script>
-
-Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo quando o usuário estiver usando um browser anterior do Internet Explorer que implementa somente a função `attachEvent`.
-
-Para testar numa versão anterior do IE, vamos fazer o seguinte:
-
-1. Abrir o Internet Explorer
-2. Acessar nosso site
-3. Abrir a ferramenta do desenvolvedor
-4. Acessar a aba Emulation
-5. Selecionar o Document Mode IE9, por exemplo.
-6. Na aba Debugger, colocar um ponto de parada dentro do bloco condicional que verifica a existência da função `attachEvent`:
-
-![Erro usando função attachEvent](./images/featuredetection_attacheevent_running_ie9.png)
-
-> Observe que o código de `attachEvent` foi executado quando definimos o Document Mode para IE9.
-
-Ainda em relação ao addEventListener, temos outros trechos de código que são usam ele e não o `attachEvent`. E isso pode ser também um problema pois o usuário pode estar usando um browser antigo. Neste caso podemos verificar se a função addEventListener existe antes de utilizarmos ela. Por exemplo:  
-
-	<script>
-		if (window.addEventListener)
-	        window.addEventListener("mobileinit", function () {
-	            $.mobile.ajaxEnabled = false;
-	        });
-		}
+        window.attachEvent("load", function () {
+            setTimeout(function () {
+                jwplayer().play(true);
+            }, 500);
+        });
     </script>
+	````
 
-> O evento `mobileinit` é disparado a partir de navegadores web de smartphones e estes não possuem versões anteriores de navegadores Web, como o IE8. Portanto, nesse caso não precisamos considerar o uso da função `attachEvent`.
+- Para:
+	````Javascript
+	<script>
+        window.addEventListener("load", function () {
+            setTimeout(function () { jwplayer().play(true); }, 500);
+        });
+	</script>
+	````
 
-Agora vamos rever as demais páginas do site localizando trechos de código que usam a função `addEventListener` para incluir a alteração acima.
+Dessa forma, conseguiremos obter o resultado esperado no IE11 e nos demais browsers modernos.
   
 <p name="Review"/>
 ##Conclusão
