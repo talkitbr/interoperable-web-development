@@ -11,7 +11,12 @@
         var context = canvas.getContext("2d");
         context.fillStyle = "rgba(0, 0, 0, 0.5)";
 
-        canvas.addEventListener("pointermove", paint, false);
+        if (window.addEventListener) {
+            canvas.addEventListener("pointermove", paint, false);
+        } else if (window.attachEvent) {
+            window.attachEvent("pointermove", paint, false);
+        }
+        
 
         function paint(event) {
             context.fillRect(event.clientX, event.clientY, 10, 10);

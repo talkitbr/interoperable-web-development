@@ -93,20 +93,11 @@
                 </div>
 
                 <script>
-                    if (window.attachEvent) {
-                        window.attachEvent("onload", function () {
-                            setTimeout(function () {
-                                jwplayer().play(true);
-                            }, 500);
-                        });
-                    }
-                    else {
-                        window.addEventListener("load", function () {
-                            setTimeout(function () {
-                                jwplayer().play(true);
-                            }, 500);
-                        });
-                    }
+                    window.addEventListener("load", function () {
+                        setTimeout(function () {
+                            jwplayer().play(true);
+                        }, 500);
+                    });
                 </script>
             </div>
 
@@ -119,11 +110,9 @@
         <script src="./Scripts/html5LogoGenerator.js"></script>        
 
         <script>
-                    if (window.addEventListener) {
-                        window.addEventListener("mobileinit", function () {
-                            $.mobile.ajaxEnabled = false;
-                        });
-                    }
+                    window.addEventListener("mobileinit", function () {
+                        $.mobile.ajaxEnabled = false;
+                    });
         </script>
 
         <script src="Scripts/modernizr.custom.62681.js" type="text/javascript"></script>

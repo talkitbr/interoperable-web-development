@@ -22,7 +22,6 @@ Para esta tarefa iremos usar a Ferramenta do Desenvolvedor (F12) do Internet Exp
 1. Executar o projeto e abrir a página inicial no Internet Explroer.
 1. Abrir a Ferramenta do Desenvolvedor pressionando a tecla F12.
 1. Abrir a aba do Emulador (Emulation) e modar o **Document mode** para **8**.
-
 	
 	![Mudando o Document Mode para IE8](images/update_setrendermodeie8.png)
 
@@ -31,6 +30,8 @@ Para esta tarefa iremos usar a Ferramenta do Desenvolvedor (F12) do Internet Exp
 1. O site será recarregado no emulando o IE8. 
 
 	> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site volatrá a ser exibido no Document Mode padrão.
+
+Outra opção ainda é baixar uma máquina virtual Windows contendo o IE8. Para ver como, verifique novamente nosso minicurso [de como testar nosso site em diferentes browsers](../testing).
 
 <p name="Task1" />
 #### Recursos Javascript ####
@@ -42,130 +43,41 @@ Ao executarmos a página inicial, já iremos nos deparar com um primeiro problem
 
 Após o passo 1, se executarmos nosso site iremos observar que ocorre um erro Javascript (visualizado através da ferramenta do desenvolvedor F12) relacionado com o uso da função `attachEvent`:
 
-![Erro usando função attachEvent](./images/featuredetection_attacheevent_error.png)
+![Erro usando função attachEvent](./images/update_attacheevent_error.png)
 
-> Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener`. Mas é muito comum encontrá-la nas páginas Web que foram desenvolvidas para versões anteriores do Internet Explorer. Quando usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar essa função.
+> **Nota 1:** Nas versões mais recentes do IE11, mesmo usando emulação para IE8, esse erro é contornado pelo browser.
 
-Para corrigir, devemos alterar o código Javascript para verificar se a função attachEvent está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
+> **Nota 2:** Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener` nas novas versões do Javascript. Mas é muito comum encontrar o `attachEvent` nas páginas Web antigas ou que foram desenvolvidas para versões anteriores do Internet Explorer. Porém, se usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar a função `attachEvent`.
 
+Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
+
+	````Javascript
 	<script>
 		if (window.attachEvent) {
             window.attachEvent("onload", function () {
                 setTimeout(function () {
                     jwplayer().play(true);
-                }, 200);
+                }, 500);
             });
         }
         else {
             window.addEventListener("load", function () {
                 setTimeout(function () {
                     jwplayer().play(true);
-                }, 200);
+                }, 500);
             });
         }
 	</script>
+	````	
 
 Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo quando o usuário estiver usando um browser anterior do Internet Explorer que implementa somente a função `attachEvent`.
 
-Para testar numa versão anterior do IE, vamos fazer o seguinte:
+![Erro usando função attachEvent](./images/update_attacheevent_running_ie9.png)
 
-1. Abrir o Internet Explorer
-2. Acessar nosso site
-3. Abrir a ferramenta do desenvolvedor
-4. Acessar a aba Emulation
-5. Selecionar o Document Mode IE9, por exemplo.
-6. Na aba Debugger, colocar um ponto de parada dentro do bloco condicional que verifica a existência da função `attachEvent`:
+> Observe que o código de `attachEvent` foi executado quando definimos o Document Mode para IE8.
 
-![Erro usando função attachEvent](./images/featuredetection_attacheevent_running_ie9.png)
+Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira:  
 
-> Observe que o código de `attachEvent` foi executado quando definimos o Document Mode para IE9.
-
-Ainda em relação ao addEventListener, temos outros trechos de código que são usam ele e não o `attachEvent`. E isso pode ser também um problema pois o usuário pode estar usando um browser antigo. Neste caso podemos verificar se a função addEventListener existe antes de utilizarmos ela. Por exemplo:  
-
-	<script>
-		if (window.addEventListener)
-	        window.addEventListener("mobileinit", function () {
-	            $.mobile.ajaxEnabled = false;
-	        });
-		}
-    </script>
-
-> O evento `mobileinit` é disparado a partir de navegadores web de smartphones e estes não possuem versões anteriores de navegadores Web, como o IE8. Portanto, nesse caso não precisamos considerar o uso da função `attachEvent`.
-
-Agora vamos rever as demais páginas do site localizando trechos de código que usam a função `addEventListener` para incluir a alteração acima.
-
-
-1. Press **F5** to start debugging and when the website is launched in IE, set IE to emulate IE8 (press **F12** to open the Developer tools, then **Ctrl+8** to change to the Emulator tab, then change the **Document mode** to **8**).
-
-	The home page will reload in the browser now emulating IE8. Before the Home page loads completely you will get an error message dialog box in Visual Studio. This is one of the errors you saw when running the website in BrowserStack, only this time you are running the debugger and are prompted to review it first.
-
-	![AddEventListener Error in IE8](images/addeventlistener-error-in-ie8.png?raw=true)
-
-	_addEventListener Error Message in IE8_
-
-1. Click **Continue**.
-
-	![Second AddEventListener Error in IE8](images/second-addeventlistener-error-in-ie8.png?raw=true)
-
-	_Second addEventListener Error in IE8_ 
-	
-1. Click **Continue**. 
-
-	Notice that IE finishes loading the page but does not display the video.
-
-	![Website Loaded in IE8 with errors](images/website-loaded-in-ie8-with-errors.png?raw=true)
-
-	_Website loaded in IE8 with errors_
-
-1. Stop debugging.
-
-1. Open **Index.cshtml** (in the **Views\Home** folder) and find the `script` section that contains the following:
-
-	````JavaScript
-	<script>
-		  window.addEventListener("load", function () {
-				var player = document.getElementById("promoVideo");
-				player.play();
-		  });
-	</script>
-	````
-
-	This code was displayed in the first error encountered. It is failing in IE8 because _addEventListener_ is not supported, as it was introduced into a later version of JavaScript than the one supported . Looking at what the code does you see that it is causing the video to start playing. A bit of investigation around the html definition of the video (up in the Index.cshtml file) indicates the `video` tag is used to display it. Further investigation online determines that the `video` tag, a newly introduced element in HTML5, is not supported in IE8 (see [the W3Schools page for video](http://www.w3schools.com/tags/tag_video.asp)), so it will need to be replaced in order for the video to play in IE8. You will learn more about other HTML5 elements in an upcoming [section of this lab](#Task2.6).
-
-	In the next steps you will fix both issues by:
-	* augmenting the code in which _addEventListener_ is used by checking whether _addEventListener_ exists first. If it doesn't, _attachEvent_ will be used. 
-	* providing a fallback for the `video` tag by adding back the code to use _jwplayer_. This was the original way in which the video was displayed, and it was updated in Task 3 in the [Best Practices lab](../best-practices#Task3). Now you will reintroduce this code but apply it only to the case of IE8.
-
-1. Update **Index.cshtml** so that this section of the code looks as follows:
-	<!-- mark:2,7-11 -->
-	````JavaScript
-	<script>
-		 if (window.addEventListener) {
-			  window.addEventListener("load", function () {
-					var player = document.getElementById("promoVideo");
-					player.play();
-			  });
-		 } else if (window.attachEvent) {
-			  window.attachEvent("onload", function () {
-					setTimeout(function () { jwplayer().play(true); }, 500);
-			  });
-		 }
-	</script>
-	````
-
-	This fixes one of the places where _addEventListener_ was used without fallback for IE8. Notice the fallback code uses the _jwplayer_ object, which will be added shortly. First you will fix the other place where _addEventListener_ was used without fallback for IE8.
-
-1. Open **_Layout.cshtml** (in the **Views\Shared** folder) and find the script section that contains the following:
-
-	````JavaScript
-	  <script>
-		 window.addEventListener("mobileinit", function () {
-			  $.mobile.ajaxEnabled = false;
-		 });
-	  </script>
-	````
-
-1. Update the code so that it looks as follows:
 	<!-- mark:2,6-11 -->
 	````JavaScript
         <script>
@@ -180,12 +92,14 @@ Agora vamos rever as demais páginas do site localizando trechos de código que 
             }
         </script>
 	````
+> Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
-	Again, you have added a query to check whether _addEventListener_ is supported, and if not, used the older _attachEvent_ method to register the event handler function.
+> Fazer a alteração acima em todas as páginas html do nosso site em que houver o uso do `addEventListener`.
 
-	Now that you have fixed all places where _addEventListener_ was being used without fallback for IE8, it's time to provide a fallback for the video tag. You will do so before testing the app because it won't run without this fix.
+Em seguida, vamos tratar o Javascript que carrega o vídeo:
 
-1. Open **Index.cshtml** again and find the `video` tag. Update it so that it looks as follows:
+1. Vamos abrir a página `index.html` e encontrar a tag `<video>`. Vamos atualizar o código para que pareça conforme definido abaixo:
+
 	<!-- mark:2 -->
 	````HTML
 		 <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4">
@@ -193,9 +107,10 @@ Agora vamos rever as demais páginas do site localizando trechos de código que 
 		 </video>
 
 	````
-	This provides a fallback object (the div with id=_myElement_) that will be displayed if the `video` tag is not available. Now you will add the definition for the _jwplayer_ object and include other necessary files.
+	
+	> A marcação `<video>` foi incluída no HTML5. Observe que esse código provê um conteúdo alternativo no caso da marcação <video> não ser suportada.
 
-1. Copy and paste the following code in **Index.cshtml**, right before the first `script` tag already defined:
+1. Ainda na página `index.html`, copie o seguinte trecho Javascript, logo antes da primeira tag `script` já definida na página:
 
 	````JavaScript
 	<script type="text/javascript">
@@ -209,31 +124,14 @@ Agora vamos rever as demais páginas do site localizando trechos de código que 
 		 }
 	</script>
 	````
-1. Open the **_Layout.cshtml** file and add the **Render** statement for the flashplayer inside the **head** tag. This is shown in the following code:
 
-	<!-- mark:10 -->
+1. Vamos agora incluir o script do flashplayer na nossa página, no fim da marcação `<head>`:
+
 	````JavaScript
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title</title>
-        <meta name="viewport" content="width=device-width" />
-
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        @Styles.Render("~/Content/mobileCss", "~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/flashplayer")
-    </head>
+    	<script src="./Scripts/jwplayer/jwplayer.js"></script>
 	````
 
-1. Open the **BundleConfig.cs** file located in the **App_Start** folder and add the definition of the flashplayer script bundle, shown in the following code:
-
-	````C#
-	bundles.Add(new ScriptBundle("~/bundles/flashplayer").Include(
-            "~/Scripts/jwplayer/jwplayer.js"));
-	````
-
-1. Press **F5** to start debugging. Again, after IE is launched, change IE to emulate IE8 (press **F12** to open the Developer Tools and then **Ctrl+8** to switch to the Emulator tab, where you will change the **Document mode** to **8**).
+1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a p[agina no IE8, observe que ser[a carregado o jwplayer.
 
 	The website will reload, emulating IE8. Notice that now there are no errors thrown, and after a few of seconds the video starts playing. 
 
@@ -305,52 +203,55 @@ Agora vamos rever as demais páginas do site localizando trechos de código que 
 
 1. Stop debugging.
 
-<a name="Task2.2" />
-#### SVG images ####
-[SVG](http://www.w3schools.com/svg/svg_intro.asp) (Scalable Vector Graphics) is an XML-based vector image format for two-dimensional graphics with support for interactivity and animation. SVG graphics are scalable and do not lose any quality if zoomed or resized, and since they are defined in pure XML they can be created and edited in any text editor, and searched. It's those advantages as well as compliance with other standards that make them attractive, but lack of browser support has limited its use. The workaround for these browsers in which SVG is not supported is to serve a different, equivalent image in a different format. 
+<p name="Task2" />
+#### Imagens SVG ####
+[SVG](http://www.w3schools.com/svg/svg_intro.asp) (Scalable Vector Graphics) é uma imagem no formato de vertor para gráficos bidimensionais com suporte a interatividade e animação. As imagens SVG são escaláveis e não perdem qualidade quando é feito zoom ou redimensionamento. Como são definidas através de XML, elas podem ser criadas e editadas por qualquer editor de texto. Essas vantagens assim como aderência a padrões tornem o SVG uma alternativa atrativa. Contudo, a falta de suporte pelos browsers limitou seu uso na Web. Uma forma de contornar esta limitação é fornecer, para esses browsers que não suportam XVG, imagens equivalentes mas com formato tradicional.
 
-In this section you will fix the About page (which is not displaying the Sintel logo because the image format is SVG) by using _Modernizr_ to detect whether the browser supports SVG, and if not provide a PNG fallback. 
+Vamos ver agora como fazer isso:
 
-![About page not displaying the logo](images/about-page-not-displaying-the-logo.png?raw=true)
+1. Abrir a página sobre.html.
+2. Observe que temos o seguinte código na página:
 
-1. Open **About.cshtml** in the **Views\Home** folder.
+	<img id="sintelLogo" src="./Content/images/sintel_logo.svg" />
 
-1. Scroll to the bottom and add the following code:
+3. Quando tentamos visualizar essa página emulando o IE8, veja que o logo não é mostrado.
+                    
+	![Erro exibindo o logo](./images/update_svgimage_error.png)
+
+4. Para corrigir isso, vamos usar o Modernizr para verificar se o SVG é suportado ou não. Porém o script que geramos anteriormente não verificar SVG (só incluímos no nosso script Modernizr a verificação de CSS Animations e Opacity).
+5. Vamos voltar então para o site mo [Modernizr](http://modernizr.com) e selecionar a nossa build os recursos CSS Animations, opacity e agora o SVG. 
+	> Reveja como fazer isso no nosso outro [minicurso de detecção de features](../feature-detection).
+	> 
+	> Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).   
+6. Agora vamos incluir o seguitne Javascript no final da nossa página sobre.html (antes de fechar a tag <body>):
 
 	````JavaScript
 	<script>
 		 if (!Modernizr.svg) {
 			  var logo = document.getElementById("sintelLogo");
-			  logo.src = '/Content/images/Sintel_logo.png';
+			  logo.src = './Content/images/Sintel_logo.png';
 		 }
 	</script>
 	````
+	
+	> Lembrar de incluir também o Javascript do Modernizr.
 
-	This code is setting the image source to a png image if svg is not supported.
+7. Acessando novamente a página, observe que o logo irá aparecer no IE8.
 
-1. Press **F5** to start debugging and when the website is launched in IE, change it to emulate IE8 (press **F12** to open the Developer tools and then press **Ctrl+8** to change to the Emulator tab where you will set the **Document mode** to **8**).
+	![Corrigindo exibição do logo](./images/update_svgimage_fix.png)
 
-	The home page will reload in IE8. If the About page is not displayed, click the **About** button in the Navigation bar.
-
-	Notice that the logo is now visible. Upon inspection of the html in the Developer Tools, you can see that the image loaded is in PNG format.
-
-	![Logo visible in About page in IE8 mode](images/logo-visible-in-about-page-in-ie8-mode.png?raw=true)
-
-	_Logo is visible in IE8 after fix_
-
-1. Switch back to Visual Studio and stop debugging.
-
-<a name="Task2.3" />
+<p name="Task3" />
 #### @2X images ####
-With newer retina displays and devices, the images normally used look grainy and of low quality. The solution adopted by the modern websites is to serve two sets of images: a normal version and a "2x" version that is twice as big. This 2x version needs to be displayed only if the device is a retina device.
+Com os novos dispositivos e telas de retina, as imagens normalmente tem um aspecto granular e de baixa qualidade. A solução adotada nos sites modernos é adotar duas versões de imagens: uma versão normal e outro "2x" que é muito maior. Esta versão 2x precisa ser exibida somente para dispositivos com tela de retina..
 
-To detect retina devices and serve this "2x" image, you can use a media query to detect the window width for responsive layouts. You will learn more about responsive design in the [Responsive design lab](../mobile-first-design). 
+Para detectar dispositivos de retina e então fornecer imagens "2x", podemos usar o media query (iremos ver mais detalhes de media queries no outro [minicurso de design responsivo](../mobile-first-design). 
 
-To test this in IE11 you will need to have a retina display or device. You can also use the Google Chrome Developer Tools, as they allow emulation of high resolution displays. You can read more about the Google Chrome screen emulator [here](https://developer.chrome.com/devtools/docs/device-mode#screen-emulator).
+Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google Chrome pois ele permite emular diferentes resoluções de tela (ver mais detaques [aqui](https://developer.chrome.com/devtools/docs/device-mode#screen-emulator)).
 
-1. Open **Contact.cshtml** in the **Views\Home** folder.
+1. Abrir o arquivo contato.html.
 
-1. Update the `style` tag to add the media query for high-resolution, so it looks like this:
+1. Atualizar a marcação `style` e adicone media query para fornecer imagem de alta resolução::
+	
 	<!-- mark:14-19 -->
 	````CSS
 	<style>
@@ -368,59 +269,36 @@ To test this in IE11 you will need to have a retina display or device. You can a
 
 		 @@media(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			  .highqualityimage {
-					background: url("/content/images/sintel_logo@2x.png") no-repeat;
-					background-size: 140px;
+					background: url("./Content/images/sintel_logo@2x.png") no-repeat;
+                    background-size: 140px;
 			  }
 		 }
 	</style>
 	````
-1. Right-click the **images** folder under **Content** and select **Add existing item**. In the dialog box that opens, browse to where the sintel_logo@2x.png file is located (you can find it [here](code/end/ContosoIndustries/Content/images/sintel_logo%402x.PNG)).
 
-1. In the toolbar, change to debug in Google Chrome and then press **F5**.
+1. Usando o Google Chrome e a ferramenta do desenvolvedor para emular dispositivo de alta resolução, vamos testar nosso site:
 
-	![Change browser to Chrome](images/change-browser-to-chrome.png?raw=true)
+	![Visualizando mudanças no Google Chrome](./images/update_imagescale2x.png)
 
-	_Change browser to Chrome_
+	> Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
 
-1. Once the website launches in Chrome and you are in the Contact page, press **F12** to open the Developer Tools.
-
-1. In the top bar, change the **Device** to a retina display device, like **Notebook with HiDPI screen**.
-
-	![Change device to HiDPI screen](images/change-device-to-hidpi-screen.png?raw=true)
-
-	_Change the device to a HiDPI screen_
-
-	The screen will change to show the page emulating the selected device.
-
-1. On the bottom pane of the **Developer Tools**, find the html tag for the image (you can locate the image by clicking the search button and then the image).
-
-	Once the html for the image is selected on the left, the Styles tab on the right will display the CSS rules applied to the element. As you can see, the @2x image is used.
-
-	![@2X image used in high resolution mode](images/2x-image-used-in-high-resolution-mode.png?raw=true)
-
-	_The @2x image is used in high dpi mode_
-
-1. Stop debugging.
-
-<a name="Task2.4" />
+<p name="Task4" />
 #### Media Queries ####
-CSS3 media queries used to build responsive websites are not supported in IE8 and other older browsers. If you are developing mobile-first, which is the preferred way to build responsive sites, you will need to work around this issue. 
+As media queries foram introduzidas no CSS3 e permitem construir web sites responsivos. Porém, elas não são suportadas em browsers antigos como o IE8. Se você está desenvolvendo mobile-first, que é a maneira mais recomendada para construir sites, você deve ter que contornar essa limitação.
 
-There are 2 options:
+Para tanto, temos duas opções. 
 
-* using a polyfill, like Respond.js, to add support for media queries in IE8 so the site looks as intended.
-
-	[Respond.js](https://github.com/scottjehl/Respond) is a polyfill script that adds media query support in IE8. It runs through the CSS and picks out the styles that are referenced inside media queries, returning back to the browser those styles that apply without the media queries. That way, the browser can interpret them correctly. It is very fast and lightweight, and installing it on a page is as simple as referencing it in a script tag in the head. It's most commonly used inside a conditional comment that only executes on browser versions lower than IE9.
-
+* Usar bibliotecas Javascript, como o [Respond.js](https://github.com/scottjehl/Respond), para adicionar suporte a media queries no IE8. Seu código CSS continua igual e a biblioteca faz o trabalho pra você. Para usar, podemos incluir o seguinte HTML nas nossas páginas:
+	
 	````HTML
 	<!--[if lt IE 9]>
 		 <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
 	<![endif]-->
 	````
-* using conditional stylesheets, so a stylesheet specifically tailored for IE8 is used.
+
+* Usar condicionais no CSS. Neste caso o CSS é adaptado para IE8.
  
-	Conditional stylesheets are stylesheets specifically written for a browser, e.g. IE8, that are referenced using conditional statements.
-	The way you would link up the stylesheets using this method looks like this:
+	Folhas de estilo condicionais são escritas especificamente para um determinado browser (por exemplo, IE8) que é referenciado na expressão de condição. Segue exemplo:
 
 	````HTML
 	<!--[if (lt IE 9) & (!IEMobile)]>
@@ -432,122 +310,85 @@ There are 2 options:
 	<!--<![endif]-->
 	````
 
-	[This article](http://seesparkbox.com/foundry/structuring_and_serving_styles_for_older_browsers) provides a good approach to automatically generating an IE8 stylesheet free of media queries, by using mixins and variables.
+	[Este artigo](http://seesparkbox.com/foundry/structuring_and_serving_styles_for_older_browsers) fornece uma abordagem interessante para gerar automaticamente folhas de estilo para IE8 livres de Media Queries. Para tanto, ele usa mixins e variáveis.
 
-<a name="Task2.5" />
-#### CSS3 Properties
-Support for CSS3 properties varies among browsers. Some CSS3 properties are  supported in all browsers. Others are supported when vendor prefixes are used. And in some cases, the vendor prefixes properties are not supported at all. 
+Pronto! O próximo passo agora é usar o elemento `<video>` do HTML5 e tratar o caso em que o elemento não é suportado pelo browser.
 
-> Note: Vendor prefixes have been covered in the [Best Practices lab](../best-practices#Task2), but for the sake of completion they will be revisited here briefly.
+<p name="Task5" />
+#### Propriedades CSS3
+Muitas vezes precisamos ou queremos usar um recurso CSS que ainda não está disponível em todos  browsers. Ou ainda, está disponível em apenas alguns browsers. Neste caso, quando o recurso ainda não é padrão, podemos usar os chamados prefixos CSS que permitem usar recursos nos diferentes browsers.  
 
-Graceful degradation for older browsers that do not support a property or even the prefixed version of a property, can result in doing nothing if the experience is not completely broken. In this website, the Contoso Movies header is supposed to have a gradient going from blue to black. This gradient is not displayed in IE8, a flat color background is displayed. However, if you revisit the BrowserStack testing section, you will remember that the gradient was also not showing in the latest version of Safari.
+> Nota: Tratamos desse assunto no [minicurso cd prefixos CSS](../css-prefix).
 
-You will fix that now:
+Quando estamos trabalhando no nosso site para suportar browsers antigos, precisamos estar atentos para não causar um efeito indesejado ou até causando um efeito contrário. No nosso exemplo do site Contoso, há um cabeçalho nas páginas que deveria ter uma cor com efeito gradiente indo do azul ao preto. Este gradiente não é mostrado no IE8. Ao contrário, é mostrada somente uma cor chapada. Para corrigir isso vamos ao código:
 
-1. Open **Site.css** in the **Content** folder.
+1. Abrir o arquivo `Content/Site.css`
+2.Encontrar a regra CSS do cabeçalho: 
 
-1. Find the CSS rule for the header:
-
-````CSS
-header[role=banner] {
-    background: linear-gradient(#1f2887, #000000);
-}
-````
-
-1. Update the rule as follows:
-
-````CSS
-header[role=banner] {
-    background: #1f2887;
-    background: -webkit-linear-gradient(#1f2887, #000000);
-    background: -o-linear-gradient(#1f2887, #000000);
-    background: -moz-linear-gradient(#1f2887, #000000);
-    background: linear-gradient(#1f2887, #000000);
-}
-````
-
-As before, you are providing vendor prefix versions for the property and if all fails, display a flat blue background. It is important to always provide the CSS2 property or value before the new CSS3 property, so older browsers will still get some style applied if the better one is not supported.
-
-Testing this in Safari should now display a gradient in the header. However, testing this in IE8 using the emulator provided by the Developer Tools is not displaying a blue background. You will learn why and how to fix it in the next section.
-
-![Background for the top header not blue in IE8](images/background-for-the-top-header-not-blue-in-ie8.png?raw=true)
-
-_Background for the top header is not blue in IE8_
-
-<a name="Task2.6" />
-#### HTML5 Elements
-[HTML5](http://www.w3schools.com/html/html5_intro.asp) has introduced new elements, some of which you have seen before in this lab (SVG image format, `video` tag) and learned how to provide a fallback for them in older browsers. Among other new elements, HTML5 introduced semantic elements like _\<header>_, _\<footer>_, _\<article>_ and _\<section>_.
-
-1. Open **_Layout.cshtml** in the **Views\Shared** folder and find the part in the `body` where the page header is defined. You will find this code:
-
-<!-- mark:3,15 -->
-````HTML
-    <body>
-        <div data-role="page" data-theme="b">
-            <header data-role="header">
-                @if (IsSectionDefined("Header"))
-                {
-                    @RenderSection("Header")
-                }
-                else
-                {
-                    <div class="header-container">
-                        <img class="logo" src="~/Content/images/movieIcon.png" />
-                        <div class="title">@ViewBag.Title</div>
-                    </div>
-                }
-            </header>
-		...
-		</div>
-   </body>
-````
-
-As you can see, the top header is written using the new HTML5 `header` tag. This HTML5 element is not supported by IE8. 
-
-The way to fix it is by providing a "_shiv_" (or _HTML5 Enabling JavaScript_), that allows IE8 to interpret HTML5 properties and elements. Placing a shiv in the head of the document makes those HTML5 elements "real" in IE8's eyes by creating them with JavaScript. 
-
-1. Still in **_Layout.cshtml**, update the head element by copying and pasting the following code inside the head of the page:
-
-	````HTML
-		  <!--[if lt IE 9]>
-		  <script src="https://code.google.com/p/html5shiv/"></script>
-		  <![endif]-->
+	````CSS
+	header[role=banner] {
+	    background: linear-gradient(#1f2887, #000000);
+	}
 	````
 
-	You are including the _shiv_ using a conditional statement, so it is only included if the browser version is IE8 or lower.
+1. Atualizar as regras da seguinte maneira:
 
-	The whole `head` element will look like this:
-
-	<!-- mark:11-13 -->
-	````HTML
-		 <head>
-			  <meta charset="utf-8" />
-			  <title>@ViewBag.Title</title>
-			  <meta name="viewport" content="width=device-width" />
-
-			  <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-			  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-			  @Styles.Render("~/Content/mobileCss", "~/Content/css")
-			  @Scripts.Render("~/bundles/modernizr")
-			  @Scripts.Render("~/bundles/flashplayer")
-			  <!--[if lt IE 9]>
-			  <script src="https://code.google.com/p/html5shiv/"></script>
-			  <![endif]-->
-		 </head>
+	````CSS
+	header[role=banner] {
+	    background: #1f2887;
+	    background: -webkit-linear-gradient(#1f2887, #000000);
+	    background: -o-linear-gradient(#1f2887, #000000);
+	    background: -moz-linear-gradient(#1f2887, #000000);
+	    background: linear-gradient(#1f2887, #000000);
+	}
 	````
 
-1. Press **F5** to start debugging and change IE to emulate IE8 when the website is launched (press **F12** to open the Developer tools and then press **Ctrl+8** to change to the Emulator tab where you will set the **Document mode** to **8**).
+	>Nesta regra estamos definindo o background padrão somente caso o gradiente não seja suportado. Lembre-se de especificar o gradiente usando os prefixos, conforme visto no nosso outro minicurso. 
 
-	The home page will reload in IE emulating IE8. Notice that now the header has changed: while it is not displaying a gradient because the feature is not supported, it is blue.
+	![Imagem de fundo no IE9](./images/update_headerbackground.png)
 
-	![Website running in IE8 with shiv applied](images/website-running-in-ie8-with-shiv-applied.png?raw=true)
+	>Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
 
-	_Website running in IE8 with the shiv applied_
+<p name="Task6" />
+#### Elementos HTML5
+O [HTML5](http://www.w3schools.com/html/html5_intro.asp) introduziu novos elementos HTML. Alguns deles já vimos neste minicurso (imagem SVG, marcação <video>) e vimos como fornecer uma alternativa para browsers antigos. Alguns dos elementos introduzidos são os elementos semânticos _\<header>_, _\<footer>_, _\<article>_ e _\<section>_.
 
-	You can now sign in to BrowserStack again and follow the same steps as in the previous section to verify all the fixes are indeed working.
+Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A seguir iremos ver como lidar com essas limitações.
 
-1. Stop debugging.
+1. Abrir o arquivo `index.html`.
+2. Localizar na marcação `<body>` o local onde usamos a marcação `<header>`. Você encontrará este trecho de código:
 
+	<!-- mark:3,15 -->
+	````HTML
+	    <body>
+	        <div data-role="page" data-theme="b">
+	            <header data-role="header">
+	                <div class="header-container">
+	                    <img class="logo" src="./Content/images/movieIcon.png" />
+	                    <div class="title">Contoso Movies</div>
+	                </div>
+	            </header>   
+			...
+			</div>
+	   </body>
+	````
+
+	> Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
+
+3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no `<head>` da nossa página:
+
+	````HTML
+		<!--[if lt IE 9]>
+		<script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
+        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>       
+		<![endif]-->
+	````
+
+	> Estamos incluindo o _shiv_ usando a condição de que o browser seja IE8 ou anterior. 
+
+	> Lembre-se de adicionar em todas as págians HTML do nosso site que usando a marcação `<head>` 
+
+Pronto! Agora podemos testar novamente nosso site no IE8 para verificar a cor de fundo do cabeçalho.
 
 ##Summary##
 In this lab you have learned about different ways of testing websites that don't involve a lab with physical machines or devices that you manually interact with. Also, you have seen how to change your website to gracefully support older versions of different browsers.

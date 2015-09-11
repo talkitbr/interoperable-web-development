@@ -110,9 +110,12 @@
         <script src="./Scripts/html5LogoGenerator.js"></script>
 
         <script>
-            if (window.addEventListener)
-            {
+            if (window.addEventListener) {
                 window.addEventListener("mobileinit", function () {
+                    $.mobile.ajaxEnabled = false;
+                });
+            } else if (window.attachEvent) {
+                window.attachEvent("mobileinit", function () {
                     $.mobile.ajaxEnabled = false;
                 });
             }

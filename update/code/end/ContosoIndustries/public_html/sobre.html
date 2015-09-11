@@ -51,7 +51,7 @@
                     <div>
                         <h2>About</h2>
                     </div>
-                    <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
+                    <img id="sintelLogo" src="./Content/images/sintel_logo.svg" />
                     <div>
                         <p class="aboutFilm">
                             “Sintel” is an independently produced short film, initiated by the Blender Foundation as a means to further improve andvalidate the free/open source 3D creation suite Blender. With initial funding provided by 1000s of donations via the internet community, it has again proven to be a viable development model for both open 3D technology as for independent animation film.
@@ -106,13 +106,23 @@
 
 
         <script>
-            if (window.addEventListener)
-            {
+            if (window.addEventListener) {
                 window.addEventListener("mobileinit", function () {
+                    $.mobile.ajaxEnabled = false;
+                });
+            } else if (window.attachEvent) {
+                window.attachEvent("mobileinit", function () {
                     $.mobile.ajaxEnabled = false;
                 });
             }
         </script>
         
+        <script src="Scripts/modernizr.custom.62681.js" type="text/javascript"></script>
+        <script>
+            if (!Modernizr.svg) {
+                var logo = document.getElementById("sintelLogo");
+                logo.src = './Content/images/Sintel_logo.png';
+            }
+	</script>        
     </body>
 </html>

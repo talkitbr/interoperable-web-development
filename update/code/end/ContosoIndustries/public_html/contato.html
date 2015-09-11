@@ -27,19 +27,26 @@
             <div id="mainContent" style="margin:10px;" classdata-role="content">
 
 
-                <style>
-                    .contact {
-                        padding: 5px 10px 15px 0px;
-                        font-family: Georgia;
-                        font-size: 16px;
-                        text-align: justify;
-                    }
+            <style>
+                .contact {
+                    padding: 5px 10px 15px 0px;
+                    font-family: Georgia;
+                    font-size: 16px;
+                    text-align: justify;
+                }
 
+                .highqualityimage {
+                    background: url("/content/images/sintel_logo.png") no-repeat;
+                    height: 140px;
+                }
+
+                @media(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
                     .highqualityimage {
-                        background: url("./content/images/sintel_logo.png") no-repeat;
-                        height: 140px;
+                        background: url("./Content/images/sintel_logo@2x.png") no-repeat;
+                        background-size: 140px;
                     }
-                </style>
+                }
+            </style>
 
                 <div id="primaryContent">
                     <h2>Contact</h2>
@@ -68,9 +75,15 @@
         <script src="./Scripts/html5LogoGenerator.js"></script>
 
         <script>
-            window.addEventListener("mobileinit", function () {
-                $.mobile.ajaxEnabled = false;
-            });
+            if (window.addEventListener) {
+                window.addEventListener("mobileinit", function () {
+                    $.mobile.ajaxEnabled = false;
+                });
+            } else if (window.attachEvent) {
+                window.attachEvent("mobileinit", function () {
+                    $.mobile.ajaxEnabled = false;
+                });
+            }
         </script>
 
     </body>

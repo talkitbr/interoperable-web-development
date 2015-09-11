@@ -26,6 +26,10 @@
 }
 
 header[role=banner] {
+    background: #1f2887;
+    background: -webkit-linear-gradient(#1f2887, #000000);
+    background: -o-linear-gradient(#1f2887, #000000);
+    background: -moz-linear-gradient(#1f2887, #000000);
     background: linear-gradient(#1f2887, #000000);
 }
 
