@@ -98,15 +98,15 @@
                 </div>
 
                 <script>
-                    if (window.attachEvent) {
-                        window.attachEvent("onload", function () {
+                    if (window.addEventListener) {
+                        window.addEventListener("load", function () {
                             setTimeout(function () {
                                 jwplayer().play(true);
                             }, 500);
                         });
                     }
                     else {
-                        window.addEventListener("load", function () {
+                        window.attachEvent("onload", function () {
                             setTimeout(function () {
                                 jwplayer().play(true);
                             }, 500);

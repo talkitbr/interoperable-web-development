@@ -1,8 +1,8 @@
 Atualizando seu site e corrigindo problemas
 ===========================================
-Quando desenvolvemos para a Web Moderna, é inevitável que alguns recursos e propriedades que desejamos utilizar não funcionem em browsers antigos. Para contornar este problema, temos que adotar formas de atender a browsers antigos priorizando a funcionalidade. Neste caso importa para o usuário conseguir usar a funcionalidade.
+Quando desenvolvemos para a Web Moderna, é inevitável que alguns recursos e propriedades que desejamos utilizar não funcionem em browsers antigos. Para contornar este problema, temos que adotar formas de atender a esses browsers priorizando a funcionalidade. Neste caso importa para o usuário conseguir usar a funcionalidade.
 
-Neste contexto, existem algumas propriedades que você pode abrir mão e recursos que você pode substituir por outros que permitem ainda assim que seu site funcione. E a essa estratégia da-se o nome de *Graceful Degradation*. 
+Neste contexto, existem algumas propriedades que você pode abrir mão e recursos que você pode substituir por outros que permitem ainda assim que seu site funcione. E a essa estratégia dá-se o nome de *Graceful Degradation*. 
 
 Neste minicurso veremos como atualizar nosso site para suportar browsers antigos e ainda estar aderente a Web Moderna.
 
@@ -14,9 +14,11 @@ Este minicurso inclui:
 1. [Propriedades CSS3](#Task5)
 1. [Elementos HTML5](#Task6)
 
-Neste minicurso iremos usar ténicas vistas nos minicursos anteriores, como o de [Feature Detection](../feature-detection) e [Prefixos CSS](../css-prefix) para corrigir problemas que identificamos ao [testar nosso site em diferentes browsers](../testing).
+Neste minicurso iremos usar técnicas vistas nos minicursos anteriores, como o de [Feature Detection](../feature-detection) e [Prefixos CSS](../css-prefix) para corrigir problemas que identificamos ao [testar nosso site em diferentes browsers](../testing).
 
-Para esta tarefa iremos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emular versões anteriores do IE, como o IE8. Seguem os passos para isso:
+Para tanto, sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, verifique novamente nosso minicurso [de como testar nosso site em diferentes browsers](../testing).
+
+Mas podemos também usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emular versões anteriores do IE, como o IE8. Seguem os passos para isso:
 
 1. Abrir o projeto [Contoso Industries](code/begin) no **NetBeans**
 1. Executar o projeto e abrir a página inicial no Internet Explroer.
@@ -27,41 +29,37 @@ Para esta tarefa iremos usar a Ferramenta do Desenvolvedor (F12) do Internet Exp
 
 	_Mudando o Document Mode para IE8_
 
-1. O site será recarregado no emulando o IE8. 
+1. O site será recarregado pelo browser emulando o IE8. 
 
 	> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site volatrá a ser exibido no Document Mode padrão.
 
-Outra opção ainda é baixar uma máquina virtual Windows contendo o IE8. Para ver como, verifique novamente nosso minicurso [de como testar nosso site em diferentes browsers](../testing).
+> Nas versões mais recentes do IE11, mesmo usando emulação para IE8, alguns erros e limitações são contornados pelo browser, o que pode prejudicar nosso trabalho.
 
 <p name="Task1" />
 #### Recursos Javascript ####
 Primeiramente vamos procurar problemas relativos ao Javascript e HTML5 que não são suportados pelo IE8.
 
-Ao executarmos a página inicial, já iremos nos deparar com um primeiro problema de visualização no IE8: o uso do 
+Ao executarmos a página inicial, já iremos nos deparar com um primeiro problema de visualização no IE8: o uso da função `attachEvent`. 
 
-> A função attachEvent era usada para definir código a ser executado quando ocorrer um determinado evento. O attachEvent, tornou-se obsoleto e foi totalmente removido do IE11. Além disso ele não existe em nenhum dos browsers modernos, como Microsoft Edge e Google Chrome.  As you can see, the error surfaces now that the app is running in Edge.
-
-Após o passo 1, se executarmos nosso site iremos observar que ocorre um erro Javascript (visualizado através da ferramenta do desenvolvedor F12) relacionado com o uso da função `attachEvent`:
+> A função attachEvent era usada para definir código a ser executado quando ocorria um determinado evento. O attachEvent, tornou-se obsoleto e foi totalmente removido do IE11. Além disso ele não existe em nenhum dos browsers modernos, como Microsoft Edge e Google Chrome.  
 
 ![Erro usando função attachEvent](./images/update_attacheevent_error.png)
 
-> **Nota 1:** Nas versões mais recentes do IE11, mesmo usando emulação para IE8, esse erro é contornado pelo browser.
-
-> **Nota 2:** Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener` nas novas versões do Javascript. Mas é muito comum encontrar o `attachEvent` nas páginas Web antigas ou que foram desenvolvidas para versões anteriores do Internet Explorer. Porém, se usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar a função `attachEvent`.
+> Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener` nas novas versões do Javascript. Mas é muito comum encontrar o `attachEvent` nas páginas Web antigas ou que foram desenvolvidas para versões anteriores do Internet Explorer. Porém, se usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar a função `attachEvent`.
 
 Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
 
 	````Javascript
 	<script>
-		if (window.attachEvent) {
-            window.attachEvent("onload", function () {
+		if (window.addEventListener) {
+            window.addEventListener("load", function () {
                 setTimeout(function () {
                     jwplayer().play(true);
                 }, 500);
             });
         }
         else {
-            window.addEventListener("load", function () {
+            window.attachEvent("onload", function () {
                 setTimeout(function () {
                     jwplayer().play(true);
                 }, 500);
