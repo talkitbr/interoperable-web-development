@@ -163,7 +163,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
         </div>
     </div>
 	````
-    
+
 	- Para:
 	`
 	```html
@@ -223,7 +223,7 @@ Para resolver este problema, devemos verificar se o recurso de animação CSS é
 	</script>
 	```
 
-	&gt; No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
+	> No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
 
 Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao clicarmos no título ou logo do vídeo:
 
@@ -240,20 +240,24 @@ Vamos ver agora como fazer isso:
 1. Abrir a página sobre.html.
 2. Observe que temos o seguinte código na página:
 
+	````HTML
 	<img id="sintelLogo" src="./Content/images/sintel_logo.svg" />
+	````
 
 3. Quando tentamos visualizar essa página emulando o IE8, veja que o logo não é mostrado.
-                    
+
 	![Erro exibindo o logo](./images/update_svgimage_error.png)
 
 4. Para corrigir isso, vamos usar o Modernizr para verificar se o SVG é suportado ou não. Porém o script que geramos anteriormente não verificar SVG (só incluímos no nosso script Modernizr a verificação de CSS Animations e Opacity).
 5. Vamos voltar então para o site mo [Modernizr](http://modernizr.com) e selecionar a nossa build os recursos CSS Animations, opacity e agora o SVG. 
-	&gt; Reveja como fazer isso no nosso outro [minicurso de detecção de features](../feature-detection).
-	&gt; 
-	&gt; Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).   
+	
+	> Reveja como fazer isso no nosso outro [minicurso de detecção de features](../feature-detection).
+	
+	> Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).
+   
 6. Agora vamos incluir o seguitne Javascript no final da nossa página sobre.html (antes de fechar a tag ):
 
-	````JavaScript
+	````HTML
 	<script>
 		 if (!Modernizr.svg) {
 			  var logo = document.getElementById("sintelLogo");
@@ -281,8 +285,7 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
 1. Abrir o arquivo contato.html.
 
 1. Atualizar a marcação `style` e adicone media query para fornecer imagem de alta resolução::
-	
-	<!-- mark:14-19 -->
+
 	````CSS
 	<style>
 		 .contact {
@@ -362,17 +365,17 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 
 	<!-- mark:3,15 -->
 	````HTML
-	    <body>
-	        <div data-role="page" data-theme="b">
-	            <header data-role="header">
-	                <div class="header-container">
-	                    <img class="logo" src="./Content/images/movieIcon.png" />
-	                    <div class="title">Contoso Movies</div>
-	                </div>
-	            </header>   
+	<body>
+	    <div data-role="page" data-theme="b">
+	        <header data-role="header">
+	            <div class="header-container">
+	                <img class="logo" src="./Content/images/movieIcon.png" />
+	                <div class="title">Contoso Movies</div>
+	            </div>
+	        </header>   
 			...
-			</div>
-	   </body>
+		</div>
+	</body>
 	````
 
 	> Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
@@ -380,10 +383,10 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no `` da nossa página:
 
 	`````HTML
-		<!--[if lt IE 9]>
-		<script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
-        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>       
-		<![endif]-->
+	<!--[if lt IE 9]>
+	<script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
+    <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>       
+	<![endif]-->
 	````
 
 	> Estamos incluindo o _shiv_ usando a condição de que o browser seja IE8 ou anterior. 
