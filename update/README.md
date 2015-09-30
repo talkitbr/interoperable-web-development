@@ -154,16 +154,19 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 
 	- De:
 	
-	<div>
+	````Javascript
+    <div>
         <div id="movietitle">
             <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
             <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
         </div>
     </div>
-
+	````
+    
 	- Para:
 	
-	<div class="wrapper">        
+	````Javascript
+    <div class="wrapper">        
         <div>
             <div id="movietitle">
                 <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
@@ -174,6 +177,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
             <p>The film follows a girl named Sintel who is searching for a baby dragon she calls Scales. A flashback reveals that Sintel found Scales with its wing injured and helped care for it, forming a close bond with it. By the time its wing recovered and it was able to fly, Scales was caught by an adult dragon. Sintel has since embarked on a quest to rescue Scales, fending off beasts and warriors along the way. She eventually comes across a cave housing an adult and baby dragon, the latter of which she believes to be Scales. The adult dragon discovers and attacks Sintel, but hesitates to kill her. Sintel slays the dragon, only to recognize the scar on its wing and realize the dragon is an adult Scales, and that she too has aged considerably. Sintel leaves the cave heartbroken, unknowingly followed by Scales's baby.</p>
         </div>
     </div>
+	````    
 
 2. Depois disso, vamos incluir um script que faz uso do class list para alterar a visualização do conteúdo. Incluir o script no final da marcação body, mas antes de fechá-la:
 
