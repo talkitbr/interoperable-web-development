@@ -39,7 +39,7 @@ Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos 
 
 <p name="Task2" />
 
-### Recursos Javascript
+<h3>Recursos Javascript</h3>
 
 Primeiramente vamos procurar problemas relativos ao Javascript e HTML5 que não são suportados pelo IE8.
 
