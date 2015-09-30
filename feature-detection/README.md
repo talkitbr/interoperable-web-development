@@ -1,13 +1,13 @@
 Detecção de Features
 ========================================
-Neste minicurso iremos ver como usar detecção de features para determinar se determinado recurso é suportado pelo navegador web do usuário antes de us=alo. Isso é necessário pois existem alguns recursos que podem não estar disponíveis no navegador que o usuário está utilizando. Como não podemos e nem devemos forçar o usuário a ter um único navegador, temos que saber contornar as situações em que determinado recurso simplesmente não é suportado pelo browser do usuário.
+Neste minicurso iremos ver como usar detecção de features para determinar se determinado recurso é suportado pelo navegador web do usuário antes de usá-lo. Isso é necessário pois existem alguns recursos que podem não estar disponíveis no navegador que o usuário está utilizando. Como não podemos e nem devemos forçar o usuário a ter um único navegador, temos que saber contornar as situações em que determinado recurso simplesmente não é suportado pelo browser do usuário.
 
 Neste minicurso temos:
 
 1. [Identificando e substituindo detecção de browser](#Task1)
 1. [Revisão](#Review)
 
-Atualmente existem muitas páginas que já fazem isso, mas usando detecção de browser (chamado também de user agent detection) e até de versões de browser. Porém isso não é recomendado. As boas práticas de Web Moderna pedem para que se use detecção de features.
+Atualmente existem muitas páginas que fazem detecção de browser (chamado também de user agent detection) e até de versões de browser para determinar se um dado recurso pode ser usado ou não. Porém isso não é recomendado. As boas práticas de Web Moderna pedem para que se use detecção de features.
 
 Para executar as tarefas, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta [`code\begin`](./code/begin) contido no repositório.
 
@@ -49,7 +49,7 @@ Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](.
       }
     }
 
-Um dos pontos detectados está no nosso código HTML. O outro foi detectado no uso da biblioteca JS jwplayer. Neste momento vamos focar no nosso código HTML. 
+Um dos pontos detectados está no nosso código HTML. O outro foi detectado no uso da biblioteca JS jwplayer. Aqui vamos focar no nosso código HTML. 
 
 Voltando para o código, vamos localizar os pontos que fazem uso de detecção de browser. Vamos iniciar abrindo o arquivo `index.html`. Nele encontraremos o seguinte trecho de código javascript:
 
@@ -77,11 +77,11 @@ Voltando para o código, vamos localizar os pontos que fazem uso de detecção d
 
 Observem que estamos verificando se o browser é o Internet Explorer para determinar se podemos ou não usar o recurso "fadeIn". Porém, mesmo que esse recurso exista nas versões mais recentes desse browser, do jeito que foi implementado, os usuários nunca conseguirão ter acesso a esse recurso no IE. Esse é apenas um caso, mas muitos outros são também comuns.
 
-O correto é verificarmos se esse recurso existe através de *feature detection*. E existem bibliotecas que podem nos auxiliar, como é o caso do Modernizr.
-
 Outro recurso também que pode não existir em browsers antigos é a propriedade CSS `opacity`. Para verificar o que cada browser suporta, acesse o site [CanIUse](http://caniuse.com/):
 
 ![Can I Use](./images/featuredetection_caniuse.png)
+
+Para verificarmos o suporte a esses recursos e features, o correto é utilizarmos  *feature detection*. E existem bibliotecas que podemos usar, como por exemplo o Modernizr.
 
 1. Vamos começar removendo a tag script que contem o Javascript que faz detecção de browser. 
 2. Feito isso,  acessar o site [http://modernizr.com/download/](http://modernizr.com/download/)

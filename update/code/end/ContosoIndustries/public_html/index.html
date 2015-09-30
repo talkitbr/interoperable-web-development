@@ -12,6 +12,7 @@
         <link href="./Content/jquery.mobile.structure-1.2.0.css" rel="stylesheet"/>
         <link href="./Content/jquery.mobile.theme-1.2.0.css" rel="stylesheet"/>
         <link href="./Content/site.css" rel="stylesheet"/>        
+        <link href="./Content/Styles.css" rel="stylesheet"/>        
 
         <style>
             .fadeIn {
@@ -70,23 +71,29 @@
                         <p id="hidden-message">
                             Coming soon!
                         </p>
-                        <div>
-                            <div id="movietitle">
-                                <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
-                                <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
+                        <div class="wrapper">        
+                            <div>
+                                <div id="movietitle">
+                                    <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
+                                    <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
+                                </div>
+                            </div>
+                            <div id="synopsis">
+                                <p>The film follows a girl named Sintel who is searching for a baby dragon she calls Scales. A flashback reveals that Sintel found Scales with its wing injured and helped care for it, forming a close bond with it. By the time its wing recovered and it was able to fly, Scales was caught by an adult dragon. Sintel has since embarked on a quest to rescue Scales, fending off beasts and warriors along the way. She eventually comes across a cave housing an adult and baby dragon, the latter of which she believes to be Scales. The adult dragon discovers and attacks Sintel, but hesitates to kill her. Sintel slays the dragon, only to recognize the scar on its wing and realize the dragon is an adult Scales, and that she too has aged considerably. Sintel leaves the cave heartbroken, unknowingly followed by Scales's baby.</p>
                             </div>
                         </div>
 
-                        <div id="myElement">Loading the player...</div>
-
-                        <script type="text/javascript">
-                            jwplayer("myElement").setup({
-                                file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
-                                width: "100%",
-                                aspectratio: "16:9",
-                                primary: "flash"
-                            });
-                        </script>
+                        <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4" autoplay>
+                            <div id="myElement">Loading the player...</div>
+                            <script type="text/javascript">
+                                jwplayer("myElement").setup({
+                                    file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
+                                    width: "100%",
+                                    aspectratio: "16:9",
+                                    primary: "flash"
+                                });
+                            </script>
+                        </video>
                     </div>
 
                     <ul data-role="listview" style="margin:10px 0 10px 0;" data-inset="true">
@@ -148,5 +155,27 @@
                         comingSoonMessage.className = "";
                     }
         </script>
+        
+        <script>
+            var wrapper = document.querySelector(".wrapper");
+            if (Modernizr.cssanimations) {
+                 wrapper.onclick = function () {
+                       wrapper.classList.toggle("animation");
+                 };
+            } else {
+                 wrapper.onclick = function () {
+                       var synopsis = document.getElementById("synopsis");
+                       var title = document.getElementById("movietitle");
+                       if (synopsis.style.display != "block") {
+                            synopsis.style.left = "0px";
+                            synopsis.style.display = "block";
+                            title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+                       } else {
+                            synopsis.style.display = "none";
+                            title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                       }
+                 };
+            }
+       </script>
     </body>
 </html>

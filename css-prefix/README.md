@@ -1,12 +1,12 @@
 Prefixos CSS
 ========================================
-Neste minicurso iremos corrigir problemas relacionados com prefixos CSS. 
+Neste minicurso iremos corrigir problemas no uso de prefixos CSS. 
 
 Os prefixos CSS são comumente utilizados para o desenvolvedor usufruir de recursos CSS em seu site antes mesmo destes se tornarem [recomendações](http://www.w3.org/Consortium/Process/Process-19991111/tr.html#RecsCR). 
 
 Nesse caso o desenvolvedor assume certos riscos em utilizar recursos que podem vir a não funcionar em alguns browsers, principalmente naqueles que não estão sempre sendo atualizados. Pode ocorrer, por exemplo, de certo conteúdo ser apresentado de forma errada para o usuário em determinadas circunstâncias.
 
-Para mitigar estes problemas, neste minicurso veremos:
+Para minimizar estes problemas, neste minicurso veremos:
 
 1. [Identificando problemas de uso de prefixos CSS](#Task1)
 1. [Usando ferramenta de para adicionar prefixos CSS automaticamente](#Task2)
@@ -62,9 +62,9 @@ No nosso caso, vamos localizar o seletor `.fadeIn` onde foi detectado o erro e e
                 animation: fadeIn 3s forwards;
     }
 
-Percebam que agora incluímos todos os prefixos para animation. Isso dar maior garantias de que a propriedade funcionará adequadamente nos browsers modernos.
+Percebam que agora incluímos todos os prefixos para animation. Isso dá maiores garantias de que a propriedade funcionará adequadamente nos browsers modernos.
 
-Se testarmos de novo o site após feita essa alteração, você irá notar que o problema encontrado anteriormente não estará mais lá. Somente estarão sendo apontados os problemas nos arquivos externos.
+E se testarmos de novo o site após feita essa alteração, você irá notar que o problema encontrado anteriormente não estará mais lá. Somente estarão sendo apontados os problemas nos arquivos externos.
   
 <p name="Task2" />
 ##Usando ferramenta para adicionar prefixos CSS automaticamente
@@ -78,6 +78,8 @@ Segue exemplo usando o postcss-cli, ferramenta de linha de comando do [PostCSS](
 1. Instalar via npm o postcss com o plugin autoprefixer através do seguinte comando:
 
 	`npm install --global postcss-cli autoprefixer`
+
+	> npm é o gerenciador de pacotes para nodejs.
 
 2. Ainda usando linha de comando, executar o postcss na pasta onde estão os arquivos CSS que queremos adicionar automaticamente os prefixos CSS:
 

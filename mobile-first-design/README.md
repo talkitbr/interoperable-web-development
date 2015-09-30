@@ -1,4 +1,4 @@
-﻿Mobile First Responsive Web Design
+Mobile First Responsive Web Design
 ========================================
 An important part of the solution to Responsive Web Design performance is Mobile First Responsive Web design. Typically, responsive Websites are the same size on mobile as on the desktop. This means most responsive sites are not being built for mobile first. Instead a lot of responsive designs take desktop sites and simply hide elements.
 
@@ -11,6 +11,38 @@ This lab includes the following tasks:
 	2. [Styles](#Task12)
 	3. [The tel: URI Scheme](#Task13)
 	4. [Responsive Images](#Task14)
+
+<p name="Task6" />
+#### Media Queries ####
+As media queries foram introduzidas no CSS3 e permitem construir web sites responsivos. Porém, elas não são suportadas em browsers antigos como o IE8. Se você está desenvolvendo mobile-first, que é a maneira mais recomendada para construir sites, você deve ter que contornar essa limitação.
+
+Para tanto, temos duas opções. 
+
+* Usar bibliotecas Javascript, como o [Respond.js](https://github.com/scottjehl/Respond), para adicionar suporte a media queries no IE8. Seu código CSS continua igual e a biblioteca faz o trabalho pra você. Para usar, podemos incluir o seguinte HTML nas nossas páginas:
+	
+	````HTML
+	<!--[if lt IE 9]>
+		 <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+	<![endif]-->
+	````
+
+* Usar condicionais no CSS. Neste caso o CSS é adaptado para IE8.
+ 
+	Folhas de estilo condicionais são escritas especificamente para um determinado browser (por exemplo, IE8) que é referenciado na expressão de condição. Segue exemplo:
+
+	````HTML
+	<!--[if (lt IE 9) & (!IEMobile)]>
+		 <link href="ie8.css" rel="stylesheet">
+	<![endif]-->
+	 
+	<!--[if (gte IE 9) | (IEMobile)]><!-->
+		 <link href="style.css" rel="stylesheet">
+	<!--<![endif]-->
+	````
+
+	[Este artigo](http://seesparkbox.com/foundry/structuring_and_serving_styles_for_older_browsers) fornece uma abordagem interessante para gerar automaticamente folhas de estilo para IE8 livres de Media Queries. Para tanto, ele usa mixins e variáveis.
+
+Pronto! O próximo passo agora é usar o elemento `<video>` do HTML5 e tratar o caso em que o elemento não é suportado pelo browser.
 
 <a name="Task1" />
 ##Responsive Design Guidelines##

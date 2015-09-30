@@ -102,12 +102,12 @@ Vamos abrir a página `index.html` e alterar o código da tag script localizado 
 	````
 
 Dessa forma, conseguiremos obter o resultado esperado no IE11 e nos demais browsers modernos.
-  
+
 <p name="Review"/>
 ##Conclusão
 
 Neste minicurso fizemos a correção do problema de renderização apontado pelo Site scan. 
 
-Também corrigimos o Javascript que estava usando uma função obsoleta e que não é mais suportada nem no IE11 nem no Microsoft Edge e Google Chrome.
+Também corrigimos o Javascript que estava usando uma função obsoleta e que não é mais suportada nem no IE11 nem no Microsoft Edge e Google Chrome. 
 
 Você pode obter o código final desse minicurso [aqui](./code/end).

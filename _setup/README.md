@@ -1,6 +1,6 @@
 Configurando o Ambiente de Desenvolvimento
 ========================================
-A seguir iremos apontar os pré-requisitos para executar os minicursos de desenvolvimento Web e ajudá-lo configurar seu computador. Após completar estos passos desta configuração, você terá um ambiente de desenvolvimento pronto para executar os minicursos.
+A seguir iremos apontar os pré-requisitos para executar os minicursos de desenvolvimento Web e ajudá-lo configurar seu computador. Após completar os passos desta configuração, você terá um ambiente de desenvolvimento pronto para executar os minicursos.
 
 Configurando o computador
 -----------------------
@@ -9,21 +9,21 @@ Configurando o computador
 Existem muitas ferramentas de desenvolvimento que podem te auxiliar a desenvolver sites. Temos desde editores de textos até ambientes de desenvolvimento integrados. Exemplos:
 
 #### Editores de Texto ####
-- SublimeText
-- Notepad++
+- [SublimeText](http://www.sublimetext.com/download)
+- [Notepad++](https://notepad-plus-plus.org/download/v6.8.3.html)
 
 #### Ambientes de Desenvolvimento ####
-- Visual Studio
-- Visual Studio Code
-- Netbeans
-- Eclipse
+- [Visual Studio](https://www.visualstudio.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Netbeans](https://netbeans.org/downloads/)
+- [Eclipse](https://eclipse.org/downloads/)
    
 #### Ferramentas Online ####
 - [Codepen](http://codepen.io/)
 - [JSFiddle](https://jsfiddle.net/)
 - [JS Bin](http://jsbin.com/)
 
-Para os minicursos apresentados aqui, sugiro que você opte por um dos ambientes desenvolvimentos citados acima. As imagens e passos levarão em consideração o uso do **Netbeans**, que pode ser [baixado gratuitamente](https://netbeans.org/downloads/).   
+Para os minicursos apresentados aqui, sugere-se que você opte por um dos ambientes de desenvolvimento citados acima. As imagens e passos que apresentaremos aqui levarão em consideração o uso do **Netbeans**.   
 
 ### Passo 2: Ter ao menos 2 browsers modernos e também o IE 
 
@@ -31,7 +31,7 @@ Precisamos testar o site em diferentes browsers. O ideal é termos pelo menos 2 
  
 ### Passo 3: Clonar ou fazer download do conteúdo repositório GitHub deste curso
 
-Os minicursos fornecem uma combinação de texto e exemplos de código. Para que você tenha acesso a toda a documentação além dos códigos de exemplo no computador, sugere-se que seja feita o download ou clonagem do repositório localmente (usando [Git](http://git-scm.com/)).
+Os minicursos fornecem uma combinação de texto e exemplos de código. Para que você tenha acesso a toda a documentação além dos códigos de exemplo no computador, sugere-se que seja feita o download ou clonagem do repositório localmente (usando [Git](http://git-scm.com/)). a URL para clonar o repositório é `https://github.com/joaocunhaeld/interoperable-web-development.git`
 
 ### Passo 4: Baixar e configurar ferramenta de análise de sites
 

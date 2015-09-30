@@ -8,17 +8,16 @@ Neste minicurso veremos como atualizar nosso site para suportar browsers antigos
 
 Este minicurso inclui:
 1. [Recursos JavaScript](#Task1)
-1. [Imagens SVG](#Task2)
-1. [Imagens @2X](#Task3)
-1. [Media Queries](#Task4)
-1. [Propriedades CSS3](#Task5)
-1. [Elementos HTML5](#Task6)
+1. [Marcação de Vídeo](#Task2)
+1. [Animações CSS](#Task3)
+1. [Imagens SVG](#Task4)
+1. [Imagens @2X](#Task5)
+1. [Propriedades CSS3](#Task6)
+1. [Elementos HTML5](#Task7)
 
 Neste minicurso iremos usar técnicas vistas nos minicursos anteriores, como o de [Feature Detection](../feature-detection) e [Prefixos CSS](../css-prefix) para corrigir problemas que identificamos ao [testar nosso site em diferentes browsers](../testing).
 
-Para tanto, sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, verifique novamente nosso minicurso [de como testar nosso site em diferentes browsers](../testing).
-
-Mas podemos também usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emular versões anteriores do IE, como o IE8. Seguem os passos para isso:
+Podemos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emular versões anteriores do IE, como o IE8. Seguem os passos para isso:
 
 1. Abrir o projeto [Contoso Industries](code/begin) no **NetBeans**
 1. Executar o projeto e abrir a página inicial no Internet Explroer.
@@ -34,6 +33,8 @@ Mas podemos também usar a Ferramenta do Desenvolvedor (F12) do Internet Explore
 	> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site volatrá a ser exibido no Document Mode padrão.
 
 > Nas versões mais recentes do IE11, mesmo usando emulação para IE8, alguns erros e limitações são contornados pelo browser, o que pode prejudicar nosso trabalho.
+
+Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, acesse artigo sobre [como baixar máquinas virtuais gratuitamente para testar seu site](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/). 
 
 <p name="Task1" />
 #### Recursos Javascript ####
@@ -92,116 +93,136 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 	````
 > Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
-> Fazer a alteração acima em todas as páginas html do nosso site em que houver o uso do `addEventListener`.
+<strong>Vamos também fazer a alteração acima em todas as páginas html do nosso site em que houver o uso do `addEventListener`:</strong>
 
-Em seguida, vamos tratar o Javascript que carrega o vídeo:
-
-1. Vamos abrir a página `index.html` e encontrar a tag `<video>`. Vamos atualizar o código para que pareça conforme definido abaixo:
-
-	<!-- mark:2 -->
-	````HTML
-		 <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4">
-			  <div id="myElement">Loading the player...</div>
-		 </video>
-
-	````
-	
-	> A marcação `<video>` foi incluída no HTML5. Observe que esse código provê um conteúdo alternativo no caso da marcação <video> não ser suportada.
-
-1. Ainda na página `index.html`, copie o seguinte trecho Javascript, logo antes da primeira tag `script` já definida na página:
-
-	````JavaScript
-	<script type="text/javascript">
-		 if (!window.addEventListener) {
-			  jwplayer("myElement").setup({
-					file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
-					width: "100%",
-					aspectratio: "16:9",
-					primary: "flash"
-			  });
-		 }
-	</script>
-	````
-
-1. Vamos agora incluir o script do flashplayer na nossa página, no fim da marcação `<head>`:
-
-	````JavaScript
-    	<script src="./Scripts/jwplayer/jwplayer.js"></script>
-	````
-
-1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a p[agina no IE8, observe que ser[a carregado o jwplayer.
-
-	The website will reload, emulating IE8. Notice that now there are no errors thrown, and after a few of seconds the video starts playing. 
-
-	![Website displays in IE8 with no loading errors](images/website-displays-in-ie8-with-no-loading-error.png?raw=true)
-
-	_Website displays in IE8 without loading errors_
-
-1. Play around with the page, and click the movie title to display the synopsis.
- 
-	Notice you will get an error since the [classList property](https://developer.mozilla.org/en-US/docs/Web/API/element.classList) is not available in IE8 (or IE9). As it stands, css animations are not supported either. 
-
-	![Error message when clicking the movie title](images/error-message-when-clicking-the-movie-title.png?raw=true)
-	_Error Message when clicking the movie title_
-
-	You will now update the code to use _Feature Detection_, as you did in the [Feature Detection lab](../edge-mode-and-feature-detection). Additionally, as part of graceful degradation, the fix will arrive to the same end result (semi-transparent title and synopsis displayed) but without the nice slideOut animation available in IE8 and without using the _classList_ property.
-
-1. Dismiss the error message dialog box and stop debugging.
-
-1. Open **Index.cshtml** and scroll until you find a script tag with the same code displayed at the error point:
-
-	````JavaScript
-	<script>
-		 var wrapper = document.querySelector(".wrapper");
-		  wrapper.onclick = function () {
-				wrapper.classList.toggle("animation");
-		  };
-	</script>
-	````
-
-1. Update the code so it looks as follows:
-	<!-- mark:3-4,7-20 -->
-	````JavaScript
-	<script>
-		 var wrapper = document.querySelector(".wrapper");
-		 if (Modernizr.cssanimations) {
-			  wrapper.onclick = function () {
-					wrapper.classList.toggle("animation");
-			  };
-		 } else {
-			  wrapper.onclick = function () {
-					var synopsis = document.getElementById("synopsis");
-					var title = document.getElementById("movietitle");
-					if (synopsis.style.display != "block") {
-						 synopsis.style.left = "0px";
-						 synopsis.style.display = "block";
-						 title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
-					} else {
-						 synopsis.style.display = "none";
-						 title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-					}
-			  };
-		 }
-	</script>
-	````
-
-	The code is now using _Modernizr.cssanimations_ to determine whether animations are available. In the _else_ block there is an alternate code for the _onclick_ event handler function. This alternative function manually displays the synopsis by setting the display mode and location and sets the opacity for the title using the filter property (the way it was done in IE8).
-
-1. Press **F5** to start debugging. Again, after IE is launched, change IE to emulate IE8 (press **F12** to open the Developer Tools and then **Ctrl+8** to switch to the Emulator tab, where you will change the **Document mode** to **8**).
-
-	The website will reload, emulating IE8. Notice that now when you click the movie title header no errors are thrown: the opacity of the title changes and the synopsis is displayed. If you click again, the synopsis is hidden and the title is shown in black. In short, the same end result is achieved albeit without the animation. 
-
-	![Website running in IE8 with synopsis displayed](images/website-running-in-ie8-with-synopsis-displaye.png?raw=true)
-
-	_Website running in IE8 with the fallback for the synopsis_
-
-1. Click the **About** button in the navigation bar.
-
-	The About page loads. Notice the logo is not being displayed. You will learn why and how to fix it in the next steps.
-
-1. Stop debugging.
+- contato.html
+- postcard.html
+- sobre.html
 
 <p name="Task2" />
+##Marcação de Vídeo
+
+Até agora está funcionando o nosso vídeo. Mas estamos usando biblioteca Javascript para executá-lo. O ideal, porém, é usarmos a tag `<video>` do HTML5. Essa tag permite incluir um vídeo na nossa página sem precisar usar o javascript.
+
+Para a nossa página `index.html`, vamos fazer a seguinte alteração:
+
+- **De:** 
+  
+	````Javascript
+	<div id="myElement">Loading the player...</div>
+	
+	<script type="text/javascript">
+	    jwplayer("myElement").setup({
+	        file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
+	        width: "100%",
+	        aspectratio: "16:9",
+	        primary: "flash"
+	    });
+	</script>
+	````	
+
+- **Para:** 
+  
+	````Javascript
+    <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4" autoplay>
+        <div id="myElement">Loading the player...</div>
+        <script type="text/javascript">
+            jwplayer("myElement").setup({
+                file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
+                width: "100%",
+                aspectratio: "16:9",
+                primary: "flash"
+            });
+        </script>
+    </video>
+	````
+
+> O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag `<video>`.
+
+1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
+
+<p name="Task3" />
+##Animações CSS
+
+Lista de classes, ou class list, permite especificar mais de uma classe para um determinado elemento e fazer a troca de classes usando a função toggle. É muito usado na web moderna, porém ele não é suportado em browsers antigos.
+
+Portanto, temos que estar atentos a isso e tratar adequadamente o class list no caso do usuário estar utilizando um browser antigo.
+
+1. Em index.html, vamos alterar o código que mostra o logo e título do vídeo:
+
+	- De:
+	
+	<div>
+        <div id="movietitle">
+            <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
+            <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
+        </div>
+    </div>
+
+	- Para:
+	
+	<div class="wrapper">        
+        <div>
+            <div id="movietitle">
+                <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
+                <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
+            </div>
+        </div>
+        <div id="synopsis">
+            <p>The film follows a girl named Sintel who is searching for a baby dragon she calls Scales. A flashback reveals that Sintel found Scales with its wing injured and helped care for it, forming a close bond with it. By the time its wing recovered and it was able to fly, Scales was caught by an adult dragon. Sintel has since embarked on a quest to rescue Scales, fending off beasts and warriors along the way. She eventually comes across a cave housing an adult and baby dragon, the latter of which she believes to be Scales. The adult dragon discovers and attacks Sintel, but hesitates to kill her. Sintel slays the dragon, only to recognize the scar on its wing and realize the dragon is an adult Scales, and that she too has aged considerably. Sintel leaves the cave heartbroken, unknowingly followed by Scales's baby.</p>
+        </div>
+    </div>
+
+2. Depois disso, vamos incluir um script que faz uso do class list para alterar a visualização do conteúdo. Incluir o script no final da marcação body, mas antes de fechá-la:
+
+	````Javascript
+    <script>
+        var wrapper = document.querySelector(".wrapper");
+        wrapper.onclick = function () {
+            wrapper.classList.toggle("animation");
+        };
+    </script>
+	````
+
+Se executarmos o site no Internet Explorer 11, Microsoft Edge ou Google Chrome, ao clicarmos no título da imagem, uma animação deverá ocorrer.
+
+Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máquina virtual com o IE8) veremos que dará um erro e a funcionalidade que desejamos ter no site simplesmente não funcionará.
+
+![Erro usando função toggle](./images/update_toggle_error.png)
+
+Para resolver este problema, devemos verificar se o recurso de animação CSS é suportado pelo browser. Para tanto, usamos o mesmo Modernizr (já tratado no minicurso de feature-detection). Vamos então substituir o script acima para:
+
+	````Javascript
+    <script>
+	     var wrapper = document.querySelector(".wrapper");
+	     if (Modernizr.cssanimations) {
+	          wrapper.onclick = function () {
+	                wrapper.classList.toggle("animation");
+	          };
+	     } else {
+	          wrapper.onclick = function () {
+	                var synopsis = document.getElementById("synopsis");
+	                var title = document.getElementById("movietitle");
+	                if (synopsis.style.display != "block") {
+	                     synopsis.style.left = "0px";
+	                     synopsis.style.display = "block";
+	                     title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+	                } else {
+	                     synopsis.style.display = "none";
+	                     title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	                }
+	          };
+	     }
+	</script>
+	````
+
+	> No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
+
+Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao clicarmos no título ou logo do vídeo:
+
+![Erro função toggle corrigido](./images/update_toggle_errorfixed.png)
+
+<p name="Task4" />
 #### Imagens SVG ####
 [SVG](http://www.w3schools.com/svg/svg_intro.asp) (Scalable Vector Graphics) é uma imagem no formato de vertor para gráficos bidimensionais com suporte a interatividade e animação. As imagens SVG são escaláveis e não perdem qualidade quando é feito zoom ou redimensionamento. Como são definidas através de XML, elas podem ser criadas e editadas por qualquer editor de texto. Essas vantagens assim como aderência a padrões tornem o SVG uma alternativa atrativa. Contudo, a falta de suporte pelos browsers limitou seu uso na Web. Uma forma de contornar esta limitação é fornecer, para esses browsers que não suportam XVG, imagens equivalentes mas com formato tradicional.
 
@@ -238,7 +259,7 @@ Vamos ver agora como fazer isso:
 
 	![Corrigindo exibição do logo](./images/update_svgimage_fix.png)
 
-<p name="Task3" />
+<p name="Task5" />
 #### @2X images ####
 Com os novos dispositivos e telas de retina, as imagens normalmente tem um aspecto granular e de baixa qualidade. A solução adotada nos sites modernos é adotar duas versões de imagens: uma versão normal e outro "2x" que é muito maior. Esta versão 2x precisa ser exibida somente para dispositivos com tela de retina..
 
@@ -280,39 +301,7 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
 
 	> Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
 
-<p name="Task4" />
-#### Media Queries ####
-As media queries foram introduzidas no CSS3 e permitem construir web sites responsivos. Porém, elas não são suportadas em browsers antigos como o IE8. Se você está desenvolvendo mobile-first, que é a maneira mais recomendada para construir sites, você deve ter que contornar essa limitação.
-
-Para tanto, temos duas opções. 
-
-* Usar bibliotecas Javascript, como o [Respond.js](https://github.com/scottjehl/Respond), para adicionar suporte a media queries no IE8. Seu código CSS continua igual e a biblioteca faz o trabalho pra você. Para usar, podemos incluir o seguinte HTML nas nossas páginas:
-	
-	````HTML
-	<!--[if lt IE 9]>
-		 <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
-	<![endif]-->
-	````
-
-* Usar condicionais no CSS. Neste caso o CSS é adaptado para IE8.
- 
-	Folhas de estilo condicionais são escritas especificamente para um determinado browser (por exemplo, IE8) que é referenciado na expressão de condição. Segue exemplo:
-
-	````HTML
-	<!--[if (lt IE 9) & (!IEMobile)]>
-		 <link href="ie8.css" rel="stylesheet">
-	<![endif]-->
-	 
-	<!--[if (gte IE 9) | (IEMobile)]><!-->
-		 <link href="style.css" rel="stylesheet">
-	<!--<![endif]-->
-	````
-
-	[Este artigo](http://seesparkbox.com/foundry/structuring_and_serving_styles_for_older_browsers) fornece uma abordagem interessante para gerar automaticamente folhas de estilo para IE8 livres de Media Queries. Para tanto, ele usa mixins e variáveis.
-
-Pronto! O próximo passo agora é usar o elemento `<video>` do HTML5 e tratar o caso em que o elemento não é suportado pelo browser.
-
-<p name="Task5" />
+<p name="Task6" />
 #### Propriedades CSS3
 Muitas vezes precisamos ou queremos usar um recurso CSS que ainda não está disponível em todos  browsers. Ou ainda, está disponível em apenas alguns browsers. Neste caso, quando o recurso ainda não é padrão, podemos usar os chamados prefixos CSS que permitem usar recursos nos diferentes browsers.  
 
@@ -347,7 +336,7 @@ Quando estamos trabalhando no nosso site para suportar browsers antigos, precisa
 
 	>Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
 
-<p name="Task6" />
+<p name="Task7" />
 #### Elementos HTML5
 O [HTML5](http://www.w3schools.com/html/html5_intro.asp) introduziu novos elementos HTML. Alguns deles já vimos neste minicurso (imagem SVG, marcação <video>) e vimos como fornecer uma alternativa para browsers antigos. Alguns dos elementos introduzidos são os elementos semânticos _\<header>_, _\<footer>_, _\<article>_ e _\<section>_.
 
@@ -388,5 +377,6 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 
 Pronto! Agora podemos testar novamente nosso site no IE8 para verificar a cor de fundo do cabeçalho.
 
-##Summary##
-In this lab you have learned about different ways of testing websites that don't involve a lab with physical machines or devices that you manually interact with. Also, you have seen how to change your website to gracefully support older versions of different browsers.
+##Revisão##
+
+Neste minicurso vimos como rever nosso site e garantir que funcionalidades estejam disponíveis para o usuário mesmo quando ele estiver usando browser antigo. Mesmo tendo uma certa degradação, o importante aqui é garantir que o usuário tenha acesso a funcionalidade.
