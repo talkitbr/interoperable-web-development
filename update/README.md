@@ -112,7 +112,7 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 
 - **De:** 
   
-	````Javascript
+	````JavaScript
 	<div id="myElement">Loading the player...</div>
 	
 	<script type="text/javascript">
@@ -127,7 +127,7 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 
 - **Para:** 
   
-	````Javascript
+	````JavaScript
     <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4" autoplay>
         <div id="myElement">Loading the player...</div>
         <script type="text/javascript">
@@ -147,7 +147,7 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 
 <p name="Task3" />
 
-### Animações CSS
+<h3>Animações CSS</h3>
 
 Lista de classes, ou class list, permite especificar mais de uma classe para um determinado elemento e fazer a troca de classes usando a função toggle. É muito usado na web moderna, porém ele não é suportado em browsers antigos.
 
@@ -157,7 +157,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 
 	- De:
 	
-	````Javascript
+	````JavaScript
     <div>
         <div id="movietitle">
             <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
@@ -168,7 +168,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
     
 	- Para:
 	
-	````Javascript
+	````JavaScript
     <div class="wrapper">        
         <div>
             <div id="movietitle">
@@ -180,11 +180,11 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
             <p>The film follows a girl named Sintel who is searching for a baby dragon she calls Scales. A flashback reveals that Sintel found Scales with its wing injured and helped care for it, forming a close bond with it. By the time its wing recovered and it was able to fly, Scales was caught by an adult dragon. Sintel has since embarked on a quest to rescue Scales, fending off beasts and warriors along the way. She eventually comes across a cave housing an adult and baby dragon, the latter of which she believes to be Scales. The adult dragon discovers and attacks Sintel, but hesitates to kill her. Sintel slays the dragon, only to recognize the scar on its wing and realize the dragon is an adult Scales, and that she too has aged considerably. Sintel leaves the cave heartbroken, unknowingly followed by Scales's baby.</p>
         </div>
     </div>
-	````    
+	````
 
 2. Depois disso, vamos incluir um script que faz uso do class list para alterar a visualização do conteúdo. Incluir o script no final da marcação body, mas antes de fechá-la:
 
-	````Javascript
+	````JavaScript
     <script>
         var wrapper = document.querySelector(".wrapper");
         wrapper.onclick = function () {
@@ -201,7 +201,7 @@ Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máqu
 
 Para resolver este problema, devemos verificar se o recurso de animação CSS é suportado pelo browser. Para tanto, usamos o mesmo Modernizr (já tratado no minicurso de feature-detection). Vamos então substituir o script acima para:
 
-	````Javascript
+	````JavaScript
     <script>
 	     var wrapper = document.querySelector(".wrapper");
 	     if (Modernizr.cssanimations) {
