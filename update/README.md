@@ -25,21 +25,19 @@ Podemos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emula
 1. Abrir a Ferramenta do Desenvolvedor pressionando a tecla F12.
 1. Abrir a aba do Emulador (Emulation) e modar o **Document mode** para **8**.
 	
-	![Mudando o Document Mode para IE8](images/update_setrendermodeie8.png)
-
-	_Mudando o Document Mode para IE8_
+![Mudando o Document Mode para IE8](images/update_setrendermodeie8.png)
 
 1. O site será recarregado pelo browser emulando o IE8. 
 
-	> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site volatrá a ser exibido no Document Mode padrão.
+> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site volatrá a ser exibido no Document Mode padrão.
 
-	> Nas versões mais recentes do IE11, mesmo usando emulação para IE8, alguns erros e limitações são contornados pelo browser, o que pode prejudicar nosso trabalho.
+> Nas versões mais recentes do IE11, mesmo usando emulação para IE8, alguns erros e limitações são contornados pelo browser, o que pode prejudicar nosso trabalho.
 
 Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, acesse artigo sobre [como baixar máquinas virtuais gratuitamente para testar seu site](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/).
 
-<p name="Task2" />
+<p name="Task1"/>
 
-<h3>Recursos Javascript</h3>
+### Recursos Javascript
 
 Primeiramente vamos procurar problemas relativos ao Javascript e HTML5 que não são suportados pelo IE8.
 
@@ -53,9 +51,8 @@ Ao executarmos a página inicial, já iremos nos deparar com um primeiro problem
 
 Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
 
-	````Javascript
-	<script>
-		if (window.addEventListener) {
+	````JavaScript
+	if (window.addEventListener) {
             window.addEventListener("load", function () {
                 setTimeout(function () {
                     jwplayer().play(true);
@@ -68,9 +65,8 @@ Para corrigir, devemos alterar o código Javascript para verificar se a função
                     jwplayer().play(true);
                 }, 500);
             });
-        }
-	</script>
-	````	
+        }	
+	````
 
 Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo quando o usuário estiver usando um browser anterior do Internet Explorer que implementa somente a função `attachEvent`.
 
@@ -82,7 +78,6 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 
 	<!-- mark:2,6-11 -->
 	````JavaScript
-        <script>
             if (window.addEventListener) {
                 window.addEventListener("mobileinit", function () {
                     $.mobile.ajaxEnabled = false;
@@ -91,8 +86,7 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
                 window.attachEvent("mobileinit", function () {
                     $.mobile.ajaxEnabled = false;
                 });
-            }
-        </script>
+            }        
 	````
 > Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
@@ -102,11 +96,11 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 - postcard.html
 - sobre.html
 
-<p name="Task2" />
+<p name="Task2"/>
 
 ### Marcação de Vídeo
 
-Até agora está funcionando o nosso vídeo. Mas estamos usando biblioteca Javascript para executá-lo. O ideal, porém, é usarmos a tag `<video>` do HTML5. Essa tag permite incluir um vídeo na nossa página sem precisar usar o javascript.
+Até agora está funcionando o nosso vídeo. Mas estamos usando biblioteca Javascript para executá-lo. O ideal, porém, é usarmos a tag `` do HTML5. Essa tag permite incluir um vídeo na nossa página sem precisar usar o javascript.
 
 Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 
@@ -115,37 +109,33 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 	````JavaScript
 	<div id="myElement">Loading the player...</div>
 	
-	<script type="text/javascript">
+	
 	    jwplayer("myElement").setup({
 	        file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
 	        width: "100%",
 	        aspectratio: "16:9",
 	        primary: "flash"
-	    });
-	</script>
-	````	
+	    });	
+	````
 
 - **Para:** 
   
-	````JavaScript
-    <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4" autoplay>
+	````JavaScript    
         <div id="myElement">Loading the player...</div>
-        <script type="text/javascript">
+        
             jwplayer("myElement").setup({
                 file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
                 width: "100%",
                 aspectratio: "16:9",
                 primary: "flash"
             });
-        </script>
-    </video>
 	````
 
-> O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag `<video>`.
+> O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag ``.
 
 1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
 
-<p name="Task3" />
+<p />
 
 <h3>Animações CSS</h3>
 
@@ -161,7 +151,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
     <div>
         <div id="movietitle">
             <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
-            <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
+            <img id="sintelTitle" src="./Content/images/Sintel.PNG" />
         </div>
     </div>
 	````
@@ -173,7 +163,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
         <div>
             <div id="movietitle">
                 <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
-                <img id="sintelTitle" src="./Content/images/Sintel.PNG"/>
+                <img id="sintelTitle" src="./Content/images/Sintel.PNG" />
             </div>
         </div>
         <div id="synopsis">
@@ -185,12 +175,12 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 2. Depois disso, vamos incluir um script que faz uso do class list para alterar a visualização do conteúdo. Incluir o script no final da marcação body, mas antes de fechá-la:
 
 	````JavaScript
-    <script>
+    
         var wrapper = document.querySelector(".wrapper");
         wrapper.onclick = function () {
             wrapper.classList.toggle("animation");
         };
-    </script>
+    
 	````
 
 Se executarmos o site no Internet Explorer 11, Microsoft Edge ou Google Chrome, ao clicarmos no título da imagem, uma animação deverá ocorrer.
@@ -202,7 +192,7 @@ Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máqu
 Para resolver este problema, devemos verificar se o recurso de animação CSS é suportado pelo browser. Para tanto, usamos o mesmo Modernizr (já tratado no minicurso de feature-detection). Vamos então substituir o script acima para:
 
 	````JavaScript
-    <script>
+    
 	     var wrapper = document.querySelector(".wrapper");
 	     if (Modernizr.cssanimations) {
 	          wrapper.onclick = function () {
@@ -222,16 +212,16 @@ Para resolver este problema, devemos verificar se o recurso de animação CSS é
 	                }
 	          };
 	     }
-	</script>
+	
 	````
 
-	> No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
+	&gt; No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
 
 Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao clicarmos no título ou logo do vídeo:
 
 ![Erro função toggle corrigido](./images/update_toggle_errorfixed.png)
 
-<p name="Task4" />
+<p />
 
 ### Imagens SVG
 
@@ -250,27 +240,27 @@ Vamos ver agora como fazer isso:
 
 4. Para corrigir isso, vamos usar o Modernizr para verificar se o SVG é suportado ou não. Porém o script que geramos anteriormente não verificar SVG (só incluímos no nosso script Modernizr a verificação de CSS Animations e Opacity).
 5. Vamos voltar então para o site mo [Modernizr](http://modernizr.com) e selecionar a nossa build os recursos CSS Animations, opacity e agora o SVG. 
-	> Reveja como fazer isso no nosso outro [minicurso de detecção de features](../feature-detection).
-	> 
-	> Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).   
-6. Agora vamos incluir o seguitne Javascript no final da nossa página sobre.html (antes de fechar a tag <body>):
+	&gt; Reveja como fazer isso no nosso outro [minicurso de detecção de features](../feature-detection).
+	&gt; 
+	&gt; Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).   
+6. Agora vamos incluir o seguitne Javascript no final da nossa página sobre.html (antes de fechar a tag ):
 
 	````JavaScript
-	<script>
+	
 		 if (!Modernizr.svg) {
 			  var logo = document.getElementById("sintelLogo");
 			  logo.src = './Content/images/Sintel_logo.png';
 		 }
-	</script>
+	
 	````
 	
-	> Lembrar de incluir também o Javascript do Modernizr.
+	&gt; Lembrar de incluir também o Javascript do Modernizr.
 
 7. Acessando novamente a página, observe que o logo irá aparecer no IE8.
 
 	![Corrigindo exibição do logo](./images/update_svgimage_fix.png)
 
-<p name="Task5" />
+<p />
 
 ### @2X images
 
@@ -286,7 +276,7 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
 	
 	<!-- mark:14-19 -->
 	````CSS
-	<style>
+	
 		 .contact {
 			  padding: 5px 10px 15px 0px;
 			  font-family: Georgia;
@@ -305,16 +295,16 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
                     background-size: 140px;
 			  }
 		 }
-	</style>
+	
 	````
 
 1. Usando o Google Chrome e a ferramenta do desenvolvedor para emular dispositivo de alta resolução, vamos testar nosso site:
 
 	![Visualizando mudanças no Google Chrome](./images/update_imagescale2x.png)
 
-	> Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
+	&gt; Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
 
-<p name="Task6" />
+<p />
 
 ### Propriedades CSS3
 
@@ -345,28 +335,28 @@ Quando estamos trabalhando no nosso site para suportar browsers antigos, precisa
 	}
 	````
 
-	>Nesta regra estamos definindo o background padrão somente caso o gradiente não seja suportado. Lembre-se de especificar o gradiente usando os prefixos, conforme visto no nosso outro minicurso. 
+	&gt;Nesta regra estamos definindo o background padrão somente caso o gradiente não seja suportado. Lembre-se de especificar o gradiente usando os prefixos, conforme visto no nosso outro minicurso. 
 
 	![Imagem de fundo no IE9](./images/update_headerbackground.png)
 
-	>Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
+	&gt;Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
 
-<p name="Task7" />
+<p />
 
 ### Elementos HTML5
 
-O [HTML5](http://www.w3schools.com/html/html5_intro.asp) introduziu novos elementos HTML. Alguns deles já vimos neste minicurso (imagem SVG, marcação <video>) e vimos como fornecer uma alternativa para browsers antigos. Alguns dos elementos introduzidos são os elementos semânticos _\<header>_, _\<footer>_, _\<article>_ e _\<section>_.
+O [HTML5](http://www.w3schools.com/html/html5_intro.asp) introduziu novos elementos HTML. Alguns deles já vimos neste minicurso (imagem SVG, marcação ) e vimos como fornecer uma alternativa para browsers antigos. Alguns dos elementos introduzidos são os elementos semânticos _\<header>_, _\<footer>_, _\<article>_ e _\<section>_.
 
 Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A seguir iremos ver como lidar com essas limitações.
 
 1. Abrir o arquivo `index.html`.
-2. Localizar na marcação `<body>` o local onde usamos a marcação `<header>`. Você encontrará este trecho de código:
+2. Localizar na marcação `` o local onde usamos a marcação `<header>`. Você encontrará este trecho de código:
 
 	<!-- mark:3,15 -->
 	````HTML
-	    <body>
-	        <div data-role="page" data-theme="b">
-	            <header data-role="header">
+	    
+	        <div>
+	            <header>
 	                <div class="header-container">
 	                    <img class="logo" src="./Content/images/movieIcon.png" />
 	                    <div class="title">Contoso Movies</div>
@@ -374,23 +364,23 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 	            </header>   
 			...
 			</div>
-	   </body>
+	   
 	````
 
-	> Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
+	&gt; Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
 
-3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no `<head>` da nossa página:
+3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no `` da nossa página:
 
 	````HTML
-		<!--[if lt IE 9]>
-		<script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
-        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>       
-		<![endif]-->
+		<!--[if lt IE 9]&gt;-->
+		<a href="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js">https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js</a>
+        <a href="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js">https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js</a>       
+		
 	````
 
-	> Estamos incluindo o _shiv_ usando a condição de que o browser seja IE8 ou anterior. 
+	&gt; Estamos incluindo o _shiv_ usando a condição de que o browser seja IE8 ou anterior. 
 
-	> Lembre-se de adicionar em todas as págians HTML do nosso site que usando a marcação `<head>` 
+	&gt; Lembre-se de adicionar em todas as págians HTML do nosso site que usando a marcação `` 
 
 Pronto! Agora podemos testar novamente nosso site no IE8 para verificar a cor de fundo do cabeçalho.
 
