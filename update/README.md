@@ -38,7 +38,8 @@ Podemos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emula
 Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, acesse artigo sobre [como baixar máquinas virtuais gratuitamente para testar seu site](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/). 
 
 <p name="Task1" />
-#### Recursos Javascript
+
+### Recursos Javascript
 
 Primeiramente vamos procurar problemas relativos ao Javascript e HTML5 que não são suportados pelo IE8.
 
@@ -102,7 +103,8 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 - sobre.html
 
 <p name="Task2" />
-##Marcação de Vídeo
+
+### Marcação de Vídeo
 
 Até agora está funcionando o nosso vídeo. Mas estamos usando biblioteca Javascript para executá-lo. O ideal, porém, é usarmos a tag `<video>` do HTML5. Essa tag permite incluir um vídeo na nossa página sem precisar usar o javascript.
 
@@ -144,7 +146,8 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
 
 <p name="Task3" />
-##Animações CSS
+
+### Animações CSS
 
 Lista de classes, ou class list, permite especificar mais de uma classe para um determinado elemento e fazer a troca de classes usando a função toggle. É muito usado na web moderna, porém ele não é suportado em browsers antigos.
 
@@ -229,7 +232,9 @@ Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao c
 ![Erro função toggle corrigido](./images/update_toggle_errorfixed.png)
 
 <p name="Task4" />
-#### Imagens SVG ####
+
+### Imagens SVG
+
 [SVG](http://www.w3schools.com/svg/svg_intro.asp) (Scalable Vector Graphics) é uma imagem no formato de vertor para gráficos bidimensionais com suporte a interatividade e animação. As imagens SVG são escaláveis e não perdem qualidade quando é feito zoom ou redimensionamento. Como são definidas através de XML, elas podem ser criadas e editadas por qualquer editor de texto. Essas vantagens assim como aderência a padrões tornem o SVG uma alternativa atrativa. Contudo, a falta de suporte pelos browsers limitou seu uso na Web. Uma forma de contornar esta limitação é fornecer, para esses browsers que não suportam XVG, imagens equivalentes mas com formato tradicional.
 
 Vamos ver agora como fazer isso:
@@ -266,7 +271,9 @@ Vamos ver agora como fazer isso:
 	![Corrigindo exibição do logo](./images/update_svgimage_fix.png)
 
 <p name="Task5" />
-#### @2X images ####
+
+### @2X images
+
 Com os novos dispositivos e telas de retina, as imagens normalmente tem um aspecto granular e de baixa qualidade. A solução adotada nos sites modernos é adotar duas versões de imagens: uma versão normal e outro "2x" que é muito maior. Esta versão 2x precisa ser exibida somente para dispositivos com tela de retina..
 
 Para detectar dispositivos de retina e então fornecer imagens "2x", podemos usar o media query (iremos ver mais detalhes de media queries no outro [minicurso de design responsivo](../mobile-first-design). 
@@ -308,7 +315,9 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
 	> Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
 
 <p name="Task6" />
-#### Propriedades CSS3
+
+### Propriedades CSS3
+
 Muitas vezes precisamos ou queremos usar um recurso CSS que ainda não está disponível em todos  browsers. Ou ainda, está disponível em apenas alguns browsers. Neste caso, quando o recurso ainda não é padrão, podemos usar os chamados prefixos CSS que permitem usar recursos nos diferentes browsers.  
 
 > Nota: Tratamos desse assunto no [minicurso cd prefixos CSS](../css-prefix).
@@ -343,7 +352,9 @@ Quando estamos trabalhando no nosso site para suportar browsers antigos, precisa
 	>Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
 
 <p name="Task7" />
-#### Elementos HTML5
+
+### Elementos HTML5
+
 O [HTML5](http://www.w3schools.com/html/html5_intro.asp) introduziu novos elementos HTML. Alguns deles já vimos neste minicurso (imagem SVG, marcação <video>) e vimos como fornecer uma alternativa para browsers antigos. Alguns dos elementos introduzidos são os elementos semânticos _\<header>_, _\<footer>_, _\<article>_ e _\<section>_.
 
 Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A seguir iremos ver como lidar com essas limitações.
