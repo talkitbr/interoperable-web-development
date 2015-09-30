@@ -78,7 +78,6 @@ Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo q
 
 Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira:  
 
-	<!-- mark:2,6-11 -->
 	````HTML
 	<script>
 		if (window.addEventListener) {
@@ -92,7 +91,8 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 		}
 	</script>        
 	````
-> Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
+
+	> Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
 <strong>Vamos também fazer a alteração acima em todas as páginas html do nosso site em que houver o uso do `addEventListener`:</strong>
 
@@ -139,7 +139,7 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
     </video>
 	````
 
-> O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag ``.
+	> O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag ``.
 
 1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
 
