@@ -38,6 +38,7 @@ Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos 
 
 <p name="Task1" />
 #### Recursos Javascript ####
+
 Primeiramente vamos procurar problemas relativos ao Javascript e HTML5 que não são suportados pelo IE8.
 
 Ao executarmos a página inicial, já iremos nos deparar com um primeiro problema de visualização no IE8: o uso da função `attachEvent`. 
