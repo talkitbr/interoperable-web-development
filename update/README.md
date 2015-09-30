@@ -35,7 +35,7 @@ Podemos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emula
 
 Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, acesse artigo sobre [como baixar máquinas virtuais gratuitamente para testar seu site](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/).
 
-<p name="Task1"/>
+<p name="Task1"></p>
 
 ### Recursos Javascript
 
@@ -51,8 +51,9 @@ Ao executarmos a página inicial, já iremos nos deparar com um primeiro problem
 
 Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
 
-	````JavaScript
-	if (window.addEventListener) {
+	````HTML
+	<script>
+		if (window.addEventListener) {
             window.addEventListener("load", function () {
                 setTimeout(function () {
                     jwplayer().play(true);
@@ -66,6 +67,7 @@ Para corrigir, devemos alterar o código Javascript para verificar se a função
                 }, 500);
             });
         }	
+	</script>
 	````
 
 Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo quando o usuário estiver usando um browser anterior do Internet Explorer que implementa somente a função `attachEvent`.
@@ -77,16 +79,18 @@ Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo q
 Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira:  
 
 	<!-- mark:2,6-11 -->
-	````JavaScript
-            if (window.addEventListener) {
-                window.addEventListener("mobileinit", function () {
-                    $.mobile.ajaxEnabled = false;
-                });
-            } else if (window.attachEvent) {
-                window.attachEvent("mobileinit", function () {
-                    $.mobile.ajaxEnabled = false;
-                });
-            }        
+	````HTML
+	<script>
+		if (window.addEventListener) {
+		    window.addEventListener("mobileinit", function () {
+		        $.mobile.ajaxEnabled = false;
+		    });
+		} else if (window.attachEvent) {
+		    window.attachEvent("mobileinit", function () {
+		        $.mobile.ajaxEnabled = false;
+		    });
+		}
+	</script>        
 	````
 > Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
@@ -96,7 +100,7 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 - postcard.html
 - sobre.html
 
-<p name="Task2"/>
+<p name="Task2"></p>
 
 ### Marcação de Vídeo
 
@@ -106,38 +110,42 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 
 - **De:** 
   
-	````JavaScript
+	````HTML
 	<div id="myElement">Loading the player...</div>
 	
-	
+	<script type="text/javascript">
 	    jwplayer("myElement").setup({
 	        file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
 	        width: "100%",
 	        aspectratio: "16:9",
 	        primary: "flash"
-	    });	
+	    });
+	</script>
 	````
 
 - **Para:** 
   
-	````JavaScript    
+	````HTML
+    <video id="promoVideo" width="100%" controls src="http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4" autoplay>
         <div id="myElement">Loading the player...</div>
-        
+        <script type="text/javascript">
             jwplayer("myElement").setup({
                 file: "http://wams.edgesuite.net/media/SintelTrailer_MP4_from_WAME/sintel_trailer-1080p_3400.mp4",
                 width: "100%",
                 aspectratio: "16:9",
                 primary: "flash"
             });
+        </script>
+    </video>
 	````
 
 > O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag ``.
 
 1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
 
-<p />
+<p name="Task3"></p>
 
-<h3>Animações CSS</h3>
+### Animações CSS
 
 Lista de classes, ou class list, permite especificar mais de uma classe para um determinado elemento e fazer a troca de classes usando a função toggle. É muito usado na web moderna, porém ele não é suportado em browsers antigos.
 
@@ -147,7 +155,7 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 
 	- De:
 	
-	````JavaScript
+	````html
     <div>
         <div id="movietitle">
             <img id="sintelLogo" src="./Content/images/sintel_logo.PNG" />
@@ -157,8 +165,8 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 	````
     
 	- Para:
-	
-	````JavaScript
+	`
+	```html
     <div class="wrapper">        
         <div>
             <div id="movietitle">
@@ -174,14 +182,14 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 
 2. Depois disso, vamos incluir um script que faz uso do class list para alterar a visualização do conteúdo. Incluir o script no final da marcação body, mas antes de fechá-la:
 
-	````JavaScript
-    
+	```JavaScript
+    <script>
         var wrapper = document.querySelector(".wrapper");
         wrapper.onclick = function () {
             wrapper.classList.toggle("animation");
         };
-    
-	````
+    </script>
+	```
 
 Se executarmos o site no Internet Explorer 11, Microsoft Edge ou Google Chrome, ao clicarmos no título da imagem, uma animação deverá ocorrer.
 
@@ -191,8 +199,8 @@ Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máqu
 
 Para resolver este problema, devemos verificar se o recurso de animação CSS é suportado pelo browser. Para tanto, usamos o mesmo Modernizr (já tratado no minicurso de feature-detection). Vamos então substituir o script acima para:
 
-	````JavaScript
-    
+	```JavaScript
+    <script>
 	     var wrapper = document.querySelector(".wrapper");
 	     if (Modernizr.cssanimations) {
 	          wrapper.onclick = function () {
@@ -212,8 +220,8 @@ Para resolver este problema, devemos verificar se o recurso de animação CSS é
 	                }
 	          };
 	     }
-	
-	````
+	</script>
+	```
 
 	&gt; No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
 
@@ -221,7 +229,7 @@ Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao c
 
 ![Erro função toggle corrigido](./images/update_toggle_errorfixed.png)
 
-<p />
+<p name="Task4"></p>
 
 ### Imagens SVG
 
@@ -246,21 +254,21 @@ Vamos ver agora como fazer isso:
 6. Agora vamos incluir o seguitne Javascript no final da nossa página sobre.html (antes de fechar a tag ):
 
 	````JavaScript
-	
+	<script>
 		 if (!Modernizr.svg) {
 			  var logo = document.getElementById("sintelLogo");
 			  logo.src = './Content/images/Sintel_logo.png';
 		 }
-	
+	</script>
 	````
 	
-	&gt; Lembrar de incluir também o Javascript do Modernizr.
+	> Lembrar de incluir também o Javascript do Modernizr.
 
 7. Acessando novamente a página, observe que o logo irá aparecer no IE8.
 
 	![Corrigindo exibição do logo](./images/update_svgimage_fix.png)
 
-<p />
+<p name="Task5"></p>
 
 ### @2X images
 
@@ -276,7 +284,7 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
 	
 	<!-- mark:14-19 -->
 	````CSS
-	
+	<style>
 		 .contact {
 			  padding: 5px 10px 15px 0px;
 			  font-family: Georgia;
@@ -295,16 +303,16 @@ Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google 
                     background-size: 140px;
 			  }
 		 }
-	
+	</style>
 	````
 
 1. Usando o Google Chrome e a ferramenta do desenvolvedor para emular dispositivo de alta resolução, vamos testar nosso site:
 
 	![Visualizando mudanças no Google Chrome](./images/update_imagescale2x.png)
 
-	&gt; Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
+	> Perceba no código CSS ao lado que a imagem definida para a página é a 2x.
 
-<p />
+<p name="Task6"></p>
 
 ### Propriedades CSS3
 
@@ -335,13 +343,13 @@ Quando estamos trabalhando no nosso site para suportar browsers antigos, precisa
 	}
 	````
 
-	&gt;Nesta regra estamos definindo o background padrão somente caso o gradiente não seja suportado. Lembre-se de especificar o gradiente usando os prefixos, conforme visto no nosso outro minicurso. 
+	> Nesta regra estamos definindo o background padrão somente caso o gradiente não seja suportado. Lembre-se de especificar o gradiente usando os prefixos, conforme visto no nosso outro minicurso. 
 
 	![Imagem de fundo no IE9](./images/update_headerbackground.png)
 
-	&gt;Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
+	> Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
 
-<p />
+<p name="Task7"></p>
 
 ### Elementos HTML5
 
@@ -354,9 +362,9 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 
 	<!-- mark:3,15 -->
 	````HTML
-	    
-	        <div>
-	            <header>
+	    <body>
+	        <div data-role="page" data-theme="b">
+	            <header data-role="header">
 	                <div class="header-container">
 	                    <img class="logo" src="./Content/images/movieIcon.png" />
 	                    <div class="title">Contoso Movies</div>
@@ -364,23 +372,23 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 	            </header>   
 			...
 			</div>
-	   
+	   </body>
 	````
 
-	&gt; Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
+	> Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
 
 3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no `` da nossa página:
 
-	````HTML
-		<!--[if lt IE 9]&gt;-->
-		<a href="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js">https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js</a>
-        <a href="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js">https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js</a>       
-		
+	`````HTML
+		<!--[if lt IE 9]>
+		<script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
+        <script src="https://raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv-printshiv.min.js"></script>       
+		<![endif]-->
 	````
 
-	&gt; Estamos incluindo o _shiv_ usando a condição de que o browser seja IE8 ou anterior. 
+	> Estamos incluindo o _shiv_ usando a condição de que o browser seja IE8 ou anterior. 
 
-	&gt; Lembre-se de adicionar em todas as págians HTML do nosso site que usando a marcação `` 
+	> Lembre-se de adicionar em todas as págians HTML do nosso site que usando a marcação `<head>`.
 
 Pronto! Agora podemos testar novamente nosso site no IE8 para verificar a cor de fundo do cabeçalho.
 
