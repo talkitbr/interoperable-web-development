@@ -108,11 +108,12 @@ Para tanto vamos usar o recurso de Media Queries.
 	 
 	> Podemos também definir essa regra no próprio CSS da seguinte forma:
 	
-		````CSS
-		@media screen and (min-width: 28.75em) {
+	````CSS
+	@media screen and (min-width: 28.75em) {
 
-		}
-		````
+	}
+	````
+
 2. Além disso, vamos voltar par a página `index.html` e incluir a lista de links dentro de uma `<div>` com a classe `navigationList`:
 
 	````HTML
