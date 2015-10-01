@@ -199,31 +199,31 @@ Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máqu
 
 Para resolver este problema, devemos verificar se o recurso de animação CSS é suportado pelo browser. Para tanto, usamos o mesmo Modernizr (já tratado no minicurso de feature-detection). Vamos então substituir o script acima para:
 
-	````HTML
-    <script>
-	     var wrapper = document.querySelector(".wrapper");
-	     if (Modernizr.cssanimations) {
-	          wrapper.onclick = function () {
-	                wrapper.classList.toggle("animation");
-	          };
-	     } else {
-	          wrapper.onclick = function () {
-	                var synopsis = document.getElementById("synopsis");
-	                var title = document.getElementById("movietitle");
-	                if (synopsis.style.display != "block") {
-	                     synopsis.style.left = "0px";
-	                     synopsis.style.display = "block";
-	                     title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
-	                } else {
-	                     synopsis.style.display = "none";
-	                     title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	                }
-	          };
-	     }
-	</script>
-	````
+````HTML
+<script>
+     var wrapper = document.querySelector(".wrapper");
+     if (Modernizr.cssanimations) {
+          wrapper.onclick = function () {
+                wrapper.classList.toggle("animation");
+          };
+     } else {
+          wrapper.onclick = function () {
+                var synopsis = document.getElementById("synopsis");
+                var title = document.getElementById("movietitle");
+                if (synopsis.style.display != "block") {
+                     synopsis.style.left = "0px";
+                     synopsis.style.display = "block";
+                     title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+                } else {
+                     synopsis.style.display = "none";
+                     title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                }
+          };
+     }
+</script>
+````
 
-	> No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
+> No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
 
 Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao clicarmos no título ou logo do vídeo:
 
