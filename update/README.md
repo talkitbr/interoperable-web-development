@@ -52,21 +52,21 @@ Ao executarmos a página inicial, já iremos nos deparar com um primeiro problem
 Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
   
 	````HTML
-	<script>
-		if (window.addEventListener) {
-            window.addEventListener("load", function () {
-                setTimeout(function () {
-                    jwplayer().play(true);
-                }, 500);
-            });
-        }
-        else {
-            window.attachEvent("onload", function () {
-                setTimeout(function () {
-                    jwplayer().play(true);
-                }, 500);
-            });
-        }	
+	<script type="text/javascript">
+	    if (window.addEventListener) {
+	        window.addEventListener("load", function () {
+	            setTimeout(function () {
+	                jwplayer().play(true);
+	            }, 500);
+	        });
+	    }
+	    else {
+	        window.attachEvent("onload", function () {
+	            setTimeout(function () {
+	                jwplayer().play(true);
+	            }, 500);
+	        });
+	    }
 	</script>
 	````
 
@@ -79,8 +79,8 @@ Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo q
 Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira: 
   
 	````HTML
-	<script>
-		if (window.addEventListener) {
+	<script type="text/javascript">
+	    if (window.addEventListener) {
 		    window.addEventListener("mobileinit", function () {
 		        $.mobile.ajaxEnabled = false;
 		    });
@@ -89,10 +89,10 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 		        $.mobile.ajaxEnabled = false;
 		    });
 		}
-	</script>  
+	</script>
 	````
 
-	> Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
+> Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
 <strong>Vamos também fazer a alteração acima em todas as páginas html do nosso site em que houver o uso do `addEventListener`:</strong>
 
