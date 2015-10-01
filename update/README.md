@@ -51,24 +51,24 @@ Ao executarmos a página inicial, já iremos nos deparar com um primeiro problem
 
 Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
   
-	````HTML
-	<script type="text/javascript">
-	    if (window.addEventListener) {
-	        window.addEventListener("load", function () {
-	            setTimeout(function () {
-	                jwplayer().play(true);
-	            }, 500);
-	        });
-	    }
-	    else {
-	        window.attachEvent("onload", function () {
-	            setTimeout(function () {
-	                jwplayer().play(true);
-	            }, 500);
-	        });
-	    }
-	</script>
-	````
+````HTML
+<script type="text/javascript">
+    if (window.addEventListener) {
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                jwplayer().play(true);
+            }, 500);
+        });
+    }
+    else {
+        window.attachEvent("onload", function () {
+            setTimeout(function () {
+                jwplayer().play(true);
+            }, 500);
+        });
+    }
+</script>
+````
 
 Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo quando o usuário estiver usando um browser anterior do Internet Explorer que implementa somente a função `attachEvent`.
 
@@ -78,19 +78,19 @@ Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo q
 
 Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira: 
   
-	````HTML
-	<script type="text/javascript">
-	    if (window.addEventListener) {
-		    window.addEventListener("mobileinit", function () {
-		        $.mobile.ajaxEnabled = false;
-		    });
-		} else if (window.attachEvent) {
-		    window.attachEvent("mobileinit", function () {
-		        $.mobile.ajaxEnabled = false;
-		    });
-		}
-	</script>
-	````
+````HTML
+<script type="text/javascript">
+    if (window.addEventListener) {
+	    window.addEventListener("mobileinit", function () {
+	        $.mobile.ajaxEnabled = false;
+	    });
+	} else if (window.attachEvent) {
+	    window.attachEvent("mobileinit", function () {
+	        $.mobile.ajaxEnabled = false;
+	    });
+	}
+</script>
+````
 
 > Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
 
