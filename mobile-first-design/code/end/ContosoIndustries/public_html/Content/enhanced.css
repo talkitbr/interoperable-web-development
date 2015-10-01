@@ -1,0 +1,8 @@
+#primaryContent {
+    float: right;
+    width: calc(100% - 220px);
+}
+.navigationList {
+    float: left;
+    width: 200px;
+}

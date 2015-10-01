@@ -1,148 +1,157 @@
-Mobile First Responsive Web Design
+Mobile First com Design Responsivo
 ========================================
-An important part of the solution to Responsive Web Design performance is Mobile First Responsive Web design. Typically, responsive Websites are the same size on mobile as on the desktop. This means most responsive sites are not being built for mobile first. Instead a lot of responsive designs take desktop sites and simply hide elements.
+Uma parte importante do desenvolvimento de sites atualmente é a de Web Design. E quando falamos de Web Design, temos que pensar que o design deve ser responsivo para atender a todos os usuários, não importando qual tela estiverem usando.
 
-In this lab you will learn about the **Mobile First** and **Responsive Design** concepts and learn some guidelines that can be applied to a web application to achieve them.
+Para facilitar esse trabalho recomenda-se começar pela tela menor e então ir ajustando conteúdo para atender telas maiores. Daí nesse caso pode-se até incluir novas informações. A isso dá-se o nome **Mobile First**. E para o ajuste do design de acordo com o tamanho da tela dá-se o nome de **Design Responsivo**.  
 
-This lab includes the following tasks:
+Este minicurso inclui:
 
-1. [Responsive Design Guidelines](#Task1)
-	1. [Viewport](#Task11)
-	2. [Styles](#Task12)
-	3. [The tel: URI Scheme](#Task13)
-	4. [Responsive Images](#Task14)
+1. [Mobile First](#Task1)
+1. [Design Responsivo](#Task2)
+	1. [Viewport](#Task21)
+	2. [Estilos](#Task22)
+	3. [URI Schema](#Task23)
+	4. [Imagens Responsivas](#Task24)
+2. [Revisão](#Task3)
 
-<p name="Task6" />
-#### Media Queries ####
-As media queries foram introduzidas no CSS3 e permitem construir web sites responsivos. Porém, elas não são suportadas em browsers antigos como o IE8. Se você está desenvolvendo mobile-first, que é a maneira mais recomendada para construir sites, você deve ter que contornar essa limitação.
+<p name="Task1"></p>
+##Mobile First##
 
-Para tanto, temos duas opções. 
+O termo **Mobile First** foi concebido por [Luke Wroblewski](http://www.lukew.com/presos/preso.asp?26) que destacou a necessidade de se priorizar dispositivos móveis para criar experiências do usuário. O **Mobile First** se baseia na entrega do conteúdo para mais pessoas, forçando o design de páginas com foco no conteúdo principal e funcionalidade do site, permitindo aos designers inovar e tirar proveito das novas tecnologias.
 
-* Usar bibliotecas Javascript, como o [Respond.js](https://github.com/scottjehl/Respond), para adicionar suporte a media queries no IE8. Seu código CSS continua igual e a biblioteca faz o trabalho pra você. Para usar, podemos incluir o seguinte HTML nas nossas páginas:
-	
-	````HTML
-	<!--[if lt IE 9]>
-		 <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
-	<![endif]-->
-	````
+Ele envolve:
 
-* Usar condicionais no CSS. Neste caso o CSS é adaptado para IE8.
- 
-	Folhas de estilo condicionais são escritas especificamente para um determinado browser (por exemplo, IE8) que é referenciado na expressão de condição. Segue exemplo:
+- **Web Design Responsivo:** A interface do usuário se encaixa nas telas dos dispositivos que os usuários estão utilizando. A mesma interface pode então se modificar quando a tela é maior. E isto é feito com base em várias propriedades como tamanho ou resolução de tela. Por exemplo, num telefone podemos ver o conteúdo numa coluna simples. Já no Desktop este mesmo conteúdo poderá ser apresentado em duas ou mais colunas, tirando maior proveito do espaço disponível na tela.
 
-	````HTML
-	<!--[if (lt IE 9) & (!IEMobile)]>
-		 <link href="ie8.css" rel="stylesheet">
-	<![endif]-->
-	 
-	<!--[if (gte IE 9) | (IEMobile)]><!-->
-		 <link href="style.css" rel="stylesheet">
-	<!--<![endif]-->
-	````
+- **Melhoria Progressiva:** visa prover funcionalidades básicas para a aplicação e progressivamente incluir novos recursos com base no dispositivo em que ela está executando.
 
-	[Este artigo](http://seesparkbox.com/foundry/structuring_and_serving_styles_for_older_browsers) fornece uma abordagem interessante para gerar automaticamente folhas de estilo para IE8 livres de Media Queries. Para tanto, ele usa mixins e variáveis.
+No exemplo utilizado nos minicursos, o **Contoso Movies** foi desenvolvido como uma aplicação para dispositivos móveis. Neste caso podemos usar **melhoria progressiva** para adicionar novos recursos para telas maiores, como desktops..
 
-Pronto! O próximo passo agora é usar o elemento `<video>` do HTML5 e tratar o caso em que o elemento não é suportado pelo browser.
+<p name="Task2"></p>
+##Design Responsivo##
 
-<a name="Task1" />
-##Responsive Design Guidelines##
-**Mobile First** is a concept created by [Luke Wroblewski](http://www.lukew.com/presos/preso.asp?26) that highlights the need to prioritize the mobile context when creating user experiences. Mobile First allows websites to **reach more people**, forces designers to **focus on core content and functionality**, and lets designers innovate and **take full advantage of new technologies**.
+Agora vamos detalhar aqui alguns aspectos relacionados com o Design Responsivo para Web.
 
-**Responsive web design** responds to the needs of the users and the devices they are using. The layout changes based on the size and capabilities of the device. For example, on a phone, users might see content in a single column view, while a tablet might show the same content in two columns.
-
-**Progressive Enhancement** is the approach of creating the basic functionality of the application and progressively adding more features based on the capabilities of the device where the application is run.
-
-As you may remember, **Contoso Movies**  was developed as a Mobile application, therefore we can use the **Progressive Enhancement** principle to add support for bigger screens, such as desktop browsers.
-
-The following sections will describe some of the guidelines to achieve a Responsive design.
-
-<a name="Task11" />
+<p name="Task21"></p>
 ###**Viewport**###
 
-1. Open the **_Layout.cshtml** file located in the **Views/Home** folder.
+O Viewport permite especificar como se dará a visualização do conteúdo no browser de um dispositivo móvel. E isso se é feito através do uso da tag `meta` `viewport` que instrui o browser sobre como tratar o dimensionamento e escala do site.
 
-2. Notice the **viewport meta** tag inside the **head** tag.
-	Pages optimized for a variety of devices must include a meta viewport element in the head of the document. A meta viewport tag gives the browser instructions on how to control the page's dimensions and scaling.
+Recomenda-se especificar essa tag com o conteúdo `"width=device-width"` indicando que a página deve ser dimensionada para o tamanho do dispositivo. Além disso, recomenda-se especificar o valor `initial-scale` conforme segue:
 
-	In order to accommodate for sites not optimized for mobile screens, many modern mobile browsers set a larger browser viewport, which allows for better viewing of non-mobile-optimized sites.
+1. Abrir o arquivo `index.html`.
 
-3. Inside the **content** property of the **meta** tag add **, initial-scale=1** to establish a 1:1 relationship between CSS pixels and device independent pixels. This is shown in the following code.
+2. Localizar a tag `<meta name="viewport">` dentro da tag `<head>`.
+
+3. Dentro do atributo `content` dessa tag, incluir o valor `initial-scale=1`:
 
 	````HTML
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	````
 
-	> **Note:** Notice that to separate the parameters inside the **content** property, you must use a comma.
+	> Note que parâmetros diferentes dentro do atributo `content` devem ser separados por vírgula.
 
-<a name="Task12" />
-###**Styles**###
+4. Vamos fazer a alteração nos demais arquivos HTML do nosso projeto: `contato.html`, `postcard.html` e `sobre.html`.
 
-When writing CSS, you have to keep things lightweight and as fluid as possible. There are lots of devices, and all of them have many different screen sizes. Since screen size is typically unknown, the content should determine how the layout will adjust to its container.
+<p name="Task22"></p>
+###**Estilos**###
 
-**Separate style sheet for larger screens**
+Quando escrevemos CSS, temos que focar o layout para que seja o mais leve e fluído possível. Existem muitos dispositivos com vários tamanhos de tela. E mesmo quando não sabemos exatamente o tamanho da tela de um dispositivo, temos que ter um conteúdo que se ajuste adequadamente ao conteúdo disponível.
 
-It is recommended that you create two separate CSS files - style.css and enhanced.css - in order to deliver basic styles for screens less than 40.5em and use media queries to serve up enhanced styles for screens larger than 40.5em.
+Seguem algumas dicas:
 
-You should use relative units like **ems** and **percentages** to keep styles as fluid and flexible as possible. Relative units are far more compatible with the great variance of screen sizes, pixel density and zoom level.
+**Ter folhas de estilos separadas para telas grandes**
 
-1. Create a new **enhanced.css** file inside the **Content** folder. The styles for higher resolutions will be stored in this file.
+Recomenda-se criar dois arquivos CSS separados - style.css and enhanced.css - com o intuito de prover estilos básicos para telas pequenas e estilos para telas grandes.
 
-2. In the **_Layout.cshtml** file, add the following code inside the **head** tags.
+E quando for especificar tamanhos de imagens e fontes, sempre usar unidades relativas como `em` e `%`.Neste caso o valor vai ser relativo ao padrão do browser no dispositivo. Por exemplo: Se eu especificar o tamanho da fonte de um tópico `<h1>` como sendo 2em, isso quer dizer que ele terá 2 vezes o tamanho padrão herdado pelo elemento. Dessa forma, se o tamanho de um tópico `<h1>` no desktop for 16 pontos e no dispositivo móvel for 10 pontos, o valor final ficará 32 e 20 pontos, respectivamente. O valor será relativo e não absoluto. 
+
+Vamos então ao código:
+
+1. Criar um novo arquivo **enhanced.css** dentro da pasta **Content**. Este arquivo irá conter estilos para resoluçõe smaiores de telas.
+
+2. Já no `index.html` vamos adicionar o seguinte conteúdo dentro da tag `<head>`:
 
 	````HTML
 	<link rel="stylesheet" type="text/css" href="~/Content/enhanced.css" media="screen  and (min-width: 40.5em)" />
 	````
 
-	> **Note:** Take into account that the reference to the regular styles (styles.css) is added using CSS bundles.
+	> As folhas de estilo funcionam como camadas de estilos uma sobre a outra. Definimos o enhanced.css após a inclusão do CSS Styles.css para sobrescrever propriedades básicas do site com aquelas para telas maiores.
+	> Note também que usamos o atributo `media` para determinar o tamanho da tela mínimo para o qual será incluído o arquivo de estilo `enhanced.css`.	
 
-**Mobile First styles & Media Queries**
+3. Vamos fazer a alteração nos demais arquivos HTML do nosso projeto: `contato.html`, `postcard.html` e `sobre.html`.
 
-Instead of declaring large screen rules first only to override them for smaller screens, it is better to simply define rules as more real estate becomes available. Starting with baseline shared styles and introducing more advanced layout rules when screen size permits keeps code simpler, smaller and more maintainable.
+**Estilos Mobile First & Media Queries**
 
-> **Note:** It is important to note that some mobile browsers do not support media queries, so serving base styles by default reaches more devices and browsers.
+Ao invés de declarar regras de estilo primeiro para telas grandes e depois sobrescrevê-las para telas pequenas, é melhor definir primeiro as regras para telas pequenas. É mais fácil organizar o conteúdo quando se tem mais espaço do que o contrário.
 
-1. In the recently created **enhance.css** file, add the following styles to support all screen sizes.
+Para tanto vamos usar o recurso de Media Queries.
+
+> É importante ressaltar que alguns browsers de dispositivos móveis não suportam Media Queries. Portanto, definir por padrão estilos para dispositivos móveis garante que estes serão atendidos. 
+
+1. No arquivo **enhance.css**, adicionado recentemente, vamos incluir o seguinte conteúdo:
 
 	````CSS
-	@media screen and (min-width: 28.75em) {
-	 #primaryContent {
+	#primaryContent {
 	     float: right;
 	     width: calc(100% - 220px);
-	 }
+	}
 
-	 .navigationList {
+	.navigationList {
 	     float: left;
 	     width: 200px;
-	 }
-	}
+	}	
 	````
 
-	The preceding styles will rearrange the application menu, so it will be rendered on the left side of the page instead of the bottom. This styles will only be applied when the device screen sizes is equal or greater than 28.75em.
+	> Os estilos acima serão adicionados a página somente se a tela ter no mínimo 40.5em, conforme especificado na tag `<link>`. Quando a tela for maior, o menu de navegação ficará a esquerda da tela com tamanho fixo de 200 pixels. 
+	
+	 
+	> Podemos também definir essa regra no próprio CSS da seguinte forma:
+	
+		````CSS
+		@media screen and (min-width: 28.75em) {
 
-2. Run the application in a full-screen browser, and notice how the navigation menu is now located in the left site of the page.
+		}
+		````
+2. Além disso, vamos voltar par a página `index.html` e incluir a lista de links dentro de uma `<div>` com a classe `navigationList`:
 
-	![The application adapted for bigger screen sizes](images/the-application-adapted-for-bigger-screen-siz.png?raw=true)
+	````HTML
+	<div class="navigationList">
+        <ul data-role="listview" style="margin:10px 0 10px 0;" data-inset="true">
+            <li data-role="list-divider">Navigation</li>
+            <li><a href="./sobre.html">About</a></li>
+            <li><a href="./contato.html">Contact</a></li>
+            <li><a href="./postcard.html">Postcard</a></li>
+        </ul>
+    </div>
+	````
 
-	_The application adapted for bigger screen sizes_
+3. Vamos fazer a alteração nos demais arquivos HTML do nosso projeto: `contato.html`, `postcard.html` e `sobre.html`.
 
-3. Resize the page to a smaller size and notice how the application adapts to each size. Note that once the browser size is smaller than 28.75 em as the media query specifies, the navigation menu will go back to the mobile state, at the bottom of the page.
+4. Quando rodarmos novamente nosso site, teremos dois efeitos visuais diferentes dependendo do tamanho do browser:
 
-	![The application adapted to smaller screens](images/the-application-adapted-to-smaller-screens.png?raw=true)
+	![Site em tela grande](./images/mobilefirstdesign_largescreen.png?raw=true)
 
-	_The application adapted to smaller screens_
+	_Site para tela grande_
 
-<a name="Task13" />
-###**The tel: URI Scheme**###
+5. Quando diminuímos o tamanho da janela do browser, observamos layout diferente:
 
-You should take into account that mobile devices are designed to make phone calls, and some desktop configurations can launch VoIP applications to initiate a phone call. The **tel:** URI scheme includes an easy way for users to facilitate a phone call; you can see an example in the following code.
+	![Site em tela pequena](./images/mobilefirstdesign_smallscreen.png?raw=true)
+
+	_Site para tela pequena_
+
+<p name="Task23"></p>
+###**O tel: URI Scheme**###
+
+Quando criamos sites para dispositivos móveis, temos que levar em consideração que eles foram projetados para fazer ligações. Além disso, desktops podem ter aplicativos como Skype, que permitem fazer ligações. Para ambos os casos, podemos usar o URI Scheme de telefone ( o `tel`) que permite prover recurso que integra o site com o recurso de ligação:
 
 ````HTML
 <a href="tel:+18005555555">1-800-555-5555</a>
 ````
 
-1. Open the **Contact.cshtml** file, located in the **Views/Home** folder.
-2. Locate the last **div** element with the class **contact**, and notice the phone number.
-3. Replace the phone number with the previous code. The resulting code will look like the following.
+1. Abrir a página `contato.html`.
+2. Localizar o último elemento `div` que contem a classe CSS `contact`.
+3. Substitua o número de telefone de modo que fique como mostrado abaixo:
 
 	````HTML
 	<div class="contact">
@@ -152,26 +161,29 @@ You should take into account that mobile devices are designed to make phone call
 			</a>
 	</div>
 	````
-4. Run the application, selecting one of the **Windows Phone** emulators.
-5. Browse to the **Contact** page.
-6. Click the phone number link. The **Edit Number** page will be displayed, showing buttons to either make or cancel the call.
+4. Execute novamente a aplicação.
+5. Vá para a página `contato.html`.
+6. Clique o link com o número do telefone. Será mostrada uma tela com aplicativos que permitem fazer ligação.
 
-	![Making a call from the Web Application](images/making-a-call-from-the-web-application.png?raw=true)
+	![Fazendo ligação a partir da página Web](./images/mobilefirstdesign_telscheme.png?raw=true)
 
-	_Making a call from the web application_
+	_Fazendo ligação a partir da página_
 
-<a name="Task14" />
-###**Responsive Images**###
+7. Ao abrirmos a mesma página no dispositivo móvel, se clicarmos no link, será mostrado o discador.
 
-The guideline in this topic is to load mobile optimized images by default, and then conditionally load larger images on demand. There are several different techniques for responsive images, both client-side and server side. Although the Contoso Movies app does not have many large images, some of the approaches are described in the _Cross-Browser testing_ lab.
+<p name="Task24" ></p>
+###**Imagens Responsivas**###
 
-#Summary#
+Sugere-se para imagens definir as otimizadas e menores como padrão e então carregar imagens maiores sob demanda. Há várias técnicas para prover imagens responsivas tanto do lado do cliente como do lado do servidor. Algumas dessas ténicas foram abordadas eno minicurso de [atualização do site](../update/).
 
-Nowadays, to build web applications that covers the most users, it is recommended to use the **Mobile First** design, which means designing your application using mobile as the baseline, and progressively increasing functionality for bigger screen sizes and devices with more capabilities. This concept is referred to as **Progressive Enhancement**.
+<p name="Task3" ></p>
+#Revisão#
 
-Creating a responsive web design implies, among other things:
+Atualmente, para criar sites que abrangem a maioria dos usuários, deve-se focar o design no **Mobile First**, que significa projetar seu site tendo como base o dispositivo móvel e então progressivamente ir incluindo novos recursos visuais e conteúdos para telas maiores e dispositivos com mais recursos. A este conceito dá-se o nome de **Melhoria Progressiva**.
 
-- **Setting the viewport** to accommodate for sites not optimized for mobile screens.
-- **Media queries** allowing designs to adapt by establishing dimension breakpoints.
-- **Flexible images and media** which keep content intact in any resolution.
-- **Fluid grids** that flow with the devices screen size.
+Para criar um design web responsivo deve-se, entre outras coisas:
+
+- **Usar viewport** para acomodar as páginas em telas de dispositivos móveis.
+- **Media queries** Usar media queries para adaptar a tela para diferentes tamanhos.
+- **Imagens e mídias responsivos** para ter o conteúdo apropriado para qualquer resolução.
+- **Grids Fluido** que se ajustam com o tamanho do dispositivo.

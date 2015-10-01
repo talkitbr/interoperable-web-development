@@ -14,7 +14,8 @@ Este minicurso inclui:
 1. [Imagens SVG](#Task4)
 1. [Imagens @2X](#Task5)
 1. [Propriedades CSS3](#Task6)
-1. [Elementos HTML5](#Task7)
+1. [Media Queries](#Task7)
+1. [Elementos HTML5](#Task8)
 
 Neste minicurso iremos usar técnicas vistas nos minicursos anteriores, como o de [Feature Detection](../feature-detection) e [Prefixos CSS](../css-prefix) para corrigir problemas que identificamos ao [testar nosso site em diferentes browsers](../testing).
 
@@ -352,7 +353,38 @@ Quando estamos trabalhando no nosso site para suportar browsers antigos, precisa
 
 	> Para testar usamos o IE9 pois o IE8 não suporta a marcação HTML5 `<header>`. Mas essa limitação será tratada a seguir.
 
-<p name="Task7"></p>
+<p name="Task7" ></p>
+
+#### Media Queries ####
+As media queries foram introduzidas no CSS3 e permitem construir web sites responsivos. Porém, elas não são suportadas em browsers antigos como o IE8. Se você está desenvolvendo **mobile-first**, que é a maneira mais recomendada para construir sites, você deve ter que contornar essa limitação.
+
+Para tanto, temos duas opções. 
+
+* Usar bibliotecas Javascript, como o [Respond.js](https://github.com/scottjehl/Respond), para adicionar suporte a media queries no IE8. Seu código CSS continua igual e a biblioteca faz o trabalho pra você. Para usar, podemos incluir o seguinte HTML nas nossas páginas:
+	
+	````HTML
+	<!--[if lt IE 9]>
+		 <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+	<![endif]-->
+	````
+
+* Usar condicionais no CSS. Neste caso o CSS é adaptado para IE8.
+ 
+	Folhas de estilo condicionais são escritas especificamente para um determinado browser (por exemplo, IE8) que é referenciado na expressão de condição. Segue exemplo:
+
+	````HTML
+	<!--[if (lt IE 9) & (!IEMobile)]>
+		 <link href="ie8.css" rel="stylesheet">
+	<![endif]-->
+	 
+	<!--[if (gte IE 9) | (IEMobile)]><!-->
+		 <link href="style.css" rel="stylesheet">
+	<!--<![endif]-->
+	````
+
+	[Este artigo](http://seesparkbox.com/foundry/structuring_and_serving_styles_for_older_browsers) fornece uma abordagem interessante para gerar automaticamente folhas de estilo para IE8 livres de Media Queries.
+
+<p name="Task8"></p>
 
 ### Elementos HTML5
 
