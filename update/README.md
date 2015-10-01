@@ -50,7 +50,7 @@ Ao executarmos a página inicial, já iremos nos deparar com um primeiro problem
 > Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener` nas novas versões do Javascript. Mas é muito comum encontrar o `attachEvent` nas páginas Web antigas ou que foram desenvolvidas para versões anteriores do Internet Explorer. Porém, se usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar a função `attachEvent`.
 
 Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
-
+  
 	````HTML
 	<script>
 		if (window.addEventListener) {
@@ -76,8 +76,8 @@ Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo q
 
 > Observe que o código de `attachEvent` foi executado quando definimos o Document Mode para IE8.
 
-Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira:  
-
+Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira: 
+  
 	````HTML
 	<script>
 		if (window.addEventListener) {
@@ -89,7 +89,7 @@ Ainda em relação ao `addEventListener`, temos outros trechos de código que s�
 		        $.mobile.ajaxEnabled = false;
 		    });
 		}
-	</script>        
+	</script>  
 	````
 
 	> Novamente, adicionamos a condição para verificar se o `addEventListener` é suportado antes de usá-lo. Caso não seja suportado, então usamos a função antiga `attachEvent` para registrar o manipulador de evento.
