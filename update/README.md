@@ -165,8 +165,8 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
 	````
 
 	- Para:
-	`
-	```html
+	
+	````html
     <div class="wrapper">        
         <div>
             <div id="movietitle">
@@ -199,7 +199,7 @@ Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máqu
 
 Para resolver este problema, devemos verificar se o recurso de animação CSS é suportado pelo browser. Para tanto, usamos o mesmo Modernizr (já tratado no minicurso de feature-detection). Vamos então substituir o script acima para:
 
-	```JavaScript
+	````HTML
     <script>
 	     var wrapper = document.querySelector(".wrapper");
 	     if (Modernizr.cssanimations) {
@@ -221,7 +221,7 @@ Para resolver este problema, devemos verificar se o recurso de animação CSS é
 	          };
 	     }
 	</script>
-	```
+	````
 
 	> No caso acima, quando o recurso de css animation não está disponível, tratamos o clique do conteúdo do título exibindo as informações diretamente, sem animação. Apesar de não ter o mesmo efeito disponível nos browsers modernos, pelo menos não privamos o usuário do conteúdo.  
 
@@ -255,7 +255,7 @@ Vamos ver agora como fazer isso:
 	
 	> Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).
    
-6. Agora vamos incluir o seguitne Javascript no final da nossa página sobre.html (antes de fechar a tag ):
+6. Agora vamos incluir o seguinte Javascript no final da nossa página sobre.html (antes de fechar a tag ):
 
 	````HTML
 	<script>
