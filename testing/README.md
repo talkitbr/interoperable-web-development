@@ -234,4 +234,12 @@ Seguem os passos:
 
 Neste minicurso vimos como podemos realizar testes no nosso site mesmo não tendo equipamentos e browsers disponíveis.
 
-Vimos que a própria Microsoft disponibiliza várias ferramentas que auxiliam na verificação do Site. Além disso, o parceiro Browserstack disponibiliza vários browsers em dispositivos diversos para testar seu sie.
+Vimos que a própria Microsoft disponibiliza várias ferramentas que auxiliam na verificação do Site. Além disso, o parceiro Browserstack disponibiliza vários browsers em dispositivos diversos para testar seu site.
+
+Leituras Recomendadas:
+
+1. [Criando sites que simplesmente funcionam.](http://talkitbr.com/2015/08/27/criando-sites-que-simplesmente-funcionam/): Veja como usar detecção de features ao invés de detecção de browsers;
+2. [Baixe máquinas virtuais de graça](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/): Veja como baixar máquinas virtuais de graça para testar seu site.
+3. [Ferramenta do Desenvolvedor](http://talkitbr.com/2015/09/29/aprenda-a-usar-a-ferramenta-do-desenvolvedor-do-browser/): Fique por dentro dos recursos da ferramenta do desenvolvedor fornecida pelo IE.
+
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
