@@ -20,7 +20,7 @@ Site aberto a partir de um servidor Web local:
 
 ![Executar site no servidor Web local](./images/site_local_webserver.png)
 
-<p name="Task1" />
+<p name="Task1"></p>
 ##DOCTYPE e Rendering Mode
 
 Vamos começar especificando o tipo de documento que estamos usando.
@@ -76,7 +76,7 @@ Se executarmos novamente o Site Scan, perceba que a issue "RenderMode" não est�
       }
     }
 
-<p name="Task2" />
+<p name="Task2"></p>
 ##Tratando uso de funções obsoletas
 
 Uma vez atualizado o documento, devemos também observar se o mesmo faz uso de recursos disponíveis nos browsers.
