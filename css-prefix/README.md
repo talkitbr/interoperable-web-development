@@ -113,4 +113,4 @@ Leituras Recomendadas:
 1. [Prefixos CSS no Microsoft Edge](http://talkitbr.com/2015/08/19/prefixos-css-no-microsoft-edge/): Aprenda a usar Prefixos CSS;
 2. [Teste seu site em diferentes versões de browsers](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/): Veja como testar seu site em diferentes versões de browsers, desde o IE até Chrome e Firefox. 
 
-[Voltar para a página inicial.](../)
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)

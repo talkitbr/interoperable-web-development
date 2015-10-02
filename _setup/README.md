@@ -65,4 +65,4 @@ Revisão
 
 Acabamos de executar os passos necessários para ter um ambiente de desenvolvimento pronto para desenvolver e testar a aplicações Web e executar os nossos minicursos.
 
-[Voltar para a página inicial.](../)
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)

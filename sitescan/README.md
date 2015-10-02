@@ -47,4 +47,4 @@ Volte sempre que necessário para este minicurso para relembrar como fazer a an�
 
 Lembre-se sempre de verificar a evolução do seu site e correção dos problemas apontados pela ferramenta.
 
-[Voltar para a página inicial.](../)
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)

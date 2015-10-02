@@ -165,4 +165,4 @@ Leituras Recomendadas:
 1. [Criando sites que simplesmente funcionam.](http://talkitbr.com/2015/08/27/criando-sites-que-simplesmente-funcionam/): Veja como usar detecção de features ao invés de detecção de browsers;
 2. [Por dentro das novas funcionalidades dos browsers](http://talkitbr.com/2015/08/17/fique-por-dentro-das-novas-funcionalidades-dos-navegadores-web/): Veja como descobrir as novas funcionalidades implementadas pelos browsers.
 
-[Voltar para a página inicial.](../)
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
