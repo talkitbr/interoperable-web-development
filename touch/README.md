@@ -40,9 +40,7 @@ Eventos de Ponteiros possuem versões correspondentes de eventos de mouse e leva
 - mouseup => pointerup
 - ...
 
-Vamos voltar para o nosso código e vamos
-
-<p name="Task1" />
+<p name="Task1"></p>
 ## Manipulando evento de entrada através do hand.js
 Vamos alterar nosso site para tratar evento de mouse para permitir ao usuário fazer uma assinatura.
 
@@ -119,7 +117,7 @@ Pronto. O problema é que até agora, estamos tratando o evento somente para alg
 
 Tanto que se testarmos esse site novamente no Site scan, ainda estará sendo apontado o problema no touch.
  
-<p name="Task2" />
+<p name="Task2"></p>
 ## Manipulando Entrada de Toque usando hand.js
 	
 Para tratar adequadamente o touch nos diferentes navegadores, podemos usar uma biblioteca Javascript chamada `hands.js`.
@@ -150,3 +148,5 @@ E para as demais páginas do site, basta incluir essa biblioteca para também re
 
 ### Revisão
 Neste minicurso tratamos os problemas relacionados com tratamento do evento de entrada do usuário. Este evento pode envolver tanto mouse como caneta ou até mesmo toque. Tratar adequadamente este evento garante o correto funcionamento do site nos diferentes dispositivos.
+
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
