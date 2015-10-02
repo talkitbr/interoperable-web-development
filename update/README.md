@@ -42,15 +42,13 @@ Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos 
 
 Primeiramente vamos procurar problemas relativos ao Javascript e HTML5 que não são suportados pelo IE8.
 
-Ao executarmos a página inicial, já iremos nos deparar com um primeiro problema de visualização no IE8: o uso da função `attachEvent`. 
+Ao executarmos a página inicial, já iremos nos deparar com um primeiro problema de visualização no IE8: o uso da função `addEventListener`. 
 
-> A função attachEvent era usada para definir código a ser executado quando ocorria um determinado evento. O attachEvent, tornou-se obsoleto e foi totalmente removido do IE11. Além disso ele não existe em nenhum dos browsers modernos, como Microsoft Edge e Google Chrome.  
+> Antes era usada a função attachEvent para definir código a ser executado quando ocorria um determinado evento. O attachEvent, tornou-se obsoleto e foi totalmente removido do IE11. Além disso ele não existe em nenhum dos browsers modernos, como Microsoft Edge e Google Chrome.  
 
-![Erro usando função attachEvent](./images/update_attacheevent_error.png)
+Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener` nas novas versões do Javascript. Mas é muito comum encontrar o `attachEvent` nas páginas Web antigas ou que foram desenvolvidas para versões anteriores do Internet Explorer. Porém, se usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar a função `attachEvent`.
 
-> Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener` nas novas versões do Javascript. Mas é muito comum encontrar o `attachEvent` nas páginas Web antigas ou que foram desenvolvidas para versões anteriores do Internet Explorer. Porém, se usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar a função `attachEvent`.
-
-Para corrigir, devemos alterar o código Javascript para verificar se a função `attachEvent` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
+Para corrigir, devemos alterar o código Javascript para verificar se a função `addEventListener` está disponível. Na página `index.html`, vamos alterar o código da tag script localizado no final da tag `div` com id `mainContent`:
   
 ````HTML
 <script type="text/javascript">
@@ -72,10 +70,6 @@ Para corrigir, devemos alterar o código Javascript para verificar se a função
 ````
 
 Dessa forma, conseguiremos obter o resultado esperado em todos os casos, mesmo quando o usuário estiver usando um browser anterior do Internet Explorer que implementa somente a função `attachEvent`.
-
-![Erro usando função attachEvent](./images/update_attacheevent_running_ie9.png)
-
-> Observe que o código de `attachEvent` foi executado quando definimos o Document Mode para IE8.
 
 Ainda em relação ao `addEventListener`, temos outros trechos de código que são usam ele e não o `attachEvent` e podemos cair no mesmo problema citado acima. Para tanto, vamos corrigir o script da seguinte maneira: 
   
@@ -142,15 +136,15 @@ Para a nossa página `index.html`, vamos fazer a seguinte alteração:
 
 	> O HTML que incluímos na tag vídeo permite especificar o que será exibido pelo browser caso este não suporte a tag ``.
 
-1. Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
+Vamos tentar agora rodar nosso site de novo. Quando abrimos a página no IE8, observe que será carregado o jwplayer. Agora, quando abrimos usando Edge ou Chrome, será exibido o vídeo usando o próprio recurso do browser.
 
 <p name="Task3"></p>
 
 ### Animações CSS
 
-Lista de classes, ou class list, permite especificar mais de uma classe para um determinado elemento e fazer a troca de classes usando a função toggle. É muito usado na web moderna, porém ele não é suportado em browsers antigos.
+Lista de classes, ou *class list*, permite especificar mais de uma classe para um determinado elemento e fazer a troca de classes usando a função toggle. É muito usado na web moderna, porém ele não é suportado em browsers antigos.
 
-Portanto, temos que estar atentos a isso e tratar adequadamente o class list no caso do usuário estar utilizando um browser antigo.
+Portanto, temos que estar atentos a isso e tratar adequadamente o *class list* no caso do usuário estar utilizando um browser antigo.
 
 1. Em index.html, vamos alterar o código que mostra o logo e título do vídeo:
 
@@ -192,9 +186,9 @@ Portanto, temos que estar atentos a isso e tratar adequadamente o class list no 
     </script>
 	```
 
-Se executarmos o site no Internet Explorer 11, Microsoft Edge ou Google Chrome, ao clicarmos no título da imagem, uma animação deverá ocorrer.
+Se executarmos o site no Internet Explorer 11, Microsoft Edge ou Google Chrome, ao clicarmos no título da imagem, uma animação deverá ocorrer exibindo informações do filme.
 
-Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máquina virtual com o IE8) veremos que dará um erro e a funcionalidade que desejamos ter no site simplesmente não funcionará.
+Mas se executarmos o mesmo site no IE8 (através do emulador ou baixando a máquina virtual com o IE8) e clicarmos no logo do filme, veremos que dará um erro e a funcionalidade que desejamos ter simplesmente não funcionará.
 
 ![Erro usando função toggle](./images/update_toggle_error.png)
 
@@ -234,12 +228,20 @@ Feito isso, ao executarmos de novo o site no IE8, veremos agora o conteúdo ao c
 
 ### Imagens SVG
 
-[SVG](http://www.w3schools.com/svg/svg_intro.asp) (Scalable Vector Graphics) é uma imagem no formato de vertor para gráficos bidimensionais com suporte a interatividade e animação. As imagens SVG são escaláveis e não perdem qualidade quando é feito zoom ou redimensionamento. Como são definidas através de XML, elas podem ser criadas e editadas por qualquer editor de texto. Essas vantagens assim como aderência a padrões tornem o SVG uma alternativa atrativa. Contudo, a falta de suporte pelos browsers limitou seu uso na Web. Uma forma de contornar esta limitação é fornecer, para esses browsers que não suportam XVG, imagens equivalentes mas com formato tradicional.
+[SVG](http://www.w3schools.com/svg/svg_intro.asp) (Scalable Vector Graphics) é uma imagem no formato de vetor para gráficos bidimensionais com suporte a interatividade e animação. As imagens SVG são escaláveis e não perdem qualidade quando é feito zoom ou redimensionamento. Como são definidas através de XML, elas podem ser criadas e editadas por qualquer editor de texto. Essas vantagens assim como aderência a padrões tornam o SVG uma alternativa atrativa. Contudo, a falta de suporte pelos browsers limitou seu uso na Web. Uma forma de contornar esta limitação é fornecer, para esses browsers que não suportam SVG, imagens equivalentes mas com formato tradicional.
 
 Vamos ver agora como fazer isso:
 
-1. Abrir a página sobre.html.
-2. Observe que temos o seguinte código na página:
+1. Abrir a página `sobre.html`.
+2. Vamos agora substituir a imagem do sintelLogo para usar PNG:
+
+	- De:
+
+	````HTML
+	<img id="sintelLogo" src="./Content/images/sintel_logo.png" />
+	````
+
+	- Para:
 
 	````HTML
 	<img id="sintelLogo" src="./Content/images/sintel_logo.svg" />
@@ -249,14 +251,14 @@ Vamos ver agora como fazer isso:
 
 	![Erro exibindo o logo](./images/update_svgimage_error.png)
 
-4. Para corrigir isso, vamos usar o Modernizr para verificar se o SVG é suportado ou não. Porém o script que geramos anteriormente não verificar SVG (só incluímos no nosso script Modernizr a verificação de CSS Animations e Opacity).
+4. Para corrigir isso, vamos usar o Modernizr para verificar se o SVG é suportado ou não. Porém o script que geramos anteriormente não verifica SVG (só incluímos no nosso script Modernizr a verificação de CSS Animations e Opacity).
 5. Vamos voltar então para o site mo [Modernizr](http://modernizr.com) e selecionar a nossa build os recursos CSS Animations, opacity e agora o SVG. 
 	
 	> Reveja como fazer isso no nosso outro [minicurso de detecção de features](../feature-detection).
 	
 	> Vamos pegar o conteúdo Javascript gerado pelo Modernizr e substituir aquele que já tinhamos adicionado na nossa pasta Script (lembre-se de manter o mesmo nome de arquivo).
    
-6. Agora vamos incluir o seguinte Javascript no final da nossa página sobre.html (antes de fechar a tag ):
+6. Agora vamos incluir o seguinte Javascript no final da nossa página sobre.html (antes de fechar a tag):
 
 	````HTML
 	<script>
@@ -267,6 +269,8 @@ Vamos ver agora como fazer isso:
 	</script>
 	````
 	
+	> O Javascript acima verifica se o SVG é suportado. Se não for suportado, carrega-se então o arquivo PNG.
+	 
 	> Lembrar de incluir também o Javascript do Modernizr.
 
 7. Acessando novamente a página, observe que o logo irá aparecer no IE8.
@@ -277,38 +281,40 @@ Vamos ver agora como fazer isso:
 
 ### @2X images
 
-Com os novos dispositivos e telas de retina, as imagens normalmente tem um aspecto granular e de baixa qualidade. A solução adotada nos sites modernos é adotar duas versões de imagens: uma versão normal e outro "2x" que é muito maior. Esta versão 2x precisa ser exibida somente para dispositivos com tela de retina..
+Com os novos dispositivos e telas de retina, as imagens normalmente tem um aspecto granular e de baixa qualidade. A solução adotada nos sites modernos é adotar duas versões de imagens: uma versão normal e outro "2x" que é muito maior. Esta versão 2x precisa ser exibida somente para dispositivos com tela de retina.
 
 Para detectar dispositivos de retina e então fornecer imagens "2x", podemos usar o media query (iremos ver mais detalhes de media queries no outro [minicurso de design responsivo](../mobile-first-design). 
 
 Neste caso podemos também usar a ferramenta de desenvolvimento (F12) do Google Chrome pois ele permite emular diferentes resoluções de tela (ver mais detaques [aqui](https://developer.chrome.com/devtools/docs/device-mode#screen-emulator)).
 
-1. Abrir o arquivo contato.html.
+1. Abrir o arquivo `contato.html`.
 
-1. Atualizar a marcação `style` e adicone media query para fornecer imagem de alta resolução::
+1. Atualizar a marcação `style` e adicionar media query para fornecer imagem de alta resolução::
 
 	````CSS
 	<style>
-		 .contact {
-			  padding: 5px 10px 15px 0px;
-			  font-family: Georgia;
-			  font-size: 16px;
-			  text-align: justify;
-		 }
+        .contact {
+                 padding: 5px 10px 15px 0px;
+                 font-family: Georgia;
+                 font-size: 16px;
+                 text-align: justify;
+        }
 
-		 .highqualityimage {
-			  background: url("/content/images/sintel_logo.png") no-repeat;
-			  height: 140px;
-		 }
+        .highqualityimage {
+                 background: url("./Content/images/sintel_logo.PNG") no-repeat;
+                 height: 140px;
+        }
 
-		 @@media(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-			  .highqualityimage {
-					background: url("./Content/images/sintel_logo@2x.png") no-repeat;
-                    background-size: 140px;
-			  }
-		 }
-	</style>
+        @@media(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .highqualityimage {
+                background: url("./Content/images/sintel_logo@2x.PNG") no-repeat;
+                background-size: 140px;
+            }
+        }
+   	</style>
 	````
+
+	> Definimos como valor padrão a imagem normal. Dessa forma, caso o usuário estiver utilizando um browser antigo, o media query não será interpretado e então o valor padrão será considerado.
 
 1. Usando o Google Chrome e a ferramenta do desenvolvedor para emular dispositivo de alta resolução, vamos testar nosso site:
 
@@ -324,7 +330,7 @@ Muitas vezes precisamos ou queremos usar um recurso CSS que ainda não está dis
 
 > Nota: Tratamos desse assunto no [minicurso cd prefixos CSS](../css-prefix).
 
-Quando estamos trabalhando no nosso site para suportar browsers antigos, precisamos estar atentos para não causar um efeito indesejado ou até causando um efeito contrário. No nosso exemplo do site Contoso, há um cabeçalho nas páginas que deveria ter uma cor com efeito gradiente indo do azul ao preto. Este gradiente não é mostrado no IE8. Ao contrário, é mostrada somente uma cor chapada. Para corrigir isso vamos ao código:
+Quando estamos trabalhando no nosso site para suportar browsers antigos, precisamos estar atentos para não causar um efeito indesejado ou até causar um efeito contrário. No nosso exemplo do site Contoso, há um cabeçalho nas páginas que deveria ter uma cor com efeito gradiente indo do azul ao preto. Este gradiente não é mostrado no IE8. Ao contrário, é mostrada somente uma cor chapada. Para corrigir isso vamos ao código:
 
 1. Abrir o arquivo `Content/Site.css`
 2.Encontrar a regra CSS do cabeçalho: 
@@ -393,7 +399,7 @@ O [HTML5](http://www.w3schools.com/html/html5_intro.asp) introduziu novos elemen
 Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A seguir iremos ver como lidar com essas limitações.
 
 1. Abrir o arquivo `index.html`.
-2. Localizar na marcação `` o local onde usamos a marcação `<header>`. Você encontrará este trecho de código:
+2. Localizar na marcação o local onde usamos a marcação `<header>`. Você encontrará este trecho de código:
 
 	<!-- mark:3,15 -->
 	````HTML
@@ -412,7 +418,7 @@ Porém, conforme comentado a pouco, o IE8 não suporta essas marcações. A segu
 
 	> Como podemos ver, o cabeçalho foi feito usando a marcação HTML5 `header` que não é suportada pelo IE8. 
 
-3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no `` da nossa página:
+3. Vamos habilitar o HTML5 via Javascript usando a biblioteca html5shiv. Para tanto, vamos incluir essa biblioteca no da nossa página:
 
 	`````HTML
 	<!--[if lt IE 9]>
@@ -430,3 +436,5 @@ Pronto! Agora podemos testar novamente nosso site no IE8 para verificar a cor de
 ##Revisão##
 
 Neste minicurso vimos como rever nosso site e garantir que funcionalidades estejam disponíveis para o usuário mesmo quando ele estiver usando browser antigo. Mesmo tendo uma certa degradação, o importante aqui é garantir que o usuário tenha acesso a funcionalidade.
+
+[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
