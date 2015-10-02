@@ -44,7 +44,7 @@ Contudo iremos fazer testes num site que ainda não está em produção. E para 
 
 	![Instalando NodeJS](./images/fig1_nodejs_install.png)
 
-4. Executar o Node.JS
+4. Executar o Node.JS Command Prompt
 5. Acessar, via linha de comando, a pasta local onde você baixou o repositório do Site Scan.
 6. Executar o seguinte código:
 
@@ -64,3 +64,5 @@ Revisão
 -------
 
 Acabamos de executar os passos necessários para ter um ambiente de desenvolvimento pronto para desenvolver e testar a aplicações Web e executar os nossos minicursos.
+
+[Voltar para a página inicial.](../)

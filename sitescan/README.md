@@ -19,7 +19,7 @@ Antes de iniciarmos qualquer atualização do site, precisamos saber como ele es
 
 Além disso, a toda alteração, precisamos verificar se há novos problemas no site.
 
-> Se o seu site está na Web, podemos prosseguir com o Site Scan disponível em [dev.modern.ie](http://dev.modern.ie/tools/staticscan/). No caso deste minicurso, o site está local e então vamos usar o Site scan local. Caso você não tenha o Site scan ou não saiba como rodá-lo, rever os passos descritos na etapa de configuração dos minicursos.
+> Se o seu site está na Web, podemos prosseguir com o Site Scan disponível em [dev.modern.ie](http://dev.modern.ie/tools/staticscan/). No caso deste minicurso, o site está local e então vamos usar o Site scan local. Caso você não tenha o Site scan ou não saiba como rodá-lo, rever os passos descritos na [etapa de configuração dos minicursos](..\_setup).
 
 Ao abrir a página do Site scan local, forneça a URL do site publicado localmente: 
 
@@ -43,6 +43,8 @@ O relatório será enviado para o site dev.modern.ie para exibir os resultados. 
 
 Neste minicurso fizemos a análise do nosso site para detectar problemas.
 
-Voltem sempre que necessário para este minicurso para relembrar como fazer a análise do seu site localmente.
+Volte sempre que necessário para este minicurso para relembrar como fazer a análise do seu site localmente.
 
 Lembre-se sempre de verificar a evolução do seu site e correção dos problemas apontados pela ferramenta.
+
+[Voltar para a página inicial.](../)

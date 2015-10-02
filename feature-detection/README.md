@@ -20,62 +20,66 @@ Depois disso, execute o projeto num servidor Web local usando o próprio **Netbe
 <p name="Task1" />
 ##Identificando e substituindo detecção de browser
 
-Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](../sitescan-rendermode/)), observe que nossa página `index.html` faz uso de detecção de browser em dois pontos:
+Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](../rendermode/)), observe que nossa página `index.html` faz uso de detecção de browser em dois pontos:
 
-	"browserDetection": {
-      "testName": "browserDetection",
+````Javascript
+"browserDetection": {
+  "testName": "browserDetection",
+  "passed": false,
+  "data": {
+    "javascript": {
       "passed": false,
-      "data": {
-        "javascript": {
+      "data": [
+        {
           "passed": false,
-          "data": [
-            {
-              "passed": false,
-              "pattern": "navigator.userAgent",
-              "lineNumber": 5,
-              "url": "embed"
-            },
-            {
-              "passed": false,
-              "pattern": "navigator.userAgent",
-              "lineNumber": 11,
-              "url": "./Scripts/jwplayer/jwplayer.js"
-            }
-          ]
+          "pattern": "navigator.userAgent",
+          "lineNumber": 5,
+          "url": "embed"
         },
-        "comments": {
-          "passed": true
+        {
+          "passed": false,
+          "pattern": "navigator.userAgent",
+          "lineNumber": 11,
+          "url": "./Scripts/jwplayer/jwplayer.js"
         }
-      }
+      ]
+    },
+    "comments": {
+      "passed": true
     }
+  }
+}
+````
 
 Um dos pontos detectados está no nosso código HTML. O outro foi detectado no uso da biblioteca JS jwplayer. Aqui vamos focar no nosso código HTML. 
 
 Voltando para o código, vamos localizar os pontos que fazem uso de detecção de browser. Vamos iniciar abrindo o arquivo `index.html`. Nele encontraremos o seguinte trecho de código javascript:
 
-	<script>
-        var comingSoonMessage = document.getElementById("hidden-message");
+````Javascript
+<script>
+    var comingSoonMessage = document.getElementById("hidden-message");
 
-        function isValidBrowser() {
-            var myNav = navigator.userAgent.toLowerCase();
-            var version;
+    function isValidBrowser() {
+        var myNav = navigator.userAgent.toLowerCase();
+        var version;
 
-            if (myNav.indexOf('msie') != -1) {
-                version = parseInt(myNav.split('msie')[1])
-                return version > 8;
-            }
-
-            return true;
+        if (myNav.indexOf('msie') != -1) {
+            version = parseInt(myNav.split('msie')[1])
+            return version > 8;
         }
 
-        if (isValidBrowser()) {
-            comingSoonMessage.className = "fadeIn";
-        } else {
-            comingSoonMessage.className = "";
-        }
-    </script>
+        return true;
+    }
 
-Observem que estamos verificando se o browser é o Internet Explorer para determinar se podemos ou não usar o recurso "fadeIn". Porém, mesmo que esse recurso exista nas versões mais recentes desse browser, do jeito que foi implementado, os usuários nunca conseguirão ter acesso a esse recurso no IE. Esse é apenas um caso, mas muitos outros são também comuns.
+    if (isValidBrowser()) {
+        comingSoonMessage.className = "fadeIn";
+    } else {
+        comingSoonMessage.className = "";
+    }
+</script>
+````	
+
+Observem que estamos verificando se o browser é o Internet Explorer para determinar se podemos ou não usar o recurso "fadeIn". Porém, do jeito que foi implementado, os usuários nunca conseguirão ter acesso a esse recurso no IE mesmo que o browser passe a suportar esse recurso numa versão mais nova. Esse é apenas um caso, mas existem muitos outros.
 
 Outro recurso também que pode não existir em browsers antigos é a propriedade CSS `opacity`. Para verificar o que cada browser suporta, acesse o site [CanIUse](http://caniuse.com/):
 
@@ -85,65 +89,71 @@ Para verificarmos o suporte a esses recursos e features, o correto é utilizarmo
 
 1. Vamos começar removendo a tag script que contem o Javascript que faz detecção de browser. 
 2. Feito isso,  acessar o site [http://modernizr.com/download/](http://modernizr.com/download/)
-2. Nesse site selecionamos os recursos que queremos. Como o recurso a ser verificado é especificamente a animação CSS3 "fadeIn" e o opacity, vamos selecionar apenas a detecção para essas features:
+3. Nesse site selecionamos os recursos que queremos. Como o recurso a ser verificado é especificamente a animação CSS3 "fadeIn" e o opacity, vamos selecionar apenas a detecção as features `CSS Animations` e `CSS Opacity`:
 
 	![](./images/featuredetection_modernizrconfig.png) 
 
 	> Selecionar apenas as features necessárias ajuda a melhorar o desempenho do seu site.  
 
-3. Depois de criada a build, fazer download do arquivo e colocar dentro do nosso projeto, na pasta Scripts:
+3. Fazer download da opção Build e colocar na pasta Scripts:
 
 	![](./images/featuredetection_modernizrscriptadded.png)
 
-4. Agora vamos incluir esse script na nossa página index.html. Vamos incluir no final da página, antes de fechar a tag `<body>` para não prejudicar a visualização da página pelo browser:
+4. Agora vamos incluir esse script na nossa página index.html. Vamos incluir no final da tag `head`:
 		
-    ```
-	<script src="Scripts/modernizr.custom.62681.js" type="text/javascript"></script>
-    ```	
+    ````HTML
+	<script src="Scripts/modernizr-custom" type="text/javascript"></script>
+    ````
 
 > Feito isso, ao abrirmos a página no navegador Web, o Modernizr irá verificar o suporte para as features que selecionamos a pouco. No nosso caso, a feature será CSS Transitions.
 	 
-7. Vamos agora incluir o script que faz detecção de feature usando informações disponibilizadas pelo script do Modernizr:
+7. Vamos agora remover o script que faz detecção de browser e incluir o script abaixo que faz detecção das features "Animations" e "Opacity" usando informações disponibilizadas pelo script do Modernizr:
 
+	````HTML
 	<script>
 	     var comingSoonMessage = document.getElementById("hidden-message");
 	     if (!Modernizr.opacity) {                  
 	          comingSoonMessage.style.filter = "alpha(opacity=0)";
 	     }
              
-             if (Modernizr.cssanimations) {
+         if (Modernizr.cssanimations) {
 	          comingSoonMessage.className = "fadeIn";
 	     } else {
 	          comingSoonMessage.className = "";
 	     }
 	</script>
-
+	````
+	
 8. Agora vamos testar nosso site no IE e demais browsers. Usando a ferramenta do Desenvolvedor (F12), observamos que é possível verificar o funcionamento do nosso código:
 
 	![](./images/featuredetection_cssanimationdebug.png)
 
+	> Através da Ferramenta do Desenvolvedor do IE podemos emular visualização do site usando versões anteriores do IE. Por exemplo, o IE9 ou IE8 irão acusar ausencia dos recursos opacity e cssanimations. 
+
 Pronto! Se analisarmos novamente nosso site pelo Site Scan, você observará que o item de browserDetection da nossa página não estará mais lá. Somente constará o uso na biblioteca JS jwplayer:
 
-	"browserDetection": {
-      "testName": "browserDetection",
+````Javascript
+"browserDetection": {
+  "testName": "browserDetection",
+  "passed": false,
+  "data": {
+    "javascript": {
       "passed": false,
-      "data": {
-        "javascript": {
+      "data": [
+        {
           "passed": false,
-          "data": [
-            {
-              "passed": false,
-              "pattern": "navigator.userAgent",
-              "lineNumber": 11,
-              "url": "./Scripts/jwplayer/jwplayer.js"
-            }
-          ]
-        },
-        "comments": {
-          "passed": true
+          "pattern": "navigator.userAgent",
+          "lineNumber": 11,
+          "url": "./Scripts/jwplayer/jwplayer.js"
         }
-      }
+      ]
+    },
+    "comments": {
+      "passed": true
     }
+  }
+}
+````
   
 <p name="Review"/>
 ##Conclusão
@@ -155,3 +165,4 @@ Leituras Recomendadas:
 1. [Criando sites que simplesmente funcionam.](http://talkitbr.com/2015/08/27/criando-sites-que-simplesmente-funcionam/): Veja como usar detecção de features ao invés de detecção de browsers;
 2. [Por dentro das novas funcionalidades dos browsers](http://talkitbr.com/2015/08/17/fique-por-dentro-das-novas-funcionalidades-dos-navegadores-web/): Veja como descobrir as novas funcionalidades implementadas pelos browsers.
 
+[Voltar para a página inicial.](../)

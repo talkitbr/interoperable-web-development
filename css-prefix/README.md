@@ -23,34 +23,38 @@ Depois disso, execute o projeto num servidor Web local usando o próprio **Netbe
 <p name="Task1" />
 ##Identificando problemas de uso de prefixos CSS
 
-Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](../sitescan-rendermode/)), observe que nossa página `index.html` possui o seguinte problema de prefixo CSS:
+Voltando para os resultados obtidos pelo Site scan (realizado no [minicurso 1](../rendermode/)), observe que nossa página `index.html` possui o seguinte problema de prefixo CSS:
 
-    "cssprefixes": {
-      "testName": "cssprefixes",
-      "passed": false,
-      "data": [
-		{
-		  "cssFile": "embed",
-          "selectors": [
-            {
-              "selector": ".fadeIn",
-              "lineNumber": 3,
-              "styles": [
-                "-webkit-animation"
-              ]
-            }
+````Javascript
+"cssprefixes": {
+  "testName": "cssprefixes",
+  "passed": false,
+  "data": [
+	{
+	  "cssFile": "embed",
+      "selectors": [
+        {
+          "selector": ".fadeIn",
+          "lineNumber": 3,
+          "styles": [
+            "-webkit-animation"
           ]
         }
       ]
     }
+  ]
+}
+````
 
 Para corrigir este problema, recomenda-se especificar o CSS tanto sem prefixo como com prefixos específicos de outros browsers. Exemplo:
 
-	-webkit-appearance: button; /* WebKit */
-	   -moz-appearance: button; /* Mozilla */
-	     -o-appearance: button; /* Opera */
-	    -ms-appearance: button; /* Internet Explorer */
-	        appearance: button; /* CSS3 */
+````CSS
+-webkit-appearance: button; /* WebKit */
+   -moz-appearance: button; /* Mozilla */
+     -o-appearance: button; /* Opera */
+    -ms-appearance: button; /* Internet Explorer */
+        appearance: button; /* CSS3 */
+````
 
 No nosso caso, vamos localizar o seletor `.fadeIn` onde foi detectado o erro e então incluir as seguintes propriedades:
 
@@ -109,3 +113,4 @@ Leituras Recomendadas:
 1. [Prefixos CSS no Microsoft Edge](http://talkitbr.com/2015/08/19/prefixos-css-no-microsoft-edge/): Aprenda a usar Prefixos CSS;
 2. [Teste seu site em diferentes versões de browsers](http://talkitbr.com/2015/09/01/teste-seu-site-em-diferentes-versoes-de-browsers/): Veja como testar seu site em diferentes versões de browsers, desde o IE até Chrome e Firefox. 
 
+[Voltar para a página inicial.](../)
