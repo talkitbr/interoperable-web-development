@@ -2,15 +2,19 @@ Análisando o Site
 ========================================
 Neste minicurso iremos ver como analisar um site localmente para identificar problemas de codificação que prejudicam a visualização do site em browsers modernos.
 
-Para tanto, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta [`code\begin`](./code/begin) contido no repositório.
+Vamos começar abrindo nosso projeto Web. Para tanto, vamos baixar o código contido no diretório [`code\begin`](./code/begin) do repositório e então abrí-lo usando uma ferramenta de desenvolvimento (ver etapa de [Configuração](../_setup/)).
 
-Depois disso, execute o projeto num servidor Web local usando o próprio **Netbeans**:
+> Aqui estaremos usando o **Visual Studio Code**. Para testar vamos usar o **Node.JS**. 
 
-![Abrir projeto no Netbeans](./images/run_netbeans_project.png)
+![Abrir projeto no Visual Studio Code](./images/run_visualstudiocode_project.png)
 
-Site aberto a partir de um servidor Web local:
+O código baixado do repositório já dispõe de um arquivo de configuração (`tasks.json`) que permite abrir o servidor Http para testar o site. Para tanto pressione a tela `Ctrl+Shift+B` para executar o projeto.
 
 ![Executar site no servidor Web local](./images/site_local_webserver.png)
+
+Ao executar o comando, será iniciado o Servidor HTTP na porta 8081 (definido no arquivo `tasks.json`. Se tentarmos a task novamente sem encerrar a anterior, será solicitado o término do anterior.
+
+Para terminar a task, pressione `CTRL+SHIFT+P` e então digite "Terminate". Escolha a opção "Terminante Running Task".  
 
 <p name="Task1" />
 ##Analisando o site

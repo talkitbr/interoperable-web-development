@@ -45,6 +45,7 @@
         </style>
 
         <script src="./Scripts/jwplayer/jwplayer.js"></script>
+        <script src="Scripts/modernizr-custom" type="text/javascript"></script>
     </head>
     <body>
         <div data-role="page" data-theme="b">
@@ -89,20 +90,11 @@
 
                 <script>
                     var comingSoonMessage = document.getElementById("hidden-message");
-
-                    function isValidBrowser() {
-                        var myNav = navigator.userAgent.toLowerCase();
-                        var version;
-
-                        if (myNav.indexOf('msie') != -1) {
-                            version = parseInt(myNav.split('msie')[1])
-                            return version > 8;
-                        }
-
-                        return true;
+                    if (!Modernizr.opacity) {                  
+                        comingSoonMessage.style.filter = "alpha(opacity=0)";
                     }
-
-                    if (isValidBrowser()) {
+                        
+                    if (Modernizr.cssanimations) {
                         comingSoonMessage.className = "fadeIn";
                     } else {
                         comingSoonMessage.className = "";

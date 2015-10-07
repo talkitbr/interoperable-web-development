@@ -10,11 +10,11 @@ Este minicurso está divido nas seguintes tarefas:
 1. [Tratando uso de funções obsoletas](#Task2)
 1. [Revisão](#Review)
 
-Para executar as tarefas, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta [`code\begin`](./code/begin) contido no repositório.
+Para executar as tarefas, vamos baixar o código de [`code\begin`](./code/begin) e então abrir a pasta `"begin"` no **Visual Studio Code** através do `Open Folder`.
 
-Depois disso, execute o projeto num servidor Web local usando o próprio **Netbeans**:
+Depois disso, para executar vamos pressionar a tecla de atalho `CTRL+SHIFT+B`:
 
-![Abrir projeto no Netbeans](./images/run_netbeans_project.png)
+![Abrir projeto no Visual Studio Code](./images/run_visualstudiocode_project.png)
 
 Site aberto a partir de um servidor Web local:
 
@@ -85,7 +85,8 @@ Após o passo 1, se executarmos nosso site iremos observar que ocorre um erro Ja
 
 ![Erro usando função attachEvent](./images/featuredetection_attacheevent_error.png)
 
-> Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener`. Mas é muito comum encontrá-la nas páginas Web que foram desenvolvidas para versões anteriores do Internet Explorer. Quando usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar essa função.
+> Esse é um exemplo clássico de problema Javascript quando estamos atualizando sites. A função `attachEvent` foi substituida pela função `addEventListener`. Mas é muito comum encontrá-la nas páginas Web que foram desenvolvidas para versões anteriores do Inter
+> net Explorer. Quando usamos um browser moderno ou a nova versão do IE11, o código Javascript simplesmente falha ao tentar executar essa função.
 
 > Algumas versões mais recentes do IE11 não acusam o erro de Javascript acima apesar de também não funcionar.
 

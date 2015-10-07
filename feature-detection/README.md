@@ -9,11 +9,15 @@ Neste minicurso temos:
 
 Atualmente existem muitas páginas que fazem detecção de browser (chamado também de user agent detection) e até de versões de browser para determinar se um dado recurso pode ser usado ou não. Porém isso não é recomendado. As boas práticas de Web Moderna pedem para que se use detecção de features.
 
-Para executar as tarefas, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta [`code\begin`](./code/begin) contido no repositório.
+Para executar as tarefas, vamos baixar o código de [`code\begin`](./code/begin) e então abrir a pasta `"begin"` no **Visual Studio Code** através do `Open Folder`.
 
-Depois disso, execute o projeto num servidor Web local usando o próprio **Netbeans**:
+Depois disso, para executar vamos pressionar a tecla de atalho `CTRL+SHIFT+B`:
 
-![Run Netbeans Project](./images/site_local_webserver.png)
+![Abrir projeto no Visual Studio Code](./images/run_visualstudiocode_project.png)
+
+Site aberto a partir de um servidor Web local:
+
+![Executar site no servidor Web local](./images/site_local_webserver.png)
 
 > Você pode usar a ferramenta de desenvolvimento Web que desejar. Acesse a [etapa de configuração](../_setup) deste minicurso para mais detalhes.
 
@@ -95,7 +99,7 @@ Para verificarmos o suporte a esses recursos e features, o correto é utilizarmo
 
 	> Selecionar apenas as features necessárias ajuda a melhorar o desempenho do seu site.  
 
-3. Fazer download da opção Build e colocar na pasta Scripts:
+3. Fazer download da opção Build e colocar o arquivo na pasta Scripts do projeto (para acessar o Explorer, basta selecionar a pasta Scripts e no menu de contexto selecionar o item *Reveal in Explorer*):
 
 	![](./images/featuredetection_modernizrscriptadded.png)
 
@@ -124,11 +128,19 @@ Para verificarmos o suporte a esses recursos e features, o correto é utilizarmo
 	</script>
 	````
 	
-8. Agora vamos testar nosso site no IE e demais browsers. Usando a ferramenta do Desenvolvedor (F12), observamos que é possível verificar o funcionamento do nosso código:
+8. Agora vamos testar nosso site no Edge e demais browsers (usar tecla de atalho `CTRL_SHIFT+B`). Usando a ferramenta do Desenvolvedor (F12), observamos que é possível verificar o funcionamento do nosso código:
 
-	![](./images/featuredetection_cssanimationdebug.png)
+	![](./images/featuredetection_cssanimationdebug_edge.png)
 
-	> Através da Ferramenta do Desenvolvedor do IE podemos emular visualização do site usando versões anteriores do IE. Por exemplo, o IE9 ou IE8 irão acusar ausencia dos recursos opacity e cssanimations. 
+9. Pelo próprio Edge podemos abrir o site também no Internet Explorer. Para tanto, clicar no menu do Edge e selecionar o item "Open with Internet Explorer":
+
+	![](./images/featuredetection_openwithie.png)
+
+11. No IE conseguimos testar o site emulando diferentes versões do browser através da Ferramenta do Desenvolvedor (aba Emulation):
+
+	![](./images/featuredetection_cssanimationdebug_ie9.png)
+
+	> Observe na imagem acima que estamos fazendo depuração do código emulando o IE9. No caso IE9 ou anterior irão acusar ausencia dos recursos opacity e cssanimations. 
 
 Pronto! Se analisarmos novamente nosso site pelo Site Scan, você observará que o item de browserDetection da nossa página não estará mais lá. Somente constará o uso na biblioteca JS jwplayer:
 
