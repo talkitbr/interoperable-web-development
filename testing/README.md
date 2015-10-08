@@ -93,7 +93,14 @@ Segue exemplo de resultado obtido para o site [GitHub.com](http://github.com)
 
 Todos os browsers dispõem de uma ferramenta de desenvolvimento que permite visualizar detalhes da página além da comunicação entre o browser e o servidor Web. Para acessar essa ferramenta basta abrir um site no browser e então pressionar a tecla F12 quando o browser estiver em ativo e em foco.
 
+- No Internet Edge:
+
+![Ferramenta de Desenvolvimento No Internet Explorer](./images/testing_f12tools_edge.png)
+
+- No Internet Explorer:
+
 ![Ferramenta de Desenvolvimento No Internet Explorer](./images/testing_f12tools.png)
+
 
 A seguir iremos abordar em separado cada aba.
 
@@ -122,7 +129,7 @@ A seguir iremos abordar em separado cada aba.
 
 	Ao selecionar a aba Debugger, você verá os arquivos que contém Javascript. Nele, encontrar a linha onde deseja interromper a execução (ponto de parada) e então executar o site para que o browser interrompa a execução do Javascript naquela linha.
 
-	![Console](./images/featuredetection_cssanimationdebug.png)
+	![Console](./images/testing_f12tools_debugger.png)
 
 	> Exemplo de ponto de parada definido no curso de modo de renderização.
 
@@ -136,15 +143,15 @@ A seguir iremos abordar em separado cada aba.
 
 	![Monitoramento de Rede](./images/testing_f12tools_network.png)
 
-- **UI Responsiveness**
+- **Performance**
 
 	A partir da análise de rede, podemos detectar possíveis gargalos no acesso ao nosso site. O próximo passo é identificar quais são as causas desta lentidção. Para isso, o IE disponibiliza a ferramente que permite avaliar a responsividade da interface.
 
-	Ao abrir a aba UI Responsiveness, você verá que há um link que ao ser clicado iniciará a análise de responsividade do seu site (acessível também pela tecla Ctrl+E). Seguem os passos para usar esse recurso:
+	Ao abrir a aba Performance, você verá que há um link que ao ser clicado iniciará a análise de responsividade do seu site (acessível também pela tecla Ctrl+E). Seguem os passos para usar esse recurso:
 
 	1. Acessar a página que deseja testar.
 	2. Abrir a ferramenta do desenvolvedor.
-	3. Acessar a aba UI Responsiveness
+	3. Acessar a aba Performance
 	4. Clicar no link para iniciar a análise.
 	5. Usar os recursos do site normalmente, inclusive a navegação entre páginas.
 	6. Quando terminar, clicar novamente no link para interromper a análise.
@@ -172,17 +179,23 @@ A seguir iremos abordar em separado cada aba.
 
 - **Emulation**
 
-	Além de todos os recursos já elencados aqui sobre a ferramenta do desenvolvedor do Internet Explorer, temos ainda a aba de emulação que permite emular a visualização do site em diferentes versões de IE através da definição do Document Mode.
-	
-	Nessa aba conseguimos visualizar o Document Mode padrão do nosso site (o modo padrão é aquele que foi identificado pelo IE) e definir outro Documento Mode para analisar como nosso site se comporta. É muito útil para testar nosso site em versões anteriores do IE quando não temos essas versões disponíveis em software.
-	
+	Além de todos os recursos já elencados aqui sobre a ferramenta do desenvolvedor, temos ainda a aba de emulação que permite emular a visualização do site. 
+
+	Para o Internet Explorer podemos, por exemplo, emular o site em diferentes versões do IE através da definição do Document Mode. Nessa aba conseguimos visualizar o Document Mode padrão do nosso site (o modo padrão é aquele que foi identificado pelo IE) e definir outro Documento Mode para analisar como nosso site se comporta. É muito útil para testar nosso site em versões anteriores do IE quando não temos essas versões disponíveis em software.
+
+	Aba Emulação no Internet Explorer:
+
+	![Emulação](./images/testing_f12tools_emulation.png)
+
+	Aba Emulação no Edge:
+
+	![Emulação](./images/testing_f12tools_emulation_edge.png)
+
 	Nessa aba conseguimos também emular:
 	- o perfil do Browser entre Desktop, Corporativo (enterprise) e Windows Phone
 	- a string do user agent. Especialmente útil para identificar problemas no site relacionados com definição de conteúdo baseado no user agent. 
 	- Orientação e Resolução
 	- Geolocalização.
-	
-	![Emulação](./images/testing_f12tools_emulation.png)
 
 ## BrowserStack
 

@@ -8,11 +8,17 @@ Este minicurso inclui:
 1. [Tratando evento de mouse e ponteiro](#Task1)
 1. [Manipulando evento de entrada através do hand.js](#Task2)
 
-Para executar as tarefas, vamos abrir o projeto Web. Para tanto, vamos usar o **Netbeans** e acessar a pasta [`code\begin`](./code/begin) contido no repositório.
+Para executar as tarefas, vamos baixar o código de [`code\begin`](./code/begin) e então abrir a pasta `"begin"` no **Visual Studio Code** através do `Open Folder`.
 
-Depois disso, execute o projeto num servidor Web local usando o próprio **Netbeans**:
+Depois disso, para executar vamos pressionar a tecla de atalho `CTRL+SHIFT+B`:
 
-![Run Netbeans Project](./images/site_local_webserver.png)
+![Abrir projeto no Visual Studio Code](./images/run_visualstudiocode_project.png)
+
+Site aberto a partir de um servidor Web local:
+
+![Executar site no servidor Web local](./images/site_local_webserver.png)
+
+> Você pode usar a ferramenta de desenvolvimento Web que desejar. Acesse a [etapa de configuração](../_setup) deste minicurso para mais detalhes.
 
 <p name="Task1" />
 ## Tratando evento de mouse e ponteiro
