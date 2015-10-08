@@ -21,8 +21,8 @@ Neste minicurso iremos usar técnicas vistas nos minicursos anteriores, como o d
 
 Podemos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emular versões anteriores do IE, como o IE8. Seguem os passos para isso:
 
-1. Abrir o projeto [Contoso Industries](code/begin) no **NetBeans**
-1. Executar o projeto e abrir a página inicial no Internet Explroer.
+1. Abrir o projeto [Contoso Industries](code/begin) no **Visual Studio Code**
+1. Executar o projeto e abrir a página inicial no Internet Explorer.
 1. Abrir a Ferramenta do Desenvolvedor pressionando a tecla F12.
 1. Abrir a aba do Emulador (Emulation) e modar o **Document mode** para **8**.
 	
@@ -30,11 +30,11 @@ Podemos usar a Ferramenta do Desenvolvedor (F12) do Internet Explorer para emula
 
 1. O site será recarregado pelo browser emulando o IE8. 
 
-> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site volatrá a ser exibido no Document Mode padrão.
+> Não feche a Ferramenta do Desenvolvedor. Ao fazê-lo, essa configuração será desfeita e o site voltará a ser exibido no Document Mode padrão.
 
 > Nas versões mais recentes do IE11, mesmo usando emulação para IE8, alguns erros e limitações são contornados pelo browser, o que pode prejudicar nosso trabalho.
 
-Mas sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8 (acessar site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/)). Para ver como, acesse artigo sobre [como baixar máquinas virtuais gratuitamente para testar seu site](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/).
+**Importante:** Sugere-se baixar a máquina virtual contendo o Internet Explorer que iremos utilizar, no caso o IE8. Para tanto, acessar o site [https://dev.modern.ie/tools/vms/windows/](https://dev.modern.ie/tools/vms/windows/). Para mais detalhes de como fazer isso, acesse o artigo sobre [como baixar máquinas virtuais gratuitamente para testar seu site](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/).
 
 <p name="Task1"></p>
 
