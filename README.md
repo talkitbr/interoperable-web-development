@@ -2,7 +2,9 @@
 
 Nestes minicursos práticos, você verá como trabalhar com as últimas tendências, práticas e tecnologias para desenvolvimento Web. Tudo isso levando-se conta o desenvolvimento para todos os browsers e vendo como lidar com as limitações dos navegadores web.
 
-Os minicursos são:
+Os minicursos estão divididos em etapas:
+
+### Etapa 1 - Antes de Começar ###
 
 #### [Configuração](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/_setup)
 ##### Configurando o ambiente de desenvolvimento #####
@@ -11,6 +13,8 @@ Veja os pré-requisitos e passos para configurar o ambiente de desenvolvimento W
 #### [Minicurso 1 – Análise do Site](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/sitescan)
 ##### Analisando seu site localmente
 Neste minicurso iremos analisar uma aplicação existente usando a ferramenta de Site scan localmente. 
+
+### Etapa 2 - Desenvolvendo para Web Moderna ###
 
 #### [Minicurso 2 – Modo de Renderização e Uso de Funções Obsoletas](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/rendermode)
 ##### Corrigindo problema no Modo de Renderização e também lidando com funções obsoletas.
@@ -28,14 +32,19 @@ Neste minicurso iremos analisar alguns problemas encontrados no site relacionado
 #####Manipulando diferentes entradas do usuário
 Neste minicurso iremos atualizar nossa aplicação exemplo para considerar entrada do usuário usando touch. Será incluído o uso do [hand.js](https://handjs.codeplex.com/), mostrando como podemos usá-lo para melhorar o desenvolvimento do site.
 
-#### [Minicurso 6 – Testando em diferentes Browsers](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/testing)
+### Etapa 3 - Mobile-First ###
+
+#### [Minicurso 6 - Mobile First com Design Responsivo](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/mobile-first-design)
+#####Visualizando seu site em todos os dispositivos
+Neste minicurso iremos continuar aperfeiçoando nossa aplicação. Neste caso iremos adicionar o recurso web Design Responsivo através de Media Queries e outros elementos que podem ajudar a prover uma melhor experiência para o usuário em qualquer dispositivo que ele esteja utilizando.
+
+### Etapa 4 - Garantindo que o seu site funciona ###
+
+#### [Minicurso 7 – Testando em diferentes Browsers](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/testing)
 #####Tendo certeza que tudo funciona
 Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). 
 
-#### [Minicurso 7 – Atualizando o Site para suportar todos os browsers](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/update)
+#### [Minicurso 8 – Atualizando o Site para suportar todos os browsers](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/update)
 #####Atualizando seu site e corrigindo problemas
 Neste minicurso iremos ver como deixar nosso site atualizado para Web Moderna mas ao mesmo tempo fazer com que ele funcione em browsers antigos.
 
-#### [Minicurso 8 - Mobile First com Design Responsivo](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/mobile-first-design)
-#####Visualizando seu site em todos os dispositivos
-Neste minicurso iremos continuar aperfeiçoando nossa aplicação. Neste caso iremos adicionar o recurso web Design Responsivo através de Media Queries e outros elementos que podem ajudar a prover uma melhor experiência para o usuário em qualquer dispositivo que ele esteja utilizando.
