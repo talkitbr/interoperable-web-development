@@ -37,6 +37,5 @@ Neste minicurso iremos continuar aperfeiçoando nossa aplicação. Neste caso ir
 Neste minicurso veremos algumas ferramentas que podem ser usadas para testar nosso site e garantir que ele funciona em diferentes browsers: [Remote IE](https://remote.modern.ie/) e [Browser Stack](http://www.browserstack.com/). 
 
 #### [Minicurso 8 – Atualizando seu site para suportar versões anteriores do Internet Explorer](https://github.com/joaocunhaeld/interoperable-web-development/tree/master/update)
-#####Atualizando seu site e corrigindo problemas
 Neste minicurso iremos ver como deixar nosso site atualizado para Web Moderna mas ao mesmo tempo fazer com que ele funcione em versões anteriores do Internet Explorer.
 
