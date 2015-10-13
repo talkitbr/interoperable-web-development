@@ -46,7 +46,7 @@ Contudo iremos fazer testes num site que ainda não está em produção. E para 
 
 	![Instalando NodeJS](./images/fig1_nodejs_install.png)
 
-4. Executar o Node.JS Command Prompt
+4. Executar o programa "Node.JS Command Prompt"
 5. Acessar, via linha de comando, a pasta local onde você baixou o repositório do Site Scan.
 6. Executar o seguinte código:
 
