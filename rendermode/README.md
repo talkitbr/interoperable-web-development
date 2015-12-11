@@ -126,4 +126,4 @@ Também corrigimos o Javascript que estava usando uma função obsoleta e que n�
 
 Você pode obter o código final desse minicurso [aqui](./code/end).
 
-[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)
