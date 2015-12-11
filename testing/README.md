@@ -255,4 +255,4 @@ Leituras Recomendadas:
 2. [Baixe máquinas virtuais de graça](http://talkitbr.com/2015/09/17/baixe-maquinas-virtuais-de-graca-para-testar-seu-site/): Veja como baixar máquinas virtuais de graça para testar seu site.
 3. [Ferramenta do Desenvolvedor](http://talkitbr.com/2015/09/29/aprenda-a-usar-a-ferramenta-do-desenvolvedor-do-browser/): Fique por dentro dos recursos da ferramenta do desenvolvedor fornecida pelo IE.
 
-[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)

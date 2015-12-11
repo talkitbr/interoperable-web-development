@@ -23,7 +23,7 @@ Antes de iniciarmos qualquer atualização do site, precisamos saber como ele es
 
 Além disso, a toda alteração, precisamos verificar se há novos problemas no site.
 
-> Se o seu site está na Web, podemos prosseguir com o Site Scan disponível em [dev.modern.ie](http://dev.modern.ie/tools/staticscan/). No caso deste minicurso, o site está local e então vamos usar o Site scan local. Caso você não tenha o Site scan ou não saiba como rodá-lo, rever os passos descritos na [etapa de configuração dos minicursos](..\_setup).
+> Se o seu site está na Web, podemos prosseguir com o Site Scan disponível em [dev.modern.ie](http://dev.modern.ie/tools/staticscan/). No caso deste minicurso, o site está local e então vamos usar o Site scan local. Caso você não tenha o Site scan ou não saiba como rodá-lo, rever os passos descritos na [etapa de configuração dos minicursos](../_setup/).
 
 Ao abrir a página do Site scan local, forneça a URL do site publicado localmente: 
 
@@ -39,8 +39,8 @@ Clicar no botão Create Report:
 
 O relatório será enviado para o site dev.modern.ie para exibir os resultados. Você tem a opção de visualizar localmente os resultados através do conteúdo JSON gerado.
 
-> Até o momento de escrita desde documento, o recurso "Create Report" não estava funcionando. Já há [falha documentada no repositório Git do SiteScan](https://github.com/MicrosoftEdge/static-code-scan/issues/96). Se ainda não estiver corrigido quando você executar este minicurso, a análise deverá ser feita localmente. Para tanto, clicar em "See what will be submitted" para obter o JSON. O Notepad++ disponibiliza um [plugin para visualizar o JSON](http://sourceforge.net/projects/nppjsonviewer/):
-> ![Run Netbeans Project](./images/sitescan_result_jsonviewer.png)
+> Até o momento de escrita desde documento, o recurso "Create Report" não estava funcionando. Já há [falha documentada no repositório Git do SiteScan](https://github.com/MicrosoftEdge/static-code-scan/issues/96). Se ainda não estiver corrigido quando você executar este minicurso, a análise deverá ser feita localmente. Para tanto, clicar em "See what will be submitted" para obter o JSON. Existem vários sites que fornecem recursos para visualizar arquivos JSON (eg http://jsonviewer.stack.hu/). O Notepad++ disponibiliza um [plugin para visualizar o JSON](http://sourceforge.net/projects/nppjsonviewer/):
+> ![Notepad++ JsonViewer](./images/sitescan_result_jsonviewer.png)
 
 <p name="Review"/>
 ##Conclusão
@@ -51,4 +51,4 @@ Volte sempre que necessário para este minicurso para relembrar como fazer a an�
 
 Lembre-se sempre de verificar a evolução do seu site e correção dos problemas apontados pela ferramenta.
 
-[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)

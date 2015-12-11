@@ -188,3 +188,5 @@ Para criar um design web responsivo deve-se, entre outras coisas:
 - **Media queries** Usar media queries para adaptar a tela para diferentes tamanhos.
 - **Imagens e mídias responsivos** para ter o conteúdo apropriado para qualquer resolução.
 - **Grids Fluido** que se ajustam com o tamanho do dispositivo.
+
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)

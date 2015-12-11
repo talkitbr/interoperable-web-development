@@ -155,4 +155,4 @@ E para as demais páginas do site, basta incluir essa biblioteca para também re
 ### Revisão
 Neste minicurso tratamos os problemas relacionados com tratamento do evento de entrada do usuário. Este evento pode envolver tanto mouse como caneta ou até mesmo toque. Tratar adequadamente este evento garante o correto funcionamento do site nos diferentes dispositivos.
 
-[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)

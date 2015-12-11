@@ -437,4 +437,4 @@ Pronto! Agora podemos testar novamente nosso site no IE8 para verificar a cor de
 
 Neste minicurso vimos como rever nosso site e garantir que funcionalidades estejam disponíveis para o usuário mesmo quando ele estiver usando browser antigo. Mesmo tendo uma certa degradação, o importante aqui é garantir que o usuário tenha acesso a funcionalidade.
 
-[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)

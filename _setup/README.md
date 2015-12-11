@@ -33,7 +33,7 @@ Precisamos testar o site em diferentes browsers. O ideal é termos pelo menos 2 
  
 ### Passo 3: Clonar ou fazer download do conteúdo repositório GitHub deste curso
 
-Os minicursos fornecem uma combinação de texto e exemplos de código. Para que você tenha acesso a toda a documentação além dos códigos de exemplo no computador, sugere-se que seja feita o download ou clonagem do repositório localmente (usando [Git](http://git-scm.com/)). a URL para clonar o repositório é `https://github.com/joaocunhaeld/interoperable-web-development.git`
+Os minicursos fornecem uma combinação de texto e exemplos de código. Para que você tenha acesso a toda a documentação além dos códigos de exemplo no computador, sugere-se que seja feita o download ou clonagem do repositório localmente (usando [Git](http://git-scm.com/)). a URL para clonar o repositório é `https://github.com/talkitbr/interoperable-web-development.git`
 
 ### Passo 4: Baixar e configurar ferramenta de análise de sites
 
@@ -82,4 +82,4 @@ Revisão
 
 Acabamos de executar os passos necessários para ter um ambiente de desenvolvimento pronto para desenvolver e testar a aplicações Web e executar os nossos minicursos.
 
-[Voltar para a página inicial.](http://joaocunhaeld.github.io/interoperable-web-development)
+[Voltar para a página inicial.](http://talkitbr.github.io/interoperable-web-development)
